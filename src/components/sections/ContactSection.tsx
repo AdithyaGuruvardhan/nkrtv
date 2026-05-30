@@ -56,7 +56,7 @@ export default function ContactSection() {
               <span className="ml-2 text-2xl font-light">|</span>
             </div>
             
-            <h2 className="font-['Playfair_Display',serif] text-[36px] font-extrabold text-[#120e2b] sm:text-[46px]">
+            <h2 className=" text-[36px] font-extrabold text-[#120e2b] sm:text-[46px]">
               Get In Touch <span className="text-[#E63E1A]">Anytime, We're Free!</span>
             </h2>
             

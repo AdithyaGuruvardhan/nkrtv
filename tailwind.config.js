@@ -2,6 +2,9 @@ export default {
     content: ['./index.html', './src/**/*.{ts,tsx}'],
     theme: {
         extend: {
+            fontFamily: {
+                sans: ['Mulish', 'sans-serif'],
+            },
             colors: {
                 ink: '#211A4D',
                 paper: '#FFF9F2',

@@ -101,7 +101,7 @@ export default function DivineContentSection() {
               </span>
               <div className="h-[1px] w-12 bg-[#D68B45]/50" />
             </div>
-            <h2 className="font-['Playfair_Display',serif] text-[42px] font-bold leading-[1.1] md:text-[56px]">
+            <h2 className=" text-[42px] font-bold leading-[1.1] md:text-[56px]">
               <span className="text-[#A21D34]">Divine Content</span>{' '}
               <span className="text-[#311B5E]">For You</span>
             </h2>

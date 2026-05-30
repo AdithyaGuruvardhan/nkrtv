@@ -251,7 +251,7 @@ export default function ExploreNewSection() {
                 E X P L O R E
               </p>
               <div className="relative inline-block pb-2">
-                <h2 className="font-['Playfair_Display',serif] text-[36px] font-bold leading-tight text-[#120e2b] md:text-[42px] lg:text-[52px]">
+                <h2 className=" text-[36px] font-bold leading-tight text-[#120e2b] md:text-[42px] lg:text-[52px]">
                   New On{' '}
                   <span className="bg-gradient-to-r from-[#FF5A3C] to-[#BD2E8B] bg-clip-text text-transparent">NKRTV</span>
                 </h2>

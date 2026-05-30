@@ -116,7 +116,7 @@ export default function EntertainmentSerialSection() {
             <div className="mb-2 text-[11px] font-bold uppercase tracking-[3px] text-[#E63E1A]">
               ENTERTAINMENT
             </div>
-            <h2 className="mb-3 font-['Playfair_Display',serif] text-[54px] font-extrabold leading-[1.1]">
+            <h2 className="mb-3  text-[54px] font-extrabold leading-[1.1]">
               <span className="bg-gradient-to-r from-[#E63E1A] to-[#B21F1F] bg-clip-text text-transparent">
                 Serial
               </span>

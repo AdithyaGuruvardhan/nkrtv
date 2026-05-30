@@ -84,13 +84,17 @@ export default function Footer() {
             <div className="h-[2px] w-8 bg-[#E63E1A]" />
           </div>
           <ul className="flex flex-col gap-5">
-            {['About Us', 'Fiction', 'Non-Fiction', 'Short Film', 'Contact Us'].map((link) => (
-              <li key={link}>
-                <a href="#" className="group flex w-max items-center gap-3 text-[14px] font-bold text-white transition-colors hover:text-[#E63E1A]">
+            {[
+              { label: 'About Us', path: '/about' },
+              { label: 'Fiction', path: '/fiction' },
+              { label: 'Contact Us', path: '/contact' }
+            ].map((link) => (
+              <li key={link.label}>
+                <a href={link.path} className="group flex w-max items-center gap-3 text-[14px] font-bold text-white transition-colors hover:text-[#E63E1A]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="h-3 w-3 text-[#E63E1A] transition-transform group-hover:translate-x-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
-                  {link}
+                  {link.label}
                 </a>
               </li>
             ))}
@@ -104,13 +108,17 @@ export default function Footer() {
             <div className="h-[2px] w-8 bg-[#E63E1A]" />
           </div>
           <ul className="flex flex-col gap-5">
-            {['Enquiry For Ads', 'Blogs', 'Terms & Condition'].map((link) => (
-              <li key={link}>
-                <a href="#" className="group flex w-max items-center gap-3 text-[14px] font-bold text-white transition-colors hover:text-[#E63E1A]">
+            {[
+              { label: 'Enquiry For Ads', path: '/ads' },
+              { label: 'Blogs', path: '/blogs' },
+              { label: 'Terms & Condition', path: '#' }
+            ].map((link) => (
+              <li key={link.label}>
+                <a href={link.path} className="group flex w-max items-center gap-3 text-[14px] font-bold text-white transition-colors hover:text-[#E63E1A]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="h-3 w-3 text-[#E63E1A] transition-transform group-hover:translate-x-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
-                  {link}
+                  {link.label}
                 </a>
               </li>
             ))}

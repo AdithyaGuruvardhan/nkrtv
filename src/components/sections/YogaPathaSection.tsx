@@ -126,7 +126,7 @@ export default function YogaPathaSection() {
               </div>
               YOGA
             </div>
-            <h2 className="mb-3 font-['Playfair_Display',serif] text-[54px] font-extrabold leading-[1.1]">
+            <h2 className="mb-3  text-[54px] font-extrabold leading-[1.1]">
               Yoga{' '}
               <span className="bg-gradient-to-r from-[#E63E1A] to-[#B21F1F] bg-clip-text text-transparent">
                 Patha
