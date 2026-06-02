@@ -242,7 +242,7 @@ export default function ExploreNewSection() {
   return (
     <>
       <section className="bg-white py-14">
-        <div className="mx-auto w-full px-4 md:px-8 lg:w-[90vw] lg:max-w-[90vw] lg:px-0">
+        <div className="mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
 
           {/* Header */}
           <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">

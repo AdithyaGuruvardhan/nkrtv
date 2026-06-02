@@ -21,7 +21,7 @@ export default function FeaturedVideoSection() {
   };
 
   return (
-    <section className="relative w-[80vw] mx-auto overflow-hidden bg-black">
+    <section id="featured-video" className="relative mx-auto w-full max-w-[1510px] overflow-hidden bg-black px-4 sm:px-6 lg:px-10">
       {/* Video */}
       <video
         ref={videoRef}

@@ -28,12 +28,9 @@ export default function HeroSection() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + videos.length) % videos.length);
 
   return (
-    <section className="mt-[80px] flex flex-1 px-4 py-6 sm:mt-[100px] sm:px-6 lg:mx-auto lg:mt-[104px] lg:w-[90vw] lg:max-w-[1200px] lg:px-0 lg:py-8">
-      {/* Kept the original gradient border unchanged as requested */}
-      <div className="w-full rounded-[2rem] bg-[linear-gradient(90deg,#FFC107_0%,#FF5A3C_23%,#BD2E8B_49%,#5B2D91_75%,#1D3FA3_100%)] p-1.5 shadow-[0_20px_60px_rgba(29,63,163,0.14)]">
-        
-        {/* Slider Container replacing the single video */}
-        <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[1.7rem] bg-black md:aspect-[2/1] lg:aspect-[18/9]">
+    <section className="mt-[78px] flex w-full flex-1 bg-[#fffdf9] lg:mt-[92px]">
+      <div className="w-full">
+        <div className="relative h-[320px] w-full overflow-hidden bg-black sm:h-[430px] lg:h-[520px] xl:h-[560px]">
           
           {videos.map((src, index) => (
             <div
@@ -55,10 +52,38 @@ export default function HeroSection() {
             </div>
           ))}
 
-          {/* Navigation Arrows */}
+          <div className="pointer-events-none absolute inset-0 z-[11] bg-[linear-gradient(90deg,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.20)_36%,rgba(0,0,0,0.18)_68%,rgba(0,0,0,0.55)_100%)]" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[12] h-28 bg-gradient-to-t from-black/50 to-transparent" />
+
+          <div className="absolute left-[7vw] top-1/2 z-[13] hidden max-w-[430px] -translate-y-1/2 text-white md:block">
+            <p className="mb-3 text-[13px] font-extrabold uppercase tracking-[0.28em] text-[#FFC107]">NKR TV Kannada</p>
+            <h1 className="text-[46px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] lg:text-[58px]">
+              Your Channel.<br />
+              <span className="text-[#FFC107]">Your Voice.</span>
+            </h1>
+            <p className="mt-5 text-[18px] font-medium leading-relaxed text-white/90">
+              Positive entertainment celebrating Karnataka's culture, heritage and stories.
+            </p>
+            <div className="mt-7 flex items-center gap-3">
+              <a
+                href="#featured-video"
+                className="inline-flex items-center gap-2 rounded-[5px] bg-[linear-gradient(135deg,#D11212,#F05B19)] px-6 py-3 text-[14px] font-extrabold uppercase text-white shadow-[0_8px_20px_rgba(209,18,18,0.28)]"
+              >
+                Watch Live
+              </a>
+              <a
+                href="/about"
+                className="inline-flex items-center gap-2 rounded-[5px] border border-white/60 bg-black/20 px-6 py-3 text-[14px] font-extrabold uppercase text-white backdrop-blur-sm"
+              >
+                Explore More
+              </a>
+            </div>
+          </div>
+
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-white/40 md:h-12 md:w-12"
+            className="absolute left-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/25 text-white backdrop-blur-md transition-colors hover:bg-white/25 md:h-12 md:w-12"
+            aria-label="Previous slide"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-6 w-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -66,14 +91,14 @@ export default function HeroSection() {
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-white/40 md:h-12 md:w-12"
+            className="absolute right-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/25 text-white backdrop-blur-md transition-colors hover:bg-white/25 md:h-12 md:w-12"
+            aria-label="Next slide"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-6 w-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
-          {/* Navigation Dots */}
           <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
             {videos.map((_, index) => (
               <button

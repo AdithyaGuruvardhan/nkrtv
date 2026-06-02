@@ -1,9 +1,6 @@
-import React from 'react';
-
 const ACCENT = '#E63E1A';
 const ACCENT_DARK = '#b02010';
 const COPY = '#4A4A4A';
-const INK = '#111111';
 
 export default function AdsPage() {
   return (

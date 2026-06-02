@@ -16,6 +16,7 @@ import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import AdsPage from './pages/AdsPage';
+import AdvertisementPage from './pages/AdvertisementPage';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -84,6 +85,14 @@ export default function App() {
           <AdsPage />
           <Footer />
         </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/advertisement' || currentPath === '/advertisement/' || currentPath === '/Advertisement') {
+    return (
+      <main className="min-h-screen overflow-x-hidden bg-[#ede6df] text-ink">
+        <AdvertisementPage />
       </main>
     );
   }

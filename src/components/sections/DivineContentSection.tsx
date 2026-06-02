@@ -90,7 +90,7 @@ export default function DivineContentSection() {
 
   return (
     <section className="bg-white py-16">
-      <div className="mx-auto w-full px-4 md:px-8 lg:w-[90vw] lg:max-w-[90vw] lg:px-0">
+      <div className="mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
         
         {/* Header Area */}
         <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">

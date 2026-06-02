@@ -113,7 +113,7 @@ export default function YogaPathaSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full px-4 md:px-8 lg:w-[90vw] lg:max-w-[90vw] lg:px-0">
+      <div className="relative z-10 mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
         {/* Header */}
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-[500px]">

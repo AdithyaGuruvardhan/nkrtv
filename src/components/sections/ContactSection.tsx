@@ -2,7 +2,7 @@
 export default function ContactSection() {
   return (
     <section className="bg-[#fffdf9] py-16">
-      <div className="mx-auto w-[90vw] max-w-[1200px]">
+      <div className="mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
         
         {/* Social Media Banner */}
         <div className="relative mb-24 flex flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#F4D3CA] bg-[#FFF9F5] py-10 shadow-sm">
