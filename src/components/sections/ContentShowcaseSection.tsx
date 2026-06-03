@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import DotBackdrop from '../decor/DotBackdrop';
 
 type ContentCard = {
   title: string;
@@ -12,13 +13,13 @@ type ContentCard = {
 const featureItems = [
   {
     title: 'LIVE TV',
-    text: '24x7 Live television streaming in Kannada',
+    text: '24/7 live GEC in Kannada',
     color: '#6C2BD9',
     icon: <path d="M4 6h16v11H4V6zm2 2v7h12V8H6zm4.5 1.3v4.4l3.8-2.2-3.8-2.2zM9 20h6v-2H9v2z" />,
   },
   {
     title: 'NEWS & UPDATES',
-    text: 'Stay updated with latest news',
+    text: 'Stay updated with latest contents',
     color: '#F06A00',
     icon: <path d="M4 4h13a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V4zm3 4h8V6H7v2zm0 4h10v-2H7v2zm0 4h7v-2H7v2z" />,
   },
@@ -46,32 +47,32 @@ const cards: ContentCard[] = [
   {
     title: 'DHARMA JYOTHI',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/videoplayback.mp4',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/02/NKR-TV-thumbnails.jpg',
+    image: '/images/popular_programs/dharma-jyothi.png',
     badge: 'New Episode',
     badgeColor: '#FFC107',
     numberColor: '#FFC107',
   },
   {
-    title: 'AMRUTHA VACHANA',
+    title: 'ANANTHA DARSHAANA',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/videoplayback-1.mp4',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/02/NKR-TV-thumbnails-1.jpg',
+    image: '/images/popular_programs/anantha-dharshana.png',
     badge: 'New Season',
     badgeColor: '#FF5A3C',
     numberColor: '#FF5A3C',
   },
   {
-    title: 'BHAAGI',
+    title: 'AGNI HOTHRA',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/2025_NKRTV_720P.mp4',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/02/NKR-TV-thumbnails-2.jpg',
+    image: '/images/popular_programs/agni-hothra.png',
     badge: 'Recently Added',
     badgeColor: '#BD2E8B',
     numberColor: '#BD2E8B',
   },
   {
-    title: 'DR CINEMA',
+    title: 'SWADA SAMBHRAMA',
     video:
       'https://nkrtv.in/wp-content/uploads/2026/01/Dr._Cinema_PROMO_Behind-the-Scenes_Truths_of_Kannada_Film_Industry_Ganesh_Kasaragod_NKR_TV_1080P.mp4',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/02/NKR-TV-thumbnails-3.jpg',
+    image: '/images/popular_programs/swada-sambhrama.png',
     badge: 'Trending',
     badgeColor: '#5B2D91',
     numberColor: '#5B2D91',
@@ -79,7 +80,7 @@ const cards: ContentCard[] = [
   {
     title: 'DEAR MOMENTS',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/videoplayback-2.mp4',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/02/NKR-TV-thumbnails-4.jpg',
+    image: '/images/popular_programs/dear-moments.png',
     badge: 'Top Pick',
     badgeColor: '#1D3FA3',
     numberColor: '#1D3FA3',
@@ -115,12 +116,12 @@ function ShowcaseCard({
 
   return (
     <div
-      className="carousel-card group/card relative min-w-[82vw] flex-[0_0_82vw] snap-center overflow-hidden rounded-[7px] bg-[#2a0303] shadow-[0_8px_22px_rgba(90,12,6,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_34px_rgba(90,12,6,0.24)] sm:min-w-[45vw] sm:flex-[0_0_45vw] lg:min-w-[220px] lg:flex-1"
+      className="carousel-card group/card relative w-full overflow-hidden rounded-[7px] bg-[#2a0303] shadow-[0_8px_22px_rgba(90,12,6,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_34px_rgba(90,12,6,0.24)]"
       data-title={card.title}
       data-video={card.video}
     >
       <div
-        className="relative aspect-[4/3.15] cursor-pointer overflow-hidden bg-[#1a0101]"
+        className="relative aspect-[4/3] cursor-pointer overflow-hidden bg-[#1a0101]"
         onClick={() => onOpen(card)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -150,7 +151,6 @@ function ShowcaseCard({
           alt={card.title}
           className="block h-full w-full object-cover object-center transition-opacity duration-300 group-hover/card:opacity-0"
         />
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(80,0,0,0.08)_0%,rgba(40,0,0,0.25)_42%,rgba(32,0,0,0.86)_100%)]" />
         <video
           className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover/card:opacity-100"
           loop
@@ -162,36 +162,22 @@ function ShowcaseCard({
           <source src={card.video} type="video/mp4" />
         </video>
       </div>
-      <div className="absolute inset-x-0 bottom-0 z-[3] px-4 pb-4 text-white">
-        <div className="mb-[4px] text-[18px] font-[900] uppercase leading-tight text-[#FFD56A] drop-shadow">{card.title}</div>
-        <div className="text-[11px] font-[800] uppercase tracking-[0.5px] text-white/90">NKR TV KANNADA</div>
+
+      <div className="px-4 py-4 text-white">
+        <div className="mb-1 text-[16px] font-[900] uppercase leading-tight text-[#FFD56A] drop-shadow sm:text-[18px]">
+          {card.title}
+        </div>
+        <div className="text-[11px] font-[800] uppercase tracking-[0.5px] text-white/90">
+          NKR TV KANNADA
+        </div>
       </div>
     </div>
   );
 }
 
 export default function ContentShowcaseSection() {
-  const trackRef = useRef<HTMLDivElement | null>(null);
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const [activeCard, setActiveCard] = useState<ContentCard | null>(null);
-
-  const getScrollStep = () => {
-    const track = trackRef.current;
-    if (!track) return 420;
-    const card = track.querySelector<HTMLElement>('.carousel-card');
-    if (!card) return 420;
-    const gap = Number.parseFloat(getComputedStyle(track).gap || '20') || 20;
-    return Math.round(card.getBoundingClientRect().width + gap);
-  };
-
-  const scrollTrack = (direction: 'left' | 'right') => {
-    const track = trackRef.current;
-    if (!track) return;
-    track.scrollBy({
-      left: direction === 'left' ? -getScrollStep() : getScrollStep(),
-      behavior: 'smooth',
-    });
-  };
 
   useEffect(() => {
     const video = modalVideoRef.current;
@@ -219,7 +205,9 @@ export default function ContentShowcaseSection() {
   );
 
   return (
-    <section className="relative isolate overflow-x-hidden bg-[#fffdf9] text-[#1a1a1a]">
+    <section className="relative bg-[#fffdf9] text-[#1a1a1a]">
+      <DotBackdrop className="-top-24 -right-24 z-0 h-[360px] w-[360px] opacity-20" />
+      <DotBackdrop className="bottom-[-40px] -left-24 z-0 h-[300px] w-[300px] opacity-12" />
       <div className="mx-auto w-full max-w-[1510px] px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
         <div className="mb-5 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
           <div className="relative flex items-center gap-3">
@@ -237,33 +225,10 @@ export default function ContentShowcaseSection() {
           </a>
         </div>
 
-        <div className="relative flex items-center gap-3 lg:gap-4">
-          <button
-            type="button"
-            className="z-10 hidden h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#eadbd5] bg-white text-[#B90D0D] shadow-[0_4px_10px_rgba(0,0,0,0.08)] transition-transform duration-200 hover:scale-105 md:flex"
-            aria-label="Scroll left"
-            onClick={() => scrollTrack('left')}
-          >
-            <span className="text-[22px] font-[700] leading-none">‹</span>
-          </button>
-
-          <div
-            ref={trackRef}
-            className="flex flex-1 snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:snap-none lg:gap-4"
-          >
-            {cards.map((card, index) => (
-              <ShowcaseCard key={card.title} card={card} index={index} onOpen={setActiveCard} />
-            ))}
-          </div>
-
-          <button
-            type="button"
-            className="z-10 hidden h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#eadbd5] bg-white text-[#B90D0D] shadow-[0_4px_10px_rgba(0,0,0,0.08)] transition-transform duration-200 hover:scale-105 md:flex"
-            aria-label="Scroll right"
-            onClick={() => scrollTrack('right')}
-          >
-            <span className="text-[22px] font-[700] leading-none">›</span>
-          </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4">
+          {cards.map((card, index) => (
+            <ShowcaseCard key={card.title} card={card} index={index} onOpen={setActiveCard} />
+          ))}
         </div>
 
         <div className="mt-7 grid gap-0 overflow-hidden rounded-[4px] border border-[#efe2dc] bg-white shadow-[0_8px_24px_rgba(90,12,6,0.06)] sm:grid-cols-2 lg:grid-cols-5">
@@ -288,6 +253,15 @@ export default function ContentShowcaseSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Monument bg image */}
+        <div className="relative z-10 mt-12 -mx-4 sm:-mx-6 lg:-mx-10">
+          <img
+            src="/images/aryamba-4.png"
+            alt="Karnataka Monuments"
+            className="block w-full h-[200px] sm:h-[240px] lg:h-[280px] object-cover object-bottom -mt-6 sm:-mt-8 lg:-mt-10"
+          />
         </div>
       </div>
 

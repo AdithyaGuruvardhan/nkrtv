@@ -1,3 +1,4 @@
+import DotBackdrop from '../components/decor/DotBackdrop';
 import { useState } from 'react';
 
 const ACCENT = '#E63E1A';
@@ -15,7 +16,9 @@ export default function ContactPage() {
   const inputClass = `w-full px-4 py-3.5 rounded-lg border text-sm outline-none transition-all duration-200 bg-white `;
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="relative flex flex-col w-full overflow-hidden">
+      <DotBackdrop className="-top-20 -right-24 h-[360px] w-[360px] opacity-25" />
+      <DotBackdrop className="bottom-16 -left-24 h-[320px] w-[320px] opacity-18" />
 
       {/* Banner — same as Blog page */}
       <section

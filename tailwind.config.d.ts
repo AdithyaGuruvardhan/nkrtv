@@ -2,6 +2,9 @@ declare const _default: {
     content: string[];
     theme: {
         extend: {
+            fontFamily: {
+                sans: [string, string];
+            };
             colors: {
                 ink: string;
                 paper: string;

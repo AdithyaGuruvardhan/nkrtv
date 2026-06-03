@@ -1,3 +1,5 @@
+import DotBackdrop from '../components/decor/DotBackdrop';
+
 const ACCENT = '#E63E1A';
 const ACCENT_DARK = '#b02010';
 const COPY = '#4A4A4A';
@@ -5,22 +7,8 @@ const COPY = '#4A4A4A';
 export default function AdsPage() {
   return (
     <div className="w-full bg-[#fffdf9] text-ink relative pt-[140px] pb-24 px-5 overflow-hidden min-h-screen">
-      
-      {/* Background Dots */}
-      <div className="absolute -top-[100px] -left-[200px] w-[600px] h-[600px] rounded-full pointer-events-none opacity-30 z-0"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(230,62,26,0.35) 1.5px, transparent 1.5px)',
-          backgroundSize: '16px 16px',
-          maskImage: 'radial-gradient(circle at center, black 0%, transparent 60%)',
-          WebkitMaskImage: 'radial-gradient(circle at center, black 0%, transparent 60%)'
-        }} />
-      <div className="absolute -bottom-[100px] -right-[200px] w-[600px] h-[600px] rounded-full pointer-events-none opacity-30 z-0"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(230,62,26,0.35) 1.5px, transparent 1.5px)',
-          backgroundSize: '16px 16px',
-          maskImage: 'radial-gradient(circle at center, black 0%, transparent 60%)',
-          WebkitMaskImage: 'radial-gradient(circle at center, black 0%, transparent 60%)'
-        }} />
+      <DotBackdrop className="-top-[100px] -left-[200px] h-[600px] w-[600px] opacity-30" />
+      <DotBackdrop className="-bottom-[100px] -right-[200px] h-[600px] w-[600px] opacity-30" />
 
       <div className="relative z-10 max-w-[1200px] mx-auto">
         

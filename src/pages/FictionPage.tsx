@@ -28,6 +28,19 @@ type Section = {
 
 const sections: Section[] = [
   {
+    title: 'Aparoopada Athithigalu',
+    eyebrow: 'Serial',
+    playlistUrl: '#',
+    type: 'carousel',
+    carouselItems: [
+      { videoId: 'bVo9goe_qAo', episodeNo: '01', title: 'Aparoopada Sunday Promo', desc: 'Aparoopada Athithigalu Sunday promo from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
+      { videoId: 'GyjceLPpHm8', episodeNo: '02', title: 'Aparoopada Saturday Promo', desc: 'Aparoopada Athithigalu Saturday promo from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
+      { videoId: 'doVsx0Ra01o', episodeNo: '03', title: 'Aparoopada Sunday Promo', desc: 'Aparoopada Athithigalu Sunday promo from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
+      { videoId: 'e5ALXcgfLjU', episodeNo: '04', title: 'Aparoopada Saturday Promo', desc: 'Aparoopada Athithigalu Saturday promo from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
+      { videoId: 'oQYvgbo74Wg', episodeNo: '05', title: 'Aparoopada Episode 01', desc: 'Aparoopada Athithigalu episode 01 from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
+    ],
+  },
+  {
     title: 'Dear Moments',
     eyebrow: 'Short Film',
     playlistUrl: 'https://youtube.com/playlist?list=PLCm_kBZi_HdUTnWncfuMeDuPDX4NnCtaG',
@@ -49,36 +62,46 @@ const sections: Section[] = [
       { id: '3', videoId: 'BGL0pptUdNU', pill: 'EPISODE 03', headline: 'Mooruvare Neetigalu Ep03', desc: 'Family, values and the bonds that make us.', duration: '25 min' },
     ],
   },
-  {
-    title: 'Panchamaveda',
-    eyebrow: 'Serial',
-    playlistUrl: 'https://youtube.com/playlist?list=PLIAyJHDGMBfDKq1JnQztQFHYdDM4bWcoj',
-    type: 'carousel',
-    carouselItems: [
-      { videoId: 'ohwMhi7F2UU', episodeNo: '15', title: 'Panchamaveda Episode 15', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 15.', tags: ['U/A', 'Promo', 'YouTube'] },
-      { videoId: 'mMLehox1aOI', episodeNo: '14', title: 'Panchamaveda Episode 14', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 14.', tags: ['U/A', 'Promo', 'YouTube'] },
-      { videoId: 'qwL_-SaAur0', episodeNo: '13', title: 'Panchamaveda Episode 13', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 13.', tags: ['U/A', 'Promo', 'YouTube'] },
-      { videoId: 'imiO6BjfpiA', episodeNo: '12', title: 'Panchamaveda Episode 12', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 12.', tags: ['U/A', 'Promo', 'YouTube'] },
-      { videoId: 'FrQMSLH8Jy4', episodeNo: '11', title: 'Panchamaveda Episode 11', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 11.', tags: ['U/A', 'Promo', 'YouTube'] },
-    ],
-  },
-  {
-    title: 'Aparoopada Athithigalu',
-    eyebrow: 'Serial',
-    playlistUrl: '#',
-    type: 'carousel',
-    carouselItems: [
-      { videoId: 'bVo9goe_qAo', episodeNo: '01', title: 'Aparoopada Sunday Promo', desc: 'Aparoopada Athithigalu Sunday promo from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
-      { videoId: 'GyjceLPpHm8', episodeNo: '02', title: 'Aparoopada Saturday Promo', desc: 'Aparoopada Athithigalu Saturday promo from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
-      { videoId: 'doVsx0Ra01o', episodeNo: '03', title: 'Aparoopada Sunday Promo', desc: 'Aparoopada Athithigalu Sunday promo from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
-      { videoId: 'e5ALXcgfLjU', episodeNo: '04', title: 'Aparoopada Saturday Promo', desc: 'Aparoopada Athithigalu Saturday promo from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
-      { videoId: 'oQYvgbo74Wg', episodeNo: '05', title: 'Aparoopada Episode 01', desc: 'Aparoopada Athithigalu episode 01 from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
-    ],
-  },
 ];
 
 export default function FictionPage() {
   const [modalVid, setModalVid] = useState<{ id: string; title: string } | null>(null);
+  const panchamavedaTrackRef = useRef<HTMLDivElement>(null);
+
+  const popularPrograms = [
+    {
+      title: 'Panchamaveda',
+      subtitle: 'Serial',
+      videoId: 'ohwMhi7F2UU',
+      time: 'Monday - Friday\nMorning 5.30 AM',
+    },
+    {
+      title: 'Aparoopada Athithigalu',
+      subtitle: 'Serial',
+      videoId: 'bVo9goe_qAo',
+      time: 'Sunday - Saturday\nEvening 6.00 PM',
+    },
+    {
+      title: 'Dear Moments',
+      subtitle: 'Short Film',
+      videoId: 't7V8PxAA1PY',
+      time: 'Sunday - Friday\nMorning 6.30 AM',
+    },
+    {
+      title: 'Mooruvare Neetigalu',
+      subtitle: 'Short Film',
+      videoId: 'rltBtJw6ULM',
+      time: 'Monday - Saturday\nEvening 7.30 PM',
+    },
+  ];
+
+  const panchamavedaEpisodes = [
+    { videoId: 'ohwMhi7F2UU', episodeNo: '15', title: 'Panchamaveda Episode 15', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 15.', tags: ['U/A', 'Promo', 'YouTube'] },
+    { videoId: 'mMLehox1aOI', episodeNo: '14', title: 'Panchamaveda Episode 14', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 14.', tags: ['U/A', 'Promo', 'YouTube'] },
+    { videoId: 'qwL_-SaAur0', episodeNo: '13', title: 'Panchamaveda Episode 13', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 13.', tags: ['U/A', 'Promo', 'YouTube'] },
+    { videoId: 'imiO6BjfpiA', episodeNo: '12', title: 'Panchamaveda Episode 12', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 12.', tags: ['U/A', 'Promo', 'YouTube'] },
+    { videoId: 'FrQMSLH8Jy4', episodeNo: '11', title: 'Panchamaveda Episode 11', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 11.', tags: ['U/A', 'Promo', 'YouTube'] },
+  ];
 
   const openModal = (id: string, title: string) => {
     setModalVid({ id, title });
@@ -89,57 +112,292 @@ export default function FictionPage() {
     document.body.style.overflow = '';
   };
 
+  const scrollPanchamaveda = (dir: 'left' | 'right') => {
+    panchamavedaTrackRef.current?.scrollBy({ left: dir === 'left' ? -320 : 320, behavior: 'smooth' });
+  };
   return (
-    <div className="min-h-screen pt-[90px] pb-20 "
-      style={{ background: 'linear-gradient(180deg,#fff9f6 0%,#fff4ee 50%,#fff9f6 100%)' }}>
+    <div className="relative min-h-screen overflow-hidden bg-[#FDF8F3]">
+      {/* ===== HERO SECTION ===== */}
+      <section
+        className="relative w-full overflow-hidden text-center px-6 pt-[140px] pb-20"
+        style={{ background: 'linear-gradient(135deg, #ba2015 0%, #e84310 55%, #f49911 100%)' }}
+      >
+        <div
+          className="pointer-events-none absolute right-0 top-0 h-[400px] w-[500px] opacity-55"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 h-[320px] w-[320px] opacity-35"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+          }}
+        />
+        <p className="mb-3 text-[12px] font-extrabold uppercase tracking-[0.25em] text-orange-200">
+          NKR TV KANNADA
+        </p>
+        <h1
+          className="mb-4 font-extrabold leading-tight text-white"
+          style={{ fontSize: 'clamp(36px, 6vw, 60px)' }}
+        >
+          Fictional Stories
+        </h1>
+        <div className="mx-auto mb-5 h-[3px] w-16 rounded-full bg-white/40" />
+        <p className="mx-auto max-w-xl text-[16px] font-medium text-white/90">
+          Explore serials and short films that entertain, inspire, and connect.
+        </p>
+      </section>
 
-      {/* Page Header — matches original HTML nkr-mz-header */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-10 pt-10 pb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div className="flex items-start gap-6">
-          {/* Clapperboard icon box */}
-          <div className="w-[68px] h-[68px] rounded-[18px] flex items-center justify-center flex-shrink-0"
-            style={{ background: 'rgba(230,62,26,0.1)', border: '1px solid rgba(230,62,26,0.15)' }}>
-            <svg viewBox="0 0 24 24" className="w-8 h-8" fill="#E63E1A">
-              <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" />
-              <path d="M2 8H22M6 4L4 8M10 4L8 8M14 4L12 8M18 4L16 8" stroke="#fff4f0" strokeWidth="2" strokeLinecap="round" fill="none" />
-            </svg>
+      {/* ===== MAIN CONTENT ===== */}
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-10">
+        <div
+          className="pointer-events-none absolute right-0 top-10 h-[400px] w-[500px] opacity-45"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 h-[360px] w-[360px] opacity-35"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+          }}
+        />
+        {/* ===== POPULAR PROGRAMS ===== */}
+        <section className="relative mb-10 overflow-hidden">
+          <div className="mb-5 flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E63E1A] text-white">
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current"><path d="M12 2l2.39 6.93H22l-5.95 4.32 2.27 6.75L12 15.91l-6.32 4.09 2.27-6.75L2 8.93h7.61L12 2z"/></svg>
+              </div>
+              <h2 className="text-[15px] sm:text-[17px] font-extrabold uppercase tracking-wide text-[#2D1810]">Popular Programs</h2>
+            </div>
+            <a href="#" className="hidden sm:flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-wide text-[#E63E1A]">
+              View All Programs
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
           </div>
-          <div className="flex flex-col gap-1">
-            <p className="text-[13px] font-extrabold tracking-[0.15em] uppercase" style={{ color: '#E63E1A' }}>Short Films &amp; Serials</p>
-            <h1 className=" text-[42px] md:text-[46px] font-extrabold leading-[1.1] text-[#1a0a00]">
-              Experience Our Stories
-            </h1>
-            <p className="text-[15px] mt-1" style={{ color: '#6e5a55' }}>Engaging series that entertain, inform and inspire.</p>
+
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {popularPrograms.map((program) => (
+                <button
+                  key={program.title}
+                  onClick={() => openModal(program.videoId, program.title)}
+                  className="group relative min-h-[176px] overflow-hidden rounded-[10px] text-left shadow-[0_10px_22px_rgba(0,0,0,0.11)] transition-transform duration-300 hover:-translate-y-1"
+                >
+                  <img
+                    src={`https://i.ytimg.com/vi/${program.videoId}/hqdefault.jpg`}
+                    alt={program.title}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(77,18,9,0.94)_0%,rgba(77,18,9,0.72)_52%,rgba(77,18,9,0.28)_100%)]" />
+                  <div className="relative z-10 flex h-full flex-col justify-end p-4 text-white">
+                    <div>
+                      <h3 className="max-w-[72%] text-[18px] font-black leading-[1.08]">{program.title}</h3>
+                      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/82">{program.subtitle}</p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+          </div>
+        </section>
+
+        <section className="relative mb-10 overflow-hidden">
+          <div className="mb-5 flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E63E1A] text-white">
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current"><path d="M12 2l2.39 6.93H22l-5.95 4.32 2.27 6.75L12 15.91l-6.32 4.09 2.27-6.75L2 8.93h7.61L12 2z"/></svg>
+              </div>
+              <h2 className="text-[15px] sm:text-[17px] font-extrabold uppercase tracking-wide text-[#2D1810]">Panchamaveda</h2>
+            </div>
+            <a href="#" className="hidden sm:flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-wide text-[#E63E1A]">
+              View Full Playlist →
+            </a>
+          </div>
+
+          <div className="relative">
+            <button
+              onClick={() => scrollPanchamaveda('left')}
+              className="absolute -left-3 top-1/3 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[#e8ddd6] bg-white text-[#6d5d55] shadow-sm transition-all hover:bg-[#faf5f0]"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div
+              ref={panchamavedaTrackRef}
+              className="grid gap-[18px] overflow-x-auto pb-4 px-1"
+              style={{
+                gridTemplateColumns: 'repeat(5,minmax(0,1fr))',
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+              }}
+            >
+              {panchamavedaEpisodes.map((item) => (
+                <button
+                  key={item.videoId}
+                  onClick={() => openModal(item.videoId, item.title)}
+                  className="group relative flex flex-col rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 pb-1.5"
+                  style={{
+                    minWidth: 180,
+                    background: 'linear-gradient(180deg,#fff9f6 0%,#fff 100%)',
+                    border: '1px solid rgba(230,62,26,0.12)',
+                    boxShadow: '0 4px 16px rgba(230,62,26,0.06)',
+                    paddingBottom: 0,
+                  }}
+                >
+                  <div className="relative overflow-hidden rounded-t-[10px]" style={{ height: 150, background: '#fde8e2' }}>
+                    <img
+                      src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <span className="absolute top-2.5 left-2.5 z-20 text-[10px] font-extrabold text-white rounded-full px-2.5 py-1"
+                      style={{ background: 'linear-gradient(180deg,#E63E1A,#c42d0f)' }}>Promo</span>
+                    <span className="absolute top-2.5 right-2.5 z-20 w-10 h-10 rounded-full flex flex-col items-center justify-center bg-white/95 text-[9px] font-extrabold leading-tight shadow-md"
+                      style={{ color: '#E63E1A' }}>
+                      <span>TOP</span><span className="text-[13px]">5</span>
+                    </span>
+                    <div className="absolute bottom-0 left-0 right-0 h-1.5" style={{ background: '#E63E1A' }} />
+                    <div className="absolute left-1/2 -translate-x-1/2 -bottom-4 z-20 w-9 h-9 rounded-full flex items-center justify-center shadow-lg"
+                      style={{ background: 'linear-gradient(180deg,#E63E1A,#c42d0f)', boxShadow: '0 8px 18px rgba(230,62,26,0.3)' }}>
+                      <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white ml-0.5"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col flex-1 px-3 pt-6 pb-4">
+                    <div className="flex items-start gap-2">
+                      <span className="text-5xl font-extrabold leading-none tracking-tight flex-shrink-0"
+                        style={{ color: 'rgba(230,62,26,0.12)', lineHeight: '0.9' }}>{item.episodeNo}</span>
+                      <h3 className="text-[15px] font-extrabold text-[#1a0a00] leading-snug mt-1">{item.title}</h3>
+                    </div>
+                    <p className="text-[12px] text-[#6e5a55] leading-relaxed mt-2 line-clamp-3" style={{ minHeight: 52 }}>{item.desc}</p>
+                    <div className="mt-3 flex items-center gap-2 text-sm font-bold" style={{ color: '#E63E1A' }}>
+                      <span className="w-8 h-8 rounded-full flex items-center justify-center"
+                        style={{ background: 'linear-gradient(180deg,#E63E1A,#c42d0f)', boxShadow: '0 6px 14px rgba(230,62,26,0.25)' }}>
+                        <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white ml-0.5"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+                      </span>
+                      Watch Now
+                    </div>
+                    <div className="mt-3 pt-3 border-t flex items-center justify-between gap-2"
+                      style={{ borderColor: 'rgba(230,62,26,0.12)' }}>
+                      <div className="flex flex-wrap gap-1">
+                        {item.tags.map((tag) => (
+                          <span key={tag} className="text-[10px] font-bold px-2 py-1 rounded-md"
+                            style={{ background: 'rgba(230,62,26,0.08)', color: '#E63E1A' }}>{tag}</span>
+                        ))}
+                      </div>
+                      <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 flex-shrink-0 fill-[#E63E1A]">
+                        <path d="M12 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+                      </svg>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => scrollPanchamaveda('right')}
+              className="absolute -right-3 top-1/3 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[#e8ddd6] bg-white text-[#6d5d55] shadow-sm transition-all hover:bg-[#faf5f0]"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </section>
+
+        {/* Aparoopada Athithigalu */}
+        <SectionBlock section={sections[0]} onPlay={openModal} />
+
+        {/* Cini Yaana — grouped section */}
+        <div className="relative mb-16 z-10 overflow-hidden">
+          <div
+            className="pointer-events-none absolute right-0 top-0 h-[360px] w-[460px] opacity-35"
+            style={{
+              backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+              backgroundSize: '24px 24px',
+              maskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+              WebkitMaskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+            }}
+          />
+          <div
+            className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[300px] opacity-25"
+            style={{
+              backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+              backgroundSize: '24px 24px',
+              maskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+              WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+            }}
+          />
+
+          {/* Cini Yaana main header */}
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center justify-center gap-3 text-[11px] font-extrabold tracking-[0.2em] uppercase mb-3"
+              style={{ color: '#E63E1A' }}>
+              <span className="w-8 h-[2px]" style={{ background: 'rgba(230,62,26,0.35)' }} />
+              Collection
+              <span className="w-8 h-[2px]" style={{ background: 'rgba(230,62,26,0.35)' }} />
+            </div>
+            <h2 className="text-3xl md:text-[42px] font-black text-[#1a0a00] leading-tight">CINI YAANA</h2>
+            <div className="flex items-center justify-center gap-2 mt-3">
+              <span className="w-10 h-[2px]" style={{ background: 'rgba(230,62,26,0.25)' }} />
+              <span className="w-2 h-2 rounded-full" style={{ background: '#E63E1A' }} />
+              <span className="w-10 h-[2px]" style={{ background: 'rgba(230,62,26,0.25)' }} />
+            </div>
+          </div>
+
+          {/* Dear Moments */}
+          <div className="mb-12">
+            <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+              <div>
+                <p className="text-[11px] font-extrabold tracking-[0.15em] uppercase" style={{ color: '#E63E1A' }}>{sections[1].eyebrow}</p>
+                <h3 className="text-xl md:text-2xl font-extrabold text-[#1a0a00]">{sections[1].title}</h3>
+              </div>
+              <a href={sections[1].playlistUrl} target="_blank" rel="noopener noreferrer"
+                className="text-sm font-bold px-4 py-2 rounded-full transition-colors"
+                style={{ background: 'rgba(230,62,26,0.1)', color: '#E63E1A' }}>
+                View Full Playlist →
+              </a>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sections[1].gridItems?.map((item) => (
+                <GridCard key={item.id} item={item} onPlay={openModal} />
+              ))}
+            </div>
+          </div>
+
+          {/* Mooruvare Neetigalu */}
+          <div>
+            <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+              <div>
+                <p className="text-[11px] font-extrabold tracking-[0.15em] uppercase" style={{ color: '#E63E1A' }}>{sections[2].eyebrow}</p>
+                <h3 className="text-xl md:text-2xl font-extrabold text-[#1a0a00]">{sections[2].title}</h3>
+              </div>
+              <a href={sections[2].playlistUrl} target="_blank" rel="noopener noreferrer"
+                className="text-sm font-bold px-4 py-2 rounded-full transition-colors"
+                style={{ background: 'rgba(230,62,26,0.1)', color: '#E63E1A' }}>
+                View Full Playlist →
+              </a>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sections[2].gridItems?.map((item) => (
+                <GridCard key={item.id} item={item} onPlay={openModal} />
+              ))}
+            </div>
           </div>
         </div>
-        <a href="#"
-          className="inline-flex items-center gap-3 rounded-full px-7 py-3 text-sm font-bold transition-all duration-200 flex-shrink-0"
-          style={{ border: '1.5px solid #E63E1A', color: '#E63E1A', background: 'transparent' }}
-          onMouseEnter={e => { e.currentTarget.style.background = '#E63E1A'; e.currentTarget.style.color = '#fff'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#E63E1A'; }}>
-          View All Serials
-          <svg viewBox="0 0 24 24" className="w-4 h-4" stroke="currentColor" strokeWidth={2.5} fill="none" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </a>
+
       </div>
 
-      {/* Dot pattern decoration */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-10 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] pointer-events-none -z-0"
-          style={{
-            backgroundImage: 'radial-gradient(circle,rgba(230,62,26,0.15) 2px,transparent 2.5px)',
-            backgroundSize: '26px 26px',
-            WebkitMaskImage: 'radial-gradient(circle at top right,black 20%,transparent 70%)',
-            maskImage: 'radial-gradient(circle at top right,black 20%,transparent 70%)',
-          }} />
-
-        {sections.map((section) => (
-          <SectionBlock key={section.title} section={section} onPlay={openModal} />
-        ))}
-      </div>
-
-      {/* Modal */}
+      {/* ===== MODAL ===== */}
       {modalVid && (
         <div
           className="fixed inset-0 z-[99999] flex items-center justify-center p-4"
@@ -180,11 +438,27 @@ function SectionBlock({ section, onPlay }: { section: Section; onPlay: (id: stri
   };
 
   return (
-    <div className="mb-16 relative z-10">
-      {/* Row Header */}
+    <div className="relative mb-16 z-10 overflow-hidden">
+      <div
+        className="pointer-events-none absolute right-0 top-0 h-[360px] w-[460px] opacity-35"
+        style={{
+          backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+          backgroundSize: '24px 24px',
+          maskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[300px] opacity-25"
+        style={{
+          backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+          backgroundSize: '24px 24px',
+          maskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+        }}
+      />
       <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
         <div className="flex items-center gap-4">
-          {/* Icon */}
           <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
             style={{ background: 'rgba(230,62,26,0.12)' }}>
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#E63E1A">
@@ -198,14 +472,11 @@ function SectionBlock({ section, onPlay }: { section: Section; onPlay: (id: stri
         </div>
         <a href={section.playlistUrl} target="_blank" rel="noopener noreferrer"
           className="text-sm font-bold px-4 py-2 rounded-full transition-colors"
-          style={{ background: 'rgba(230,62,26,0.1)', color: '#E63E1A' }}
-          onMouseEnter={e => (e.currentTarget.style.background = 'rgba(230,62,26,0.2)')}
-          onMouseLeave={e => (e.currentTarget.style.background = 'rgba(230,62,26,0.1)')}>
+          style={{ background: 'rgba(230,62,26,0.1)', color: '#E63E1A' }}>
           View Full Playlist →
         </a>
       </div>
 
-      {/* Grid (3-col) */}
       {section.type === 'grid' && section.gridItems && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {section.gridItems.map((item) => (
@@ -214,7 +485,6 @@ function SectionBlock({ section, onPlay }: { section: Section; onPlay: (id: stri
         </div>
       )}
 
-      {/* Carousel (5-col) */}
       {section.type === 'carousel' && section.carouselItems && (
         <div className="relative px-10 md:px-11">
           <button onClick={() => scroll('left')}
@@ -261,16 +531,13 @@ function GridCard({ item, onPlay }: { item: VideoItem; onPlay: (id: string, titl
         boxShadow: '0 4px 16px rgba(230,62,26,0.06)',
         minHeight: 360,
       }}
-      onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 16px 40px rgba(230,62,26,0.14)')}
-      onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 16px rgba(230,62,26,0.06)')}>
-      {/* Thumbnail */}
+    >
       <div className="relative w-full overflow-hidden bg-black" style={{ height: 210 }}>
         <img
           src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
           alt={item.headline}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        {/* Play overlay */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{ background: 'rgba(0,0,0,0.3)' }}>
           <div className="w-12 h-12 rounded-full flex items-center justify-center"
@@ -282,7 +549,6 @@ function GridCard({ item, onPlay }: { item: VideoItem; onPlay: (id: string, titl
         </div>
       </div>
 
-      {/* Body */}
       <div className="flex flex-col flex-1 p-5">
         <span className="self-start text-[10px] font-extrabold tracking-wider rounded-full px-3 py-1.5 mb-3 uppercase"
           style={{ color: '#E63E1A', background: 'rgba(230,62,26,0.1)' }}>
@@ -316,37 +582,29 @@ function CarouselCard({ item, onPlay }: { item: SerialItem; onPlay: (id: string,
         boxShadow: '0 4px 16px rgba(230,62,26,0.06)',
         paddingBottom: 0,
       }}
-      onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 16px 40px rgba(230,62,26,0.14)')}
-      onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 16px rgba(230,62,26,0.06)')}>
-
-      {/* Bottom accent bar */}
+    >
       <div className="absolute bottom-0 left-0 right-0 h-1.5 z-10"
         style={{ background: 'linear-gradient(90deg,#E63E1A,#D52912)' }} />
 
-      {/* Thumbnail */}
       <div className="relative overflow-hidden rounded-t-[10px]" style={{ height: 150, background: '#fde8e2' }}>
         <img
           src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
           alt={item.title}
           className="w-full h-full object-cover"
         />
-        {/* Badges */}
         <span className="absolute top-2.5 left-2.5 z-20 text-[10px] font-extrabold text-white rounded-full px-2.5 py-1"
           style={{ background: 'linear-gradient(180deg,#E63E1A,#c42d0f)' }}>Promo</span>
         <span className="absolute top-2.5 right-2.5 z-20 w-10 h-10 rounded-full flex flex-col items-center justify-center bg-white/95 text-[9px] font-extrabold leading-tight shadow-md"
           style={{ color: '#E63E1A' }}>
           <span>TOP</span><span className="text-[13px]">5</span>
         </span>
-        {/* Accent bar under thumb */}
         <div className="absolute bottom-0 left-0 right-0 h-1.5" style={{ background: '#E63E1A' }} />
-        {/* Play button floating */}
         <div className="absolute left-1/2 -translate-x-1/2 -bottom-4 z-20 w-9 h-9 rounded-full flex items-center justify-center shadow-lg"
           style={{ background: 'linear-gradient(180deg,#E63E1A,#c42d0f)', boxShadow: '0 8px 18px rgba(230,62,26,0.3)' }}>
           <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white ml-0.5"><polygon points="5 3 19 12 5 21 5 3" /></svg>
         </div>
       </div>
 
-      {/* Body */}
       <div className="flex flex-col flex-1 px-3 pt-6 pb-4">
         <div className="flex items-start gap-2">
           <span className="text-5xl font-extrabold leading-none tracking-tight flex-shrink-0"
@@ -354,8 +612,6 @@ function CarouselCard({ item, onPlay }: { item: SerialItem; onPlay: (id: string,
           <h3 className="text-[15px] font-extrabold text-[#1a0a00] leading-snug mt-1">{item.title}</h3>
         </div>
         <p className="text-[12px] text-[#6e5a55] leading-relaxed mt-2 line-clamp-3" style={{ minHeight: 52 }}>{item.desc}</p>
-
-        {/* Watch row */}
         <div className="mt-3 flex items-center gap-2 text-sm font-bold" style={{ color: '#E63E1A' }}>
           <span className="w-8 h-8 rounded-full flex items-center justify-center"
             style={{ background: 'linear-gradient(180deg,#E63E1A,#c42d0f)', boxShadow: '0 6px 14px rgba(230,62,26,0.25)' }}>
@@ -363,8 +619,6 @@ function CarouselCard({ item, onPlay }: { item: SerialItem; onPlay: (id: string,
           </span>
           Watch Now
         </div>
-
-        {/* Footer tags */}
         <div className="mt-3 pt-3 border-t flex items-center justify-between gap-2"
           style={{ borderColor: 'rgba(230,62,26,0.12)' }}>
           <div className="flex flex-wrap gap-1">

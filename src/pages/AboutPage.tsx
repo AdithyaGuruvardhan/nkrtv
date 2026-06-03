@@ -85,12 +85,29 @@ const roleIcons = [
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col w-full ">
-
+    <div className="relative flex flex-col w-full overflow-hidden">
       {/* Banner */}
       <section
-        className="w-full text-center px-6 pt-[140px] pb-20"
+        className="relative z-10 w-full text-center px-6 pt-[140px] pb-20 overflow-hidden"
         style={{ background: 'linear-gradient(135deg,#ba2015 0%,#e84310 55%,#f49911 100%)' }}>
+        <div
+          className="pointer-events-none absolute right-0 top-0 h-[400px] w-[500px] opacity-60"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[300px] opacity-40"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+          }}
+        />
         <p className="text-[12px] font-extrabold tracking-[0.25em] uppercase text-orange-200 mb-3">NKR TV KANNADA</p>
         <h1 className="font-extrabold text-white leading-tight mb-4"
           style={{ fontSize: 'clamp(36px,6vw,60px)'  }}>
@@ -102,8 +119,83 @@ export default function AboutPage() {
         </p>
       </section>
 
+      {/* ── About Us Content Section ── */}
+      <section className="relative w-full py-20 px-5 overflow-hidden bg-white">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            {/* Left: Text */}
+            <div className="flex flex-col">
+              <h2
+                className="text-[32px] md:text-[40px] font-black tracking-[0.08em] uppercase mb-8"
+                style={{ color: ACCENT }}
+              >
+                About Us
+              </h2>
+
+              <div className="flex flex-col gap-5 text-[15px] leading-[1.8]" style={{ color: '#4a4a4a' }}>
+                <p>
+                  <strong>Namma Karnataka Rajya (NKR) TV Kannada</strong> is more than just a channel — it is a vibrant celebration of Karnataka's rich culture, language, and heritage. Rooted in the heart of Kannada storytelling, NKR TV{' '}
+                  <strong>bridges tradition with innovation</strong>, creating content that resonates profoundly with viewers across generations.
+                </p>
+
+                <p>
+                  We take pride in being a <strong>homegrown channel</strong> dedicated to{' '}
+                  <strong>entertaining, informing, and inspiring</strong> the people of Karnataka. Whether it's heartwarming family dramas, hilarious comedy shows, or thought-provoking non-fiction programmes, our content is crafted to reflect the diverse voices of our land.
+                </p>
+
+                <p>
+                  Join us as we celebrate the magic of Kannada television, one show at a time.
+                </p>
+
+                <p className="font-bold text-[16px] mt-2" style={{ color: '#5a3e8c' }}>
+                  Karnataka's Channel, Forever Yours - NKR TV KANNADA
+                </p>
+              </div>
+
+              {/* Kannada tagline */}
+              <p
+                className="mt-8 text-[22px] md:text-[26px] font-bold tracking-wide"
+                style={{ color: ACCENT }}
+              >
+                ಕನ್ನಡಿಗರಿಂದ ಕನ್ನಡಿಗರಾಗಿ ಕನ್ನಡಿಗರಿಗೋಸ್ಕರ
+              </p>
+            </div>
+
+            {/* Right: Image */}
+            <div className="relative w-full flex items-center justify-center">
+              <img
+                src="/images/about_img.png"
+                alt="NKR TV Shows Collage"
+                className="w-full h-auto object-cover"
+                style={{ objectPosition: 'center 45%' }}
+              />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Profile Cards */}
-      <div className="max-w-[1200px] mx-auto w-full px-5 py-20 flex flex-col gap-20">
+      <div className="relative z-10 max-w-[1200px] mx-auto w-full px-5 py-20 flex flex-col gap-20">
+        <div
+          className="pointer-events-none absolute right-0 top-8 h-[400px] w-[500px] opacity-45"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 h-[360px] w-[360px] opacity-45"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+          }}
+        />
         {profiles.map((p, pi) => (
           <div key={pi} className="flex flex-col gap-5">
 
@@ -212,210 +304,6 @@ export default function AboutPage() {
         ))}
       </div>
 
-      {/* ── Why Choose NKR TV ── */}
-      <section className="w-full py-24 px-5" style={{ background: '#fff9f6' }}>
-        <div className="max-w-[1200px] mx-auto">
-
-          {/* Section header */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-4 text-[13px] font-bold tracking-[0.2em] uppercase mb-4"
-              style={{ color: ACCENT }}>
-              <span className="h-[2px] w-10 inline-block" style={{ background: 'rgba(230,62,26,0.35)' }} />
-              WHY CHOOSE
-              <span className="h-[2px] w-10 inline-block" style={{ background: 'rgba(230,62,26,0.35)' }} />
-            </div>
-            <h2 className="font-black uppercase leading-[1.1] mb-6"
-              style={{
-                fontSize: 'clamp(48px,8vw,80px)',
-                letterSpacing: 2,
-                background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}>
-              NKR TV
-            </h2>
-            <div className="inline-block px-10 py-5 rounded-full text-[15px] max-w-[800px] mx-auto"
-              style={{ background: 'rgba(230,62,26,0.07)', color: COPY, border: '1px solid rgba(230,62,26,0.1)' }}>
-              Transform your vision into reality with cutting-edge solutions, innovative thinking, and unmatched excellence.
-            </div>
-          </div>
-
-          {/* 3 Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-            {[
-              {
-                icon: (
-                  <>
-                    <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM9.5 13l2.5 3.01L14.5 12l4.5 6H5l4.5-6z" />
-                    <path d="M8 8l-1 1 2.5 2.5L12 9l-1-1-1.5 1.5z" opacity=".5" />
-                  </>
-                ),
-                title: 'Diverse Content Variety',
-                text: 'Our platform offers a wide range of programming, from entertainment and health to legal insights and astrology, ensuring there\'s something for everyone to enjoy and learn from.',
-                btn: 'Explore More',
-              },
-              {
-                icon: (
-                  <path d="M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1l5 3V6L5 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z" />
-                ),
-                title: 'Positive Messaging',
-                text: 'We deliver uplifting content that promotes positivity and creates a joyful viewing experience, inspiring and empowering our audience every day.',
-                btn: 'Explore More',
-              },
-              {
-                icon: (
-                  <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z" />
-                ),
-                title: 'Expert Insights',
-                text: 'Each episode features knowledgeable hosts and experts who provide valuable advice, helping viewers navigate life with confidence and clarity.',
-                btn: 'Explore More',
-              },
-            ].map((card, i) => (
-              <div key={i} className="relative flex flex-col rounded-[20px] bg-white pt-[60px]"
-                style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-
-                {/* Floating icon */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[70px] rounded-full flex items-center justify-center z-10"
-                  style={{
-                    background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})`,
-                    boxShadow: `0 0 0 6px rgba(230,62,26,0.2), 0 0 0 14px rgba(230,62,26,0.08)`,
-                  }}>
-                  <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white">
-                    {card.icon}
-                  </svg>
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 flex flex-col px-8 pb-8 text-center">
-                  <h3 className="text-[22px] font-extrabold mb-3 leading-snug"
-                    style={{ color: ACCENT  }}>
-                    {card.title}
-                  </h3>
-                  {/* Separator */}
-                  <div className="relative w-16 h-[2px] mx-auto mb-5" style={{ background: 'rgba(230,62,26,0.25)' }}>
-                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
-                      style={{ background: ACCENT }} />
-                  </div>
-                  <p className="text-[14px] leading-[1.75]" style={{ color: COPY }}>{card.text}</p>
-                </div>
-
-                {/* Footer button */}
-                <button className="flex items-center justify-center gap-3 py-[18px] text-sm font-medium text-white transition-opacity hover:opacity-90 rounded-b-[20px]"
-                  style={{ background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})` }}>
-                  {card.btn}
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
-                  </svg>
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Meet the Visionaries ── */}
-      <section className="w-full py-24 px-5 relative overflow-hidden"
-        style={{
-          backgroundColor: '#fffdf9',
-          backgroundImage: `
-            radial-gradient(circle at 100% 0%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%),
-            radial-gradient(circle at 0% 100%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%),
-            radial-gradient(circle, rgba(230,62,26,0.03) 2px, transparent 2px)
-          `,
-          backgroundSize: '100% 100%, 100% 100%, 24px 24px',
-          backgroundPosition: '0 0, 0 0, 12px 12px'
-        }}>
-        <div className="max-w-[900px] mx-auto relative z-10">
-          
-          {/* Section header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-4 text-[13px] font-bold tracking-[0.2em] uppercase mb-4"
-              style={{ color: ACCENT }}>
-              MEET THE
-            </div>
-            <h2 className="font-black uppercase leading-[1.1] mb-6"
-              style={{
-                fontSize: 'clamp(48px,8vw,80px)',
-                letterSpacing: 2,
-                background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}>
-              VISIONARIES
-            </h2>
-            <div className="relative w-[100px] h-[2px] mx-auto mb-5" style={{ background: 'rgba(230,62,26,0.25)' }}>
-              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
-                style={{ background: ACCENT }} />
-            </div>
-            <p className="text-[16px]" style={{ color: COPY }}>
-              Exceptional leaders driving innovation and excellence
-            </p>
-          </div>
-
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {[
-              {
-                name: 'Dr. P. K. Govind',
-                quals: 'B.E., M.I.E., LL.B., PhD.',
-                img: 'https://nkrtv.in/wp-content/uploads/2026/05/NKR-TV-blog-thumbnails-4.png'
-              },
-              {
-                name: 'Smt. Rekha K Govind',
-                quals: 'M.A., B.A., NTT. DIPLOMA IN FRENCH, INTERIOR DESIGN',
-                img: 'https://nkrtv.in/wp-content/uploads/2026/05/NKR-TV-blog-thumbnails-3.png'
-              }
-            ].map((vis, i) => (
-              <div key={i} className="flex flex-col rounded-[24px] relative bg-white w-full max-w-[320px] mx-auto"
-                style={{ boxShadow: '0 15px 40px rgba(0,0,0,0.08)' }}>
-                
-                {/* Photo Area */}
-                <div className="relative rounded-t-[24px] flex justify-center items-end overflow-hidden pt-10 px-4"
-                  style={{
-                    background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})`,
-                    backgroundImage: `radial-gradient(rgba(255,255,255,0.15) 1.5px, transparent 1.5px)`,
-                    backgroundSize: '10px 10px'
-                  }}>
-                  {/* Circle Behind Image */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[250px] aspect-square rounded-full z-0"
-                    style={{ background: 'rgba(255,255,255,0.1)' }} />
-                  <img src={vis.img} alt={vis.name} className="relative z-10 w-full max-w-[260px] h-auto object-contain object-bottom rounded-xl"/>
-                </div>
-
-                {/* Content Area */}
-                <div className="bg-white rounded-b-[24px] pt-[45px] pb-[35px] px-[20px] text-center relative">
-                  {/* Icon */}
-                  <div className="absolute -top-[25px] left-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full border-[3px] border-white flex items-center justify-center z-10"
-                    style={{ background: ACCENT }}>
-                    <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-white fill-none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                  </div>
-                  
-                  <h3 className="text-[20px] md:text-[22px] font-extrabold mb-1.5"
-                    style={{ color: INK  }}>
-                    {vis.name}
-                  </h3>
-                  <p className="text-[11px] md:text-[12px] font-medium uppercase tracking-[0.5px] leading-relaxed mb-4 max-w-[240px] mx-auto"
-                    style={{ color: COPY }}>
-                    {vis.quals}
-                  </p>
-                  
-                  {/* Separator */}
-                  <div className="relative w-[70px] h-[1px] mx-auto" style={{ background: 'rgba(230,62,26,0.15)' }}>
-                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
-                      style={{ background: ACCENT }} />
-                  </div>
-                </div>
-
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
       {/* ── Our Leadership Team ── */}
       <section className="w-full py-24 px-5 relative overflow-hidden"
         style={{
@@ -428,6 +316,24 @@ export default function AboutPage() {
           backgroundSize: '100% 100%, 100% 100%, 24px 24px',
           backgroundPosition: '0 0, 0 0, 12px 12px'
         }}>
+        <div
+          className="pointer-events-none absolute right-0 top-0 h-[400px] w-[500px] opacity-40"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at top right, black 30%, transparent 80%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 h-[320px] w-[320px] opacity-35"
+          style={{
+            backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
+          }}
+        />
         <div className="max-w-[1200px] mx-auto relative z-10">
           
           {/* Section header */}
@@ -483,13 +389,11 @@ export default function AboutPage() {
               <div key={i} className="bg-white rounded-[24px] p-4 flex flex-col md:flex-row gap-6 items-center"
                 style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.05)' }}>
                 
-                {/* Image Wrapper */}
                 <div className="w-full md:w-[240px] h-[300px] md:h-[320px] rounded-[24px] pl-4 pb-4 flex-shrink-0"
                   style={{ background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})` }}>
                   <img src={lead.img} alt={lead.name} className="w-full h-full object-cover rounded-[24px] block" />
                 </div>
                 
-                {/* Content */}
                 <div className="flex-1 py-5 pr-5 text-center flex flex-col items-center justify-center">
                   <h3 className="text-[24px] md:text-[26px] font-extrabold mb-3"
                     style={{ color: INK  }}>
@@ -519,6 +423,74 @@ export default function AboutPage() {
             ))}
           </div>
 
+        </div>
+      </section>
+
+      {/* ── Why Choose NKR TV / Target Audience ── */}
+      <section className="relative w-full py-20 px-5 overflow-hidden bg-white">
+        <div className="relative z-10 max-w-[1200px] mx-auto">
+
+          {/* Section header */}
+          <div className="text-center mb-16">
+            <h2 className="font-black leading-[1.1] mb-2"
+              style={{
+                fontSize: 'clamp(32px,5vw,52px)',
+              }}>
+              <span style={{ color: '#E63E1A' }}>ನಿಮ್ಮ</span>{' '}
+              <span className="italic" style={{ color: '#5B3E8C' }}>Target </span>{' '}
+              <span style={{ color: '#E63E1A' }}> ನಮ್ಮ</span>{' '}
+              <span className="italic" style={{ color: '#5B3E8C' }}>Audience</span>
+            </h2>
+          </div>
+
+          {/* 3 Circular Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 place-items-center">
+            {[
+              {
+                title: 'CULTURALLY\nINCLINED\nADULTS',
+                text: "Those interested in India's heritage—arts, dance, culinary traditions, and tribal communities, Hindu Traditions and national interest.",
+                gradient: 'linear-gradient(135deg, rgba(251,191,36,0.05) 0%, rgba(245,158,11,0.3) 50%, rgba(217,119,6,1) 100%)',
+              },
+              {
+                title: 'FAMILY-\nORIENTED\nVIEWERS',
+                text: 'Households looking for shows suitable for all ages, focusing on learning and upliftment.',
+                gradient: 'linear-gradient(135deg, rgba(244,114,182,0.05) 0%, rgba(219,39,119,0.3) 50%, rgba(190,24,93,1) 100%)',
+              },
+              {
+                title: 'SOCIALLY\nCONSCIOUS\nAUDIENCE',
+                text: 'Individuals who prefer content with educational, spiritual, or socially responsible themes.',
+                gradient: 'linear-gradient(135deg, rgba(251,191,36,0.05) 0%, rgba(245,158,11,0.3) 50%, rgba(217,119,6,1) 100%)',
+              },
+            ].map((card, i) => (
+              <div key={i} className="relative w-full max-w-[320px]">
+                {/* Gradient border circle */}
+                <div
+                  className="rounded-full p-[3px]"
+                  style={{ background: card.gradient }}
+                >
+                  {/* Inner white circle */}
+                  <div className="rounded-full bg-white px-8 py-14 text-center min-h-[320px] flex flex-col items-center justify-center">
+                    <h3 className="text-[20px] font-black leading-[1.25] tracking-wide text-[#4a4a4a] mb-4 whitespace-pre-line">
+                      {card.title}
+                    </h3>
+                    <p className="text-[13px] leading-[1.7] text-[#6b6b6b]">
+                      {card.text}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Karnataka skyline decoration */}
+        <div className="relative z-10 mt-16 w-full overflow-hidden">
+          <img
+            src="https://nkrtv.in/wp-content/uploads/2026/05/karnataka-skyline.png"
+            alt="Karnataka Landmarks"
+            className="w-full max-w-[1200px] mx-auto h-[120px] sm:h-[160px] object-cover object-top opacity-90"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+          />
         </div>
       </section>
 

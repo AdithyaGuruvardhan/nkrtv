@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import DotBackdrop from '../decor/DotBackdrop';
 
 type PlaylistItem = {
   id: string;
@@ -11,28 +12,35 @@ type PlaylistItem = {
 const playlist: PlaylistItem[] = [
   {
     id: '1',
-    title: 'AGHINI HOTRA',
+    title: 'Agnihotra',
     subtitle: '720P • NKR TV',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/AGNI_HOTRA_NKRTVKannada_720P-1-1.mp4',
     badge: 'TOP 5',
   },
   {
     id: '2',
-    title: 'ANANTHA DARSHAANA',
+    title: 'Anantha Darshana',
     subtitle: '720P • Channel',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/NKR_TV_Kannada_720P.mp4',
     badge: 'TOP 5',
   },
   {
     id: '3',
-    title: 'NAADA LAHARI',
+    title: 'Nada Lahari',
     subtitle: '1080P • Promo',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/Naada_Lahari_PROMO_Kannada_Bhakti_Geethegalu_to_Start_Your_Day_Mon_Fri_at_7_00AM_nkrtvkannada_1080P.mp4',
     badge: 'TOP 5',
   },
   {
     id: '4',
-    title: 'DHARMA JYOTHI',
+    title: 'Yoga Patha',
+    subtitle: '720P • Promo',
+    video: 'https://nkrtv.in/wp-content/uploads/2026/01/yoga-patha-ep-45-nkr-tv-kannada-720p_WutKdSd5.mp4',
+    badge: 'TOP 5',
+  },
+  {
+    id: '5',
+    title: 'Dharma Jyothi',
     subtitle: '144P • Episode',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/Dharma_Jyothi_EP-149_NKR_TV_Kannada_144P.mp4',
     badge: 'TOP 5',
@@ -89,8 +97,11 @@ export default function DivineContentSection() {
   };
 
   return (
-    <section className="bg-white py-16">
-      <div className="mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
+    <section className="relative overflow-hidden bg-white py-16">
+      <DotBackdrop className="-top-16 -right-16 z-0 h-[420px] w-[420px] opacity-28" />
+      <DotBackdrop className="top-[22%] -left-20 z-0 h-[360px] w-[360px] opacity-18" />
+      <DotBackdrop className="bottom-[4%] right-[8%] z-0 h-[260px] w-[260px] opacity-12" />
+      <div className="relative z-10 mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
         
         {/* Header Area */}
         <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -102,7 +113,7 @@ export default function DivineContentSection() {
               <div className="h-[1px] w-12 bg-[#D68B45]/50" />
             </div>
             <h2 className=" text-[42px] font-bold leading-[1.1] md:text-[56px]">
-              <span className="text-[#A21D34]">Divine Content</span>{' '}
+              <span className="text-[#A21D34]">3hrs of Divine Content</span>{' '}
               <span className="text-[#311B5E]">For You</span>
             </h2>
             <p className="mt-4 text-[15px] font-medium leading-relaxed text-[#4b485f]">
@@ -287,55 +298,54 @@ export default function DivineContentSection() {
           </div>
         </div>
 
+        {/* Monument bg image */}
+        <div className="relative z-10 mt-8 -mx-4 sm:-mx-6 lg:-mx-10">
+          <img
+            src="/images/aryamba-5.png"
+            alt="Karnataka Monuments"
+            className="block w-full h-[200px] sm:h-[240px] lg:h-[280px] object-cover object-bottom -mt-6 sm:-mt-8 lg:-mt-10"
+          />
+        </div>
+
         {/* Bottom Feature Highlights Bar */}
-        <div className="mt-12 flex flex-col flex-wrap items-start justify-between gap-6 rounded-[20px] border border-[#f0e6d6] bg-[#FDF8F0] p-6 sm:flex-row sm:items-center sm:p-8">
-          
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#fcece6] text-[20px]">
-              🌸
-            </div>
-            <div>
-              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Spiritual Wisdom</h4>
-              <p className="text-[12px] font-medium text-gray-500">Timeless Teachings</p>
-            </div>
+        <div className="mt-12 rounded-[20px] border border-[#f0e6d6] bg-[#FDF8F0] p-6 sm:p-8">
+          <div className="mb-5 flex items-center gap-3">
+            <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#D68B45]">
+              Coming Soon
+            </span>
+            <div className="h-[1px] w-12 bg-[#D68B45]/50" />
           </div>
 
-          <div className="hidden h-10 w-[1px] bg-[#f0e6d6] sm:block" />
-
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#fcece6] text-[20px]">
-              📖
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <div className="flex items-center gap-3 rounded-[16px] bg-white px-5 py-4 shadow-[0_6px_18px_rgba(0,0,0,0.04)]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45]">
+                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+                  <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
+                </svg>
+              </div>
+              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Amrutha Vachana</h4>
             </div>
-            <div>
-              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Curated with Care</h4>
-              <p className="text-[12px] font-medium text-gray-500">Handpicked Content</p>
+            <div className="flex items-center gap-3 rounded-[16px] bg-white px-5 py-4 shadow-[0_6px_18px_rgba(0,0,0,0.04)]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45]">
+                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
+                </svg>
+              </div>
+              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Narayanin</h4>
             </div>
-          </div>
-
-          <div className="hidden h-10 w-[1px] bg-[#f0e6d6] lg:block" />
-
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#fcece6] text-[20px]">
-              ⭐
+            <div className="flex items-center gap-3 rounded-[16px] bg-white px-5 py-4 shadow-[0_6px_18px_rgba(0,0,0,0.04)]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45]">
+                <i className="fa-solid fa-bottle-water text-[16px]" />
+              </div>
+              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Amrutha Paana</h4>
             </div>
-            <div>
-              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Inspiring Stories</h4>
-              <p className="text-[12px] font-medium text-gray-500">Real Life Experiences</p>
-            </div>
-          </div>
-
-          <div className="hidden h-10 w-[1px] bg-[#f0e6d6] sm:block" />
-
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#fcece6] text-[20px]">
-              ❤️
-            </div>
-            <div>
-              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Peace & Positivity</h4>
-              <p className="text-[12px] font-medium text-gray-500">For Every Soul</p>
+            <div className="flex items-center gap-3 rounded-[16px] bg-white px-5 py-4 shadow-[0_6px_18px_rgba(0,0,0,0.04)]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45]">
+                <span className="text-[18px] font-bold leading-none">₹</span>
+              </div>
+              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Super Kannadiga</h4>
             </div>
           </div>
-
         </div>
 
       </div>

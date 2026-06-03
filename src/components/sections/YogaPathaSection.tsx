@@ -284,6 +284,15 @@ export default function YogaPathaSection() {
         </div>
       </div>
 
+      {/* Monument bg image */}
+      <div className="relative z-10 mt-10 -mx-4 sm:-mx-6 lg:-mx-10">
+        <img
+          src="/images/aryamba-7.png"
+          alt=""
+          className="block w-full h-[200px] sm:h-[240px] lg:h-[280px] object-cover object-bottom -mt-6 sm:-mt-8 lg:-mt-10"
+        />
+      </div>
+
       {/* Video Modal */}
       {modal && (
         <div

@@ -44,14 +44,13 @@ export default function FeaturedVideoSection() {
       {/* Bottom content bar */}
       <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-4 px-6 pb-7 pt-10 sm:flex-row sm:items-end sm:justify-between sm:px-10 sm:pb-10">
         {/* Left: Title + description */}
-        <div className="max-w-lg">
+        <div className="max-w-[38rem]">
           <h2 className="mb-2 text-[22px] font-extrabold text-white sm:text-[28px] md:text-[32px]">
             Super Kannadiga
           </h2>
-          <p className="text-[13px] font-medium leading-relaxed text-[rgba(255,255,255,0.85)] sm:text-[15px]">
-            Experience the ultimate celebration of Karnataka's rich heritage and culture.
-            <br className="hidden sm:block" />
-            Join us on this extraordinary journey.
+          <p className="text-[9px] font-medium leading-[1.35] text-[rgba(255,255,255,0.85)] sm:text-[11px] md:text-[13px] lg:text-[15px]">
+            <span className="block">Experience the ultimate celebration of Karnataka's rich heritage and culture.</span>
+            <span className="block">Join us on this extraordinary journey.</span>
           </p>
         </div>
 

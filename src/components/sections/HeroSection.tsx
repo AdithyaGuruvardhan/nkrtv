@@ -55,14 +55,18 @@ export default function HeroSection() {
           <div className="pointer-events-none absolute inset-0 z-[11] bg-[linear-gradient(90deg,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.20)_36%,rgba(0,0,0,0.18)_68%,rgba(0,0,0,0.55)_100%)]" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[12] h-28 bg-gradient-to-t from-black/50 to-transparent" />
 
-          <div className="absolute left-[7vw] top-1/2 z-[13] hidden max-w-[430px] -translate-y-1/2 text-white md:block">
+          <div className="absolute left-[6vw] top-1/2 z-[13] hidden max-w-[620px] -translate-y-1/2 text-white md:block lg:max-w-[720px]">
             <p className="mb-3 text-[13px] font-extrabold uppercase tracking-[0.28em] text-[#FFC107]">NKR TV Kannada</p>
             <h1 className="text-[46px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] lg:text-[58px]">
-              Your Channel.<br />
-              <span className="text-[#FFC107]">Your Voice.</span>
+              ಅಣು ಅಣುವಿನಲ್ಲೂ<br />
+              <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
+            </h1>
+            <h1 className="text-[46px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] lg:text-[58px]">
+              ಮನೆ ಮನೆಗಳಲ್ಲಿ<br />
+              <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
             </h1>
             <p className="mt-5 text-[18px] font-medium leading-relaxed text-white/90">
-              Positive entertainment celebrating Karnataka's culture, heritage and stories.
+              Creating positive entertainment & <br /> celebrating Karnataka&apos;s rich heritage, culture, & stories.
             </p>
             <div className="mt-7 flex items-center gap-3">
               <a
@@ -70,12 +74,6 @@ export default function HeroSection() {
                 className="inline-flex items-center gap-2 rounded-[5px] bg-[linear-gradient(135deg,#D11212,#F05B19)] px-6 py-3 text-[14px] font-extrabold uppercase text-white shadow-[0_8px_20px_rgba(209,18,18,0.28)]"
               >
                 Watch Live
-              </a>
-              <a
-                href="/about"
-                className="inline-flex items-center gap-2 rounded-[5px] border border-white/60 bg-black/20 px-6 py-3 text-[14px] font-extrabold uppercase text-white backdrop-blur-sm"
-              >
-                Explore More
               </a>
             </div>
           </div>

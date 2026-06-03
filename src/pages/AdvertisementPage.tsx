@@ -1,3 +1,5 @@
+import DotBackdrop from '../components/decor/DotBackdrop';
+
 const heroImage = new URL('../aryamba.png', import.meta.url).href;
 const advertisementImage = new URL('../aryamba (1).png', import.meta.url).href;
 
@@ -61,6 +63,7 @@ export default function AdvertisementPage() {
     <div className="bg-[#fffdf9] text-[#3b2c2a]">
       <section className="relative min-h-screen overflow-hidden">
         <div className="absolute inset-0 opacity-[0.34] [background-image:radial-gradient(circle_at_18%_20%,rgba(231,156,58,0.18)_0,transparent_28%),linear-gradient(135deg,rgba(179,32,26,0.04)_0,transparent_36%)]" />
+        <DotBackdrop className="-top-28 -right-28 h-[420px] w-[420px] opacity-15" />
         <div className="relative mx-auto grid min-h-screen w-full max-w-[1440px] items-center gap-4 px-5 py-8 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:px-10 xl:px-12">
           <div className="z-10 flex flex-col items-center pb-3 pt-4 text-center lg:items-start lg:text-left">
             <img
@@ -144,7 +147,8 @@ export default function AdvertisementPage() {
         </div>
       </section>
 
-      <section className="border-t border-[#e8dfd6] bg-[#fffefa]">
+      <section className="relative border-t border-[#e8dfd6] bg-[#fffefa]">
+        <DotBackdrop className="left-[-180px] top-16 h-[340px] w-[340px] opacity-15" />
         <div className="mx-auto flex w-full max-w-[1180px] flex-col items-start gap-0 px-4 py-8 sm:px-6 md:flex-row md:flex-nowrap lg:px-0">
           <div className="relative z-10 flex w-full flex-col md:w-[45.5%] md:shrink-0 md:border-r md:border-[#f0e4da] md:pb-7 md:pl-2 md:pr-8 lg:pl-0 lg:pr-10">
             <div className="mb-7">

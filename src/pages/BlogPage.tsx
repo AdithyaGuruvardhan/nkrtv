@@ -1,8 +1,11 @@
+import DotBackdrop from '../components/decor/DotBackdrop';
 import BlogsSection from '../components/sections/BlogsSection';
 
 export default function BlogPage() {
   return (
-    <div className="flex flex-col w-full">
+    <div className="relative flex flex-col w-full overflow-hidden">
+      <DotBackdrop className="-top-20 -right-24 h-[360px] w-[360px] opacity-25" />
+      <DotBackdrop className="top-[52%] -left-24 h-[300px] w-[300px] opacity-15" />
 
       {/* Hero Banner — red/orange gradient matching site palette */}
       <section
