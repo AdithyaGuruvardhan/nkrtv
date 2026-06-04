@@ -382,7 +382,17 @@ export default function DivineContentSection() {
         <div className="relative left-1/2 z-10 mt-6 h-[80px] w-screen -translate-x-1/2 overflow-hidden">
           <ContinuousImageMarquee
             className="absolute inset-x-0 -bottom-6"
-            images={['/images/monuments/1.png', '/images/monuments/2.png', '/images/monuments/3.png', '/images/monuments/4.png', '/images/monuments/5.png']}
+            images={[
+              '/images/monuments/1.png',
+              '/images/monuments/2.png',
+              '/images/monuments/3.png',
+              '/images/monuments/4.png',
+              '/images/monuments/5.png',
+              '/images/monuments/6.png',
+              '/images/monuments/7.png',
+              '/images/monuments/8.png',
+              '/images/monuments/9.png',
+            ]}
             heightClassName="h-[76px] sm:h-[82px] lg:h-[80px]"
             imageScaleClassName="scale-[1.15]"
             durationSeconds={24}
