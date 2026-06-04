@@ -1,3 +1,5 @@
+import { SITE_LOGO_URL } from '../../config/site';
+
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
@@ -39,7 +41,7 @@ export default function Header() {
       <div className="mx-auto flex h-[78px] w-full max-w-[1510px] items-center gap-4 px-4 sm:px-6 lg:h-[92px] lg:px-10">
         <a href="/" className="relative z-10 shrink-0">
           <img
-            src="https://nkrtv.in/wp-content/uploads/2024/12/cropped-NKR_Logo-3.png"
+            src={SITE_LOGO_URL}
             alt="NKR TV logo"
             className="h-[84px] w-[84px] object-contain drop-shadow-[0_8px_12px_rgba(95,19,12,0.18)] sm:h-[96px] sm:w-[96px] lg:h-[118px] lg:w-[118px]"
           />

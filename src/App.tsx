@@ -17,9 +17,69 @@ import AboutPage from './pages/AboutPage';
 import AdsPage from './pages/AdsPage';
 import AdvertisementPage from './pages/AdvertisementPage';
 import AdvertisementsPage from './pages/AdvertisementsPage';
+import PageMetadata from './components/seo/PageMetadata';
+import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
+
+const pageMetaByPath: Record<string, { title: string; description: string; path: string }> = {
+  '/': {
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    path: '/',
+  },
+  '/fiction': {
+    title: 'Fiction',
+    description: 'Watch NKR TV Kannada fiction series, short films, and serialized stories.',
+    path: '/fiction',
+  },
+  '/about': {
+    title: 'About Us',
+    description: 'Learn about the vision, people, and mission behind NKR TV Kannada.',
+    path: '/about',
+  },
+  '/contact': {
+    title: 'Contact Us',
+    description: 'Get in touch with NKR TV Kannada for questions, feedback, or partnerships.',
+    path: '/contact',
+  },
+  '/blogs': {
+    title: 'Blogs',
+    description: 'Read the latest NKR TV Kannada blogs, updates, and stories.',
+    path: '/blogs',
+  },
+  '/blog': {
+    title: 'Blogs',
+    description: 'Read the latest NKR TV Kannada blogs, updates, and stories.',
+    path: '/blogs',
+  },
+  '/ads': {
+    title: 'Enquiry For Ads',
+    description: 'Advertise with NKR TV Kannada and reach a broad regional audience.',
+    path: '/ads',
+  },
+  '/advertisement': {
+    title: 'Advertisement',
+    description: 'Advertise with NKR TV Kannada and reach a broad regional audience.',
+    path: '/advertisement',
+  },
+  '/Advertisement': {
+    title: 'Advertisement',
+    description: 'Advertise with NKR TV Kannada and reach a broad regional audience.',
+    path: '/advertisement',
+  },
+  '/advertisements': {
+    title: 'Advertisements',
+    description: 'Explore advertisement opportunities and brand placement with NKR TV Kannada.',
+    path: '/advertisements',
+  },
+};
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const pageMeta = pageMetaByPath[currentPath] ?? {
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    path: '/',
+  };
 
   useEffect(() => {
     const onLocationChange = () => {
@@ -32,6 +92,7 @@ export default function App() {
   if (currentPath === '/fiction') {
     return (
       <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <FictionPage />
@@ -44,6 +105,7 @@ export default function App() {
   if (currentPath === '/about') {
     return (
       <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <AboutPage />
@@ -56,6 +118,7 @@ export default function App() {
   if (currentPath === '/contact') {
     return (
       <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <ContactPage />
@@ -65,9 +128,10 @@ export default function App() {
     );
   }
 
-  if (currentPath === '/blogs') {
+  if (currentPath === '/blogs' || currentPath === '/blog') {
     return (
       <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <BlogPage />
@@ -80,6 +144,7 @@ export default function App() {
   if (currentPath === '/ads') {
     return (
       <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <AdsPage />
@@ -92,6 +157,7 @@ export default function App() {
   if (currentPath === '/advertisement' || currentPath === '/advertisement/' || currentPath === '/Advertisement') {
     return (
       <main className="min-h-screen overflow-x-hidden bg-[#ede6df] text-ink">
+        <PageMetadata {...pageMeta} />
         <AdvertisementPage />
       </main>
     );
@@ -100,6 +166,7 @@ export default function App() {
   if (currentPath === '/advertisements') {
     return (
       <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <AdvertisementsPage />
@@ -111,6 +178,7 @@ export default function App() {
 
   return (
     <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+      <PageMetadata {...pageMeta} />
       <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
         <Header />
         <HeroSection />

@@ -1,3 +1,5 @@
+import { SITE_LOGO_URL } from '../../config/site';
+
 const footerLinks = [
   { label: 'About Us', path: '/about' },
   { label: 'Fiction', path: '/fiction' },
@@ -85,7 +87,7 @@ export default function Footer() {
                   <div key={item.label} className="flex items-center gap-2">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d9c8bf] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.05)] overflow-hidden">
                       <img
-                        src={item.img || 'https://nkrtv.in/wp-content/uploads/2024/12/cropped-NKR_Logo-3.png'}
+                        src={item.img || SITE_LOGO_URL}
                         alt="NKRTV"
                         className="h-full w-full object-contain"
                       />
@@ -102,7 +104,7 @@ export default function Footer() {
                   <div key={item.label} className="flex items-center gap-2">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d9c8bf] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.05)] overflow-hidden">
                       <img
-                        src={item.img || 'https://nkrtv.in/wp-content/uploads/2024/12/cropped-NKR_Logo-3.png'}
+                        src={item.img || SITE_LOGO_URL}
                         alt="NKRTV"
                         className="h-full w-full object-contain"
                       />
@@ -146,7 +148,7 @@ export default function Footer() {
       <div className="mx-auto grid w-full max-w-[1510px] gap-10 px-5 py-10 sm:px-8 lg:grid-cols-[1.4fr_1.1fr_1.1fr_1.5fr] lg:px-10 lg:py-12">
         <div>
           <img
-            src="https://nkrtv.in/wp-content/uploads/2024/12/cropped-NKR_Logo-3.png"
+            src={SITE_LOGO_URL}
             alt="NKRTV Logo"
             className="h-[96px] w-[96px] object-contain"
           />

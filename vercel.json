@@ -1,6 +1,46 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/fiction",
+      "destination": "/fiction.html"
+    },
+    {
+      "source": "/advertisements",
+      "destination": "/advertisements.html"
+    },
+    {
+      "source": "/blogs",
+      "destination": "/blogs.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blogs.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/ads",
+      "destination": "/ads.html"
+    },
+    {
+      "source": "/advertisement",
+      "destination": "/advertisement.html"
+    },
+    {
+      "source": "/Advertisement",
+      "destination": "/advertisement.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
