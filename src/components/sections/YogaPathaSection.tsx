@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import ContinuousImageMarquee from './ContinuousImageMarquee';
 
 type YogaItem = {
   id: string;
@@ -284,14 +285,14 @@ export default function YogaPathaSection() {
         </div>
       </div>
 
-      {/* Monument bg image */}
-      <div className="relative z-10 mt-10 -mx-4 sm:-mx-6 lg:-mx-10">
-        <img
-          src="/images/aryamba-7.webp"
-          alt=""
-          className="block w-full h-[200px] sm:h-[240px] lg:h-[280px] object-cover object-bottom -mt-6 sm:-mt-8 lg:-mt-10"
-        />
-      </div>
+      <ContinuousImageMarquee
+        className="z-10 mt-8 -mx-4 sm:-mx-6 lg:-mx-10"
+        images={['/images/aryamba-4.webp', '/images/aryamba-5.webp', '/images/aryamba-6.webp', '/images/aryamba-7.webp']}
+        heightClassName="h-[82px] sm:h-[96px] lg:h-[112px]"
+        durationSeconds={20}
+        repeatCount={4}
+        alt=""
+      />
 
       {/* Video Modal */}
       {modal && (
