@@ -53,12 +53,12 @@ export default function BlogsSection() {
   };
 
   return (
-    <section className="blogs-section relative w-full overflow-hidden bg-[#fffdf9] py-20">
+    <section className="blogs-section relative w-full overflow-hidden bg-[#fffdf9] py-16">
       <style>{`
         @media (max-width: 639px) {
           .blogs-section {
-            padding-top: 56px;
-            padding-bottom: 56px;
+            padding-top: 48px;
+            padding-bottom: 48px;
           }
 
           .blogs-section .blogs-shell {
@@ -97,7 +97,7 @@ export default function BlogsSection() {
           }
 
           .blogs-section .blogs-carousel {
-            margin-top: 28px;
+            margin-top: 24px;
           }
 
           .blogs-section .blogs-track {
@@ -196,11 +196,11 @@ export default function BlogsSection() {
         </div>
 
         {/* Carousel Area */}
-        <div className="blogs-carousel relative mt-12">
+        <div className="blogs-carousel relative mt-8">
           <div
             ref={trackRef}
             onScroll={handleScroll}
-            className="blogs-track no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-10 pt-4"
+            className="blogs-track no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-3"
           >
             {blogs.map((blog) => (
               <div

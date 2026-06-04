@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import ContinuousImageMarquee from './ContinuousImageMarquee';
 
 type SerialItem = {
   id: string;
@@ -356,14 +355,6 @@ export default function EntertainmentSerialSection() {
           mobileControlsOnly
         />
 
-        <ContinuousImageMarquee
-          className="z-10 mt-6 -mx-4 sm:-mx-6 lg:-mx-10"
-          images={['/images/aryamba-4.webp', '/images/aryamba-5.webp', '/images/aryamba-6.webp', '/images/aryamba-7.webp']}
-          heightClassName="h-[82px] sm:h-[96px] lg:h-[112px]"
-          durationSeconds={20}
-          repeatCount={4}
-          alt=""
-        />
       </div>
 
       {/* Video Modal */}

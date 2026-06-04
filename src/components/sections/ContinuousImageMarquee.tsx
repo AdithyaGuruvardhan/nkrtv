@@ -2,6 +2,7 @@ type ContinuousImageMarqueeProps = {
   images: string[];
   className?: string;
   imageClassName?: string;
+  imageScaleClassName?: string;
   itemClassName?: string;
   heightClassName?: string;
   durationSeconds?: number;
@@ -13,9 +14,10 @@ export default function ContinuousImageMarquee({
   images,
   className = '',
   imageClassName = '',
+  imageScaleClassName = 'scale-[1.6]',
   itemClassName = '',
-  heightClassName = 'h-[82px] sm:h-[96px]',
-  durationSeconds = 18,
+  heightClassName = 'h-[148px] sm:h-[168px]',
+  durationSeconds = 24,
   repeatCount = 4,
   alt = 'Decorative strip',
 }: ContinuousImageMarqueeProps) {
@@ -42,12 +44,12 @@ export default function ContinuousImageMarquee({
             {images.map((src, index) => (
               <div
                 key={`${groupIndex}-${src}-${index}`}
-                className={`flex w-[180px] shrink-0 overflow-hidden sm:w-[210px] ${heightClassName} ${itemClassName}`}
+                className={`flex w-[165px] shrink-0 overflow-hidden sm:w-[195px] ${heightClassName} ${itemClassName}`}
               >
                 <img
                   src={src}
                   alt={alt}
-                  className={`h-full w-full object-cover object-center ${imageClassName}`}
+                  className={`h-full w-full object-contain object-center ${imageScaleClassName} ${imageClassName}`}
                   draggable={false}
                 />
               </div>

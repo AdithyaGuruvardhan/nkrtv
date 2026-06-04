@@ -379,17 +379,20 @@ export default function DivineContentSection() {
           </div>
         </div>
 
-        <ContinuousImageMarquee
-          className="z-10 mt-6 -mx-4 sm:-mx-6 lg:-mx-10"
-          images={['/images/aryamba-4.webp', '/images/aryamba-5.webp', '/images/aryamba-6.webp', '/images/aryamba-7.webp']}
-          heightClassName="h-[82px] sm:h-[96px] lg:h-[112px]"
-          durationSeconds={20}
-          repeatCount={4}
-          alt="Karnataka decorative strip"
-        />
+        <div className="relative left-1/2 z-10 mt-6 h-[80px] w-screen -translate-x-1/2 overflow-hidden">
+          <ContinuousImageMarquee
+            className="absolute inset-x-0 -bottom-6"
+            images={['/images/monuments/1.png', '/images/monuments/2.png', '/images/monuments/3.png', '/images/monuments/4.png', '/images/monuments/5.png']}
+            heightClassName="h-[76px] sm:h-[82px] lg:h-[80px]"
+            imageScaleClassName="scale-[1.15]"
+            durationSeconds={24}
+            repeatCount={4}
+            alt="Karnataka decorative strip"
+          />
+        </div>
 
         {/* Bottom Feature Highlights Bar */}
-        <div className="mt-12 rounded-[20px] border border-[#f0e6d6] bg-[#FDF8F0] p-4 sm:p-8">
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-[#FDF8F0] px-4 py-4 sm:px-6 sm:py-8 lg:px-10">
           <div className="mb-4 flex items-center gap-3 sm:mb-5">
             <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#D68B45] sm:text-[12px] sm:tracking-[0.2em]">
               Coming Soon

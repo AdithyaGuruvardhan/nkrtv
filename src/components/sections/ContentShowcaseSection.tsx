@@ -178,12 +178,6 @@ function ShowcaseCard({
 export default function ContentShowcaseSection() {
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const [activeCard, setActiveCard] = useState<ContentCard | null>(null);
-  const marqueeImages = [
-    '/images/aryamba-4.webp',
-    '/images/aryamba-5.webp',
-    '/images/aryamba-6.webp',
-    '/images/aryamba-7.webp',
-  ];
 
   useEffect(() => {
     const video = modalVideoRef.current;
@@ -214,16 +208,6 @@ export default function ContentShowcaseSection() {
     <section className="relative bg-[#fffdf9] text-[#1a1a1a]">
       <DotBackdrop className="-top-24 -right-24 z-0 h-[360px] w-[360px] opacity-20" />
       <DotBackdrop className="bottom-[-40px] -left-24 z-0 h-[300px] w-[300px] opacity-12" />
-      <style>{`
-        @keyframes contentMarqueeRTL {
-          0% {
-            transform: translate3d(0, 0, 0);
-          }
-          100% {
-            transform: translate3d(-50%, 0, 0);
-          }
-        }
-      `}</style>
       <div className="mx-auto w-full max-w-[1510px] px-4 py-4 sm:px-6 lg:px-10 lg:py-5">
         <div className="mb-4 flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between">
           <div className="relative flex items-center gap-3">
@@ -269,32 +253,6 @@ export default function ContentShowcaseSection() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Marquee strip */}
-        <div className="relative z-10 mt-4 -mx-4 overflow-hidden sm:-mx-6 lg:-mx-10">
-          <div
-            className="flex w-max items-stretch gap-0 will-change-transform"
-            style={{ animation: 'contentMarqueeRTL 18s linear infinite' }}
-          >
-            {[0, 1, 2, 3].map((groupIndex) => (
-              <div key={groupIndex} className="flex shrink-0 items-stretch gap-0">
-                {marqueeImages.map((src, index) => (
-                  <div
-                    key={`${groupIndex}-${src}-${index}`}
-                    className="flex h-[82px] w-[180px] shrink-0 overflow-hidden sm:h-[96px] sm:w-[210px]"
-                  >
-                    <img
-                      src={src}
-                      alt="Karnataka decorative strip"
-                      className="h-full w-full object-cover object-center"
-                      draggable={false}
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 

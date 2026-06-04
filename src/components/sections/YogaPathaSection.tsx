@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import ContinuousImageMarquee from './ContinuousImageMarquee';
 
 type YogaItem = {
   id: string;
@@ -93,7 +92,7 @@ export default function YogaPathaSection() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#fffdf9] py-20">
+    <section className="relative w-full overflow-hidden bg-[#fffdf9] py-16">
       {/* Decorative Dotted Patterns (matching Serial section) */}
       <div
         className="pointer-events-none absolute right-0 top-0 h-[400px] w-[500px] opacity-60"
@@ -157,11 +156,11 @@ export default function YogaPathaSection() {
         </div>
 
         {/* Carousel Area */}
-        <div className="relative mt-8">
+        <div className="relative mt-6">
           <div
             ref={trackRef}
             onScroll={handleScroll}
-            className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto pb-10 pt-4"
+            className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pt-3"
           >
             {yogaItems.map((item) => (
               <div
@@ -251,7 +250,7 @@ export default function YogaPathaSection() {
         </div>
 
         {/* Navigation Controls */}
-        <div className="mt-2 flex items-center justify-center gap-5">
+        <div className="mt-1 flex items-center justify-center gap-5">
           <button
             type="button"
             onClick={() => scrollTrack('left')}
@@ -284,15 +283,6 @@ export default function YogaPathaSection() {
           </button>
         </div>
       </div>
-
-      <ContinuousImageMarquee
-        className="z-10 mt-8 -mx-4 sm:-mx-6 lg:-mx-10"
-        images={['/images/aryamba-4.webp', '/images/aryamba-5.webp', '/images/aryamba-6.webp', '/images/aryamba-7.webp']}
-        heightClassName="h-[82px] sm:h-[96px] lg:h-[112px]"
-        durationSeconds={20}
-        repeatCount={4}
-        alt=""
-      />
 
       {/* Video Modal */}
       {modal && (

@@ -400,7 +400,7 @@ export default function FictionPage() {
       </section>
 
       {/* ===== MAIN CONTENT ===== */}
-      <div className="fiction-content relative z-10 mx-auto max-w-[1440px] px-4 py-10 sm:px-6 lg:px-10">
+      <div className="fiction-content relative z-10 mx-auto max-w-[1440px] px-4 py-8 sm:px-6 lg:px-10">
         <div
           className="pointer-events-none absolute right-0 top-10 h-[400px] w-[500px] opacity-45"
           style={{
@@ -420,7 +420,7 @@ export default function FictionPage() {
           }}
         />
         {/* ===== POPULAR PROGRAMS ===== */}
-        <section className="fiction-section relative mb-10 overflow-hidden">
+        <section className="fiction-section relative mb-8 overflow-hidden">
           <div className="fiction-section-heading mb-5 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E63E1A] text-white">
@@ -458,7 +458,7 @@ export default function FictionPage() {
           </div>
         </section>
 
-        <section className="relative mb-10 overflow-hidden">
+        <section className="relative mb-8 overflow-hidden">
           <div className="mb-5 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E63E1A] text-white">
@@ -566,7 +566,7 @@ export default function FictionPage() {
         <SectionBlock section={sections[0]} onPlay={openModal} />
 
         {/* Cini Yaana */}
-        <div className="relative mb-16 z-10 overflow-hidden">
+        <div className="relative z-10 mb-12 overflow-hidden">
           <div
             className="pointer-events-none absolute right-0 top-0 h-[360px] w-[460px] opacity-35"
             style={{
@@ -587,7 +587,7 @@ export default function FictionPage() {
           />
 
           {/* Cini Yaana main header */}
-          <div className="text-center mb-10">
+          <div className="mb-8 text-center">
             <div className="inline-flex items-center justify-center gap-3 text-[11px] font-extrabold tracking-[0.2em] uppercase mb-3"
               style={{ color: '#E63E1A' }}>
               <span className="w-8 h-[2px]" style={{ background: 'rgba(230,62,26,0.35)' }} />
@@ -652,7 +652,7 @@ function SectionBlock({ section, onPlay }: { section: Section; onPlay: (id: stri
   };
 
   return (
-    <div className="fiction-section relative mb-16 z-10 overflow-hidden">
+    <div className="fiction-section relative z-10 mb-12 overflow-hidden">
       <div
         className="pointer-events-none absolute right-0 top-0 h-[360px] w-[460px] opacity-35"
         style={{
