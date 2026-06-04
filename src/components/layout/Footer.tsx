@@ -29,20 +29,20 @@ const socials = [
 ];
 
 const viewershipStats = [
-  { label: '134 / 110', count: '134 / 110', img: '/images/footer_viewership/10.png' },
-  { label: 'Jio 22', count: '22', img: '/images/footer_viewership/11.png' },
-  { label: 'KCL 66', count: '66', img: '/images/footer_viewership/12.png' },
-  { label: '82/77', count: '82/77', img: '/images/footer_viewership/13.png' },
-  { label: 'TCC 66', count: '66', img: '/images/footer_viewership/14.png' },
-  { label: 'DIGITAL 83', count: '83', img: '/images/footer_viewership/15.png' },
-  { label: '955', count: '955', img: '/images/footer_viewership/16.png' },
-  { label: 'NETWORK 14', count: '14', img: '/images/footer_viewership/17.png' },
-  { label: 'MSS CABLE 146', count: '146', img: '/images/footer_viewership/18.png' },
-  { label: '28', count: '28', img: '/images/footer_viewership/19.png' },
-  { label: '32', count: '32', img: '/images/footer_viewership/20.png' },
-  { label: 'GTPL 66', count: '66', img: '/images/footer_viewership/21.png' },
-  { label: '05', count: '05', img: '/images/footer_viewership/22.png' },
-  { label: '558', count: '558', img: '/images/footer_viewership/23.png' },
+  { label: '134 / 110', count: '134 / 110', img: '/images/footer_viewership/10.webp' },
+  { label: 'Jio 22', count: '22', img: '/images/footer_viewership/11.webp' },
+  { label: 'KCL 66', count: '66', img: '/images/footer_viewership/12.webp' },
+  { label: '82/77', count: '82/77', img: '/images/footer_viewership/13.webp' },
+  { label: 'TCC 66', count: '66', img: '/images/footer_viewership/14.webp' },
+  { label: 'DIGITAL 83', count: '83', img: '/images/footer_viewership/15.webp' },
+  { label: '955', count: '955', img: '/images/footer_viewership/16.webp' },
+  { label: 'NETWORK 14', count: '14', img: '/images/footer_viewership/17.webp' },
+  { label: 'MSS CABLE 146', count: '146', img: '/images/footer_viewership/18.webp' },
+  { label: '28', count: '28', img: '/images/footer_viewership/19.webp' },
+  { label: '32', count: '32', img: '/images/footer_viewership/20.webp' },
+  { label: 'GTPL 66', count: '66', img: '/images/footer_viewership/21.webp' },
+  { label: '05', count: '05', img: '/images/footer_viewership/22.webp' },
+  { label: '558', count: '558', img: '/images/footer_viewership/23.webp' },
 ];
 
 export default function Footer() {
@@ -124,20 +124,27 @@ export default function Footer() {
       <div className="relative w-full h-[80px] overflow-hidden bg-[#fbf7ea]">
         <style>{`
           @keyframes driveVanRTL {
-            0% { left: 100%; transform: translateX(-100%); }
-            100% { left: 0; transform: translateX(0); }
+            0% {
+              transform: translateX(calc(100vw + 36px));
+            }
+            94% {
+              transform: translateX(-110px);
+            }
+            100% {
+              transform: translateX(-132px);
+            }
           }
         `}</style>
         <div
-          className="absolute top-6 overflow-hidden"
+          className="absolute left-0 top-6 overflow-hidden will-change-transform"
           style={{
-            animation: 'driveVanRTL 10s linear infinite',
+            animation: 'driveVanRTL 9s linear infinite',
             height: '72px',
-            aspectRatio: '1.6 / 1',
+            width: '120px',
           }}
         >
           <img
-            src="/images/van1.png"
+            src="/images/van1.webp"
             alt="NKR TV Van"
             className="h-full w-full object-cover"
             style={{ objectPosition: 'center 52%' }}

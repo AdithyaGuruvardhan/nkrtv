@@ -47,7 +47,7 @@ const cards: ContentCard[] = [
   {
     title: 'DHARMA JYOTHI',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/videoplayback.mp4',
-    image: '/images/popular_programs/dharma-jyothi.png',
+    image: '/images/popular_programs/dharma-jyothi.webp',
     badge: 'New Episode',
     badgeColor: '#FFC107',
     numberColor: '#FFC107',
@@ -55,7 +55,7 @@ const cards: ContentCard[] = [
   {
     title: 'ANANTHA DARSHAANA',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/videoplayback-1.mp4',
-    image: '/images/popular_programs/anantha-dharshana.png',
+    image: '/images/popular_programs/anantha-dharshana.webp',
     badge: 'New Season',
     badgeColor: '#FF5A3C',
     numberColor: '#FF5A3C',
@@ -63,7 +63,7 @@ const cards: ContentCard[] = [
   {
     title: 'AGNI HOTHRA',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/2025_NKRTV_720P.mp4',
-    image: '/images/popular_programs/agni-hothra.png',
+    image: '/images/popular_programs/agni-hothra.webp',
     badge: 'Recently Added',
     badgeColor: '#BD2E8B',
     numberColor: '#BD2E8B',
@@ -72,7 +72,7 @@ const cards: ContentCard[] = [
     title: 'SWADA SAMBHRAMA',
     video:
       'https://nkrtv.in/wp-content/uploads/2026/01/Dr._Cinema_PROMO_Behind-the-Scenes_Truths_of_Kannada_Film_Industry_Ganesh_Kasaragod_NKR_TV_1080P.mp4',
-    image: '/images/popular_programs/swada-sambhrama.png',
+    image: '/images/popular_programs/swada-sambhrama.webp',
     badge: 'Trending',
     badgeColor: '#5B2D91',
     numberColor: '#5B2D91',
@@ -80,7 +80,7 @@ const cards: ContentCard[] = [
   {
     title: 'DEAR MOMENTS',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/videoplayback-2.mp4',
-    image: '/images/popular_programs/dear-moments.png',
+    image: '/images/popular_programs/dear-moments.webp',
     badge: 'Top Pick',
     badgeColor: '#1D3FA3',
     numberColor: '#1D3FA3',
@@ -258,7 +258,7 @@ export default function ContentShowcaseSection() {
         {/* Monument bg image */}
         <div className="relative z-10 mt-12 -mx-4 sm:-mx-6 lg:-mx-10">
           <img
-            src="/images/aryamba-4.png"
+            src="/images/aryamba-4.webp"
             alt="Karnataka Monuments"
             className="block w-full h-[200px] sm:h-[240px] lg:h-[280px] object-cover object-bottom -mt-6 sm:-mt-8 lg:-mt-10"
           />

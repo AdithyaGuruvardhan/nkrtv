@@ -197,21 +197,21 @@ export default function App() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               <div className="overflow-hidden rounded-[14px]">
                 <img
-                  src="/images/cook_show_ad.jpg"
+                  src="/images/cook_show_ad.webp"
                   alt="Cook Show Ad"
                   className="block h-full min-h-[100px] w-full object-cover sm:min-h-[120px] md:min-h-[140px]"
                 />
               </div>
               <div className="overflow-hidden rounded-[14px]">
                 <img
-                  src="/images/devotion_ad.jpg"
+                  src="/images/devotion_ad.webp"
                   alt="Devotion Ad"
                   className="block h-full min-h-[100px] w-full object-cover sm:min-h-[120px] md:min-h-[140px]"
                 />
               </div>
               <div className="overflow-hidden rounded-[14px]">
                 <img
-                  src="/images/super_kannadiga_ad.jpg"
+                  src="/images/super_kannadiga_ad.webp"
                   alt="Super Kannadiga Ad"
                   className="block h-full min-h-[100px] w-full object-cover sm:min-h-[120px] md:min-h-[140px]"
                 />

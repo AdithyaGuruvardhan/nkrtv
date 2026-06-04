@@ -4,10 +4,10 @@ const ACCENT = '#E63E1A';
 const ACCENT_DARK = '#b02010';
 
 const services = [
-  { label: 'Hoardings', img: '/images/ads/HOARDINGS.png' },
-  { label: 'Buses', img: '/images/ads/buses.png' },
-  { label: 'Bus Stop Branding', img: '/images/ads/bus stop.png' },
-  { label: 'Auto Branding', img: '/images/ads/auto.png' },
+  { label: 'Hoardings', img: '/images/ads/HOARDINGS.webp' },
+  { label: 'Buses', img: '/images/ads/buses.webp' },
+  { label: 'Bus Stop Branding', img: '/images/ads/bus stop.webp' },
+  { label: 'Auto Branding', img: '/images/ads/auto.webp' },
 ];
 
 const adFormatTabs: {
@@ -23,7 +23,7 @@ const adFormatTabs: {
 }[] = [
   {
     key: 'reach',
-    label: 'Reach',
+    label: 'Impact',
     formats: [
       {
         name: 'Disruptor Aston Band',
@@ -59,7 +59,7 @@ const adFormatTabs: {
   },
   {
     key: 'inspire',
-    label: 'Inspire',
+    label: 'Screen Presence',
     formats: [
       {
         name: 'Branded Window',
@@ -94,53 +94,13 @@ const adFormatTabs: {
     ],
   },
   {
-    key: 'synergize',
-    label: 'Synergize',
-    formats: [
-      {
-        name: 'Meta Tagged Aston',
-        description: 'A performance-focused Aston band solution that integrates clickable metadata within the creative, allowing audiences to interact with relevant brand information in real time. Designed to enhance engagement and discoverability, it transforms traditional visibility into measurable outcomes.',
-        usage: 'Perfect for driving contextual discovery, increasing audience engagement, and enabling action-oriented brand interactions.',
-        optionsLabel: 'Buying Options',
-        specs: [
-          { label: 'CPM (Cost Per Mille)', value: 'Cost per 1,000 ad impressions.' },
-          { label: 'CPC (Cost Per Click)', value: 'Cost incurred when a viewer clicks on the ad.' },
-          { label: 'CPD (Cost Per Day)', value: 'Fixed cost for dedicated visibility per day.' },
-        ],
-      },
-      {
-        name: 'Pause & Play',
-        description: 'A smart, interactive advertising solution that activates during content pauses, offering brands a unique opportunity to engage audiences at moments of undivided attention. Seamlessly integrated into the viewing journey, it delivers impactful visibility without disrupting content consumption.',
-        usage: 'Perfect for driving brand recall, enhancing audience engagement, and creating meaningful interactions during natural viewing pauses.',
-        optionsLabel: 'Buying Options',
-        specs: [
-          { label: 'CPM (Cost Per Mille)', value: 'Cost per 1,000 ad impressions.' },
-          { label: 'CPC (Cost Per Click)', value: 'Cost incurred when a viewer clicks on the ad.' },
-          { label: 'CPD (Cost Per Day)', value: 'Fixed cost for exclusive visibility per day.' },
-        ],
-      },
-      {
-        name: 'In Show Integration',
-        description: 'A highly immersive advertising solution that embeds brands directly within a show\'s storyline, enabling natural exposure and authentic audience engagement. By aligning seamlessly with the narrative, it fosters stronger brand affinity and creates lasting impressions.',
-        usage: 'Ideal for building authentic brand associations, driving high recall, and establishing deeper audience connections through content-led storytelling.',
-        optionsLabel: 'Buying Options',
-        specs: [
-          { label: 'CPM (Cost Per Mille)', value: 'Cost per 1,000 ad impressions.' },
-          { label: 'CPC (Cost Per Click)', value: 'Cost incurred when a viewer clicks on the ad.' },
-          { label: 'CPD (Cost Per Day)', value: 'Fixed cost for exclusive visibility per day.' },
-        ],
-      },
-    ],
-  },
-  {
     key: 'engage',
-    label: 'Engage',
+    label: 'Attention Driver',
     formats: [
       {
         name: 'QR Code Astons',
         description: 'An interactive Aston band solution that combines prominent on-screen visibility with a scannable QR code, enabling audiences to instantly access brand experiences, offers, websites, or applications. Designed to convert viewer attention into measurable actions, it effectively bridges the gap between television and mobile engagement.',
         usage: 'Perfect for driving digital engagement, increasing website visits, generating leads, boosting app installations, and creating seamless cross-device interactions.',
-        optionsLabel: 'Buying Options',
         specs: [
           { label: 'CPC (Cost Per Click)', value: 'Cost incurred when a viewer clicks on the ad.' },
           { label: 'CPL (Cost Per Lead)', value: 'Pay for qualified leads generated.' },
@@ -152,11 +112,20 @@ const adFormatTabs: {
         name: 'Anchor Mentions',
         description: 'A premium content-led advertising solution where anchors seamlessly incorporate brand mentions or product showcases into live or recorded broadcasts. By leveraging the familiarity and credibility of trusted presenters, it creates authentic brand associations and enhances audience receptiveness.',
         usage: 'Perfect for driving brand trust, reinforcing credibility, and creating meaningful audience connections through organic endorsements.',
-        optionsLabel: 'Buying Options',
         specs: [
           { label: 'CPM (Cost Per Mille)', value: 'Cost per 1,000 ad impressions.' },
           { label: 'CPC (Cost Per Click)', value: 'Cost incurred when a viewer clicks on the ad.' },
           { label: 'CPD (Cost Per Day)', value: 'Fixed cost for dedicated visibility per day.' },
+        ],
+      },
+      {
+        name: 'In Show Integration',
+        description: 'A highly immersive advertising solution that embeds brands directly within a show\'s storyline, enabling natural exposure and authentic audience engagement. By aligning seamlessly with the narrative, it fosters stronger brand affinity and creates lasting impressions.',
+        usage: 'Ideal for building authentic brand associations, driving high recall, and establishing deeper audience connections through content-led storytelling.',
+        specs: [
+          { label: 'CPM (Cost Per Mille)', value: 'Cost per 1,000 ad impressions.' },
+          { label: 'CPC (Cost Per Click)', value: 'Cost incurred when a viewer clicks on the ad.' },
+          { label: 'CPD (Cost Per Day)', value: 'Fixed cost for exclusive visibility per day.' },
         ],
       },
     ],
@@ -326,7 +295,7 @@ export default function AdvertisementsPage() {
       {/* ── 01 Hero Banner (no text) ── */}
       <section className="advertisements-hero relative w-full h-[220px] sm:h-[420px] md:h-[620px] overflow-hidden">
         <img
-          src="/images/ad_banner2.png"
+          src="/images/ad_banner.webp"
           alt="Advertisement Banner"
           className="w-full h-full object-cover"
         />
@@ -457,6 +426,7 @@ function AdFormatsSection() {
 
   const category = adFormatTabs.find((t) => t.key === activeCategory) || adFormatTabs[0];
   const format = category.formats[activeFormatIdx] || category.formats[0];
+  const showSpecs = category.key !== 'engage';
 
   const handleCategoryChange = (key: string) => {
     setActiveCategory(key);
@@ -478,7 +448,7 @@ function AdFormatsSection() {
             Premium Ad Formats
           </h2>
           <p className="text-[15px] md:text-[17px] font-medium max-w-xl mx-auto" style={{ color: '#6e5a55' }}>
-            Strategic placements designed to reach, inspire, synergize, and engage your audience.
+            Strategic placements designed to create impact, screen presence, brand spotlight, and attention-driven engagement.
           </p>
         </div>
 
@@ -564,19 +534,21 @@ function AdFormatsSection() {
                   </div>
                 </div>
 
-                <div>
-                  <h4 className="text-[11px] font-extrabold uppercase tracking-widest text-[#E63E1A] mb-3">
-                    {format.optionsLabel || 'Specifications'}
-                  </h4>
-                  <div className={`advertisements-format-specs grid gap-4 ${format.specs.length > 3 ? 'grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-3'}`}>
-                    {format.specs.map((s) => (
-                      <div key={s.label} className="advertisements-format-card bg-white rounded-[16px] p-4 text-left border border-[#f0e8e3]">
-                        <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#9b8881] mb-1">{s.label}</p>
-                        <p className="text-[13px] font-semibold text-[#1a0a00] leading-snug">{s.value}</p>
-                      </div>
-                    ))}
+                {showSpecs ? (
+                  <div>
+                    <h4 className="text-[11px] font-extrabold uppercase tracking-widest text-[#E63E1A] mb-3">
+                      {format.optionsLabel || 'Specifications'}
+                    </h4>
+                    <div className={`advertisements-format-specs grid gap-4 ${format.specs.length > 3 ? 'grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-3'}`}>
+                      {format.specs.map((s) => (
+                        <div key={s.label} className="advertisements-format-card bg-white rounded-[16px] p-4 text-left border border-[#f0e8e3]">
+                          <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#9b8881] mb-1">{s.label}</p>
+                          <p className="text-[13px] font-semibold text-[#1a0a00] leading-snug">{s.value}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                ) : null}
               </div>
             </div>
           </div>

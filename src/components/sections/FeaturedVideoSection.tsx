@@ -33,7 +33,11 @@ export default function FeaturedVideoSection() {
         preload="auto"
       >
         <source
-          src="https://nkrtv.in/wp-content/uploads/2026/01/Promo-01_Super-Kannadiga_NKR_V2-1-1.mp4"
+          src="/videos/Promo-01_Super-Kannadiga_web.webm"
+          type="video/webm"
+        />
+        <source
+          src="/videos/Promo-01_Super-Kannadiga_web.mp4"
           type="video/mp4"
         />
       </video>

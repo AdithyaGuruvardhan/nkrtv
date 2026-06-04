@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 const blogs = [
   {
     id: '1',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/02/NKR-TV-blog-thumbnails-2.jpg',
+    image: '/images/blog_imgs/why_nkr_blog.webp',
     category: 'Updates',
     date: 'May 28, 2025',
     headline: 'Why NKR Kannada Channel',
@@ -12,7 +12,7 @@ const blogs = [
   },
   {
     id: '2',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/02/NKR-TV-blog-thumbnails-1.jpg',
+    image: '/images/blog_imgs/nkr_specialities_blog.webp',
     category: 'Insights',
     date: 'May 18, 2025',
     headline: 'NKR Specialities',
@@ -21,7 +21,7 @@ const blogs = [
   },
   {
     id: '3',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/02/NKR-TV-blog-thumbnails.jpg',
+    image: '/images/blog_imgs/note_ceo_nkr_blog.webp',
     category: 'Leadership',
     date: 'May 10, 2025',
     headline: 'A note from CEO',

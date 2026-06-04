@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 
 const videos = [
-  "https://nkrtv.in/wp-content/uploads/2026/01/NKRTV_Kannada_720P.mp4",
-  "https://nkrtv.in/wp-content/uploads/2026/01/Promo-01_Super-Kannadiga_NKR_V2-1-1.mp4",
-  "https://nkrtv.in/wp-content/uploads/2026/01/Alle_Arambha_Prema_PROMO_A_Heartwarming_Coastal_Love_Story_New_Serial_on_NKRTV_Kannada_serial_720P.mp4"
+  "/videos/NKRTV_Kannada_720P.mp4",
+  "/videos/Promo-01_Super-Kannadiga_web.mp4",
+  "/videos/Alle_Arambha_Prema_PROMO_A_Heartwarming_Coastal_Love_Story_New_Serial_on_NKRTV_Kannada_serial_720P.mp4"
 ];
 
 export default function HeroSection() {
@@ -61,16 +61,16 @@ export default function HeroSection() {
               ಅಣು ಅಣುವಿನಲ್ಲೂ<br />
               <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
             </h1>
-            <h1 className="text-[46px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] lg:text-[58px]">
+            {/* <h1 className="text-[46px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] lg:text-[58px]">
               ಮನೆ ಮನೆಗಳಲ್ಲಿ<br />
               <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
-            </h1>
+            </h1> */}
             <p className="mt-5 text-[18px] font-medium leading-relaxed text-white/90">
               Creating positive entertainment & <br /> celebrating Karnataka&apos;s rich heritage, culture, & stories.
             </p>
             <div className="mt-7 flex items-center gap-3">
               <a
-                href="#featured-video"
+                href="#"
                 className="inline-flex items-center gap-2 rounded-[5px] bg-[linear-gradient(135deg,#D11212,#F05B19)] px-6 py-3 text-[14px] font-extrabold uppercase text-white shadow-[0_8px_20px_rgba(209,18,18,0.28)]"
               >
                 Watch Live

@@ -1,7 +1,7 @@
 import DotBackdrop from '../components/decor/DotBackdrop';
 
-const heroImage = new URL('../aryamba.png', import.meta.url).href;
-const advertisementImage = new URL('../aryamba (1).png', import.meta.url).href;
+const heroImage = new URL('../aryamba.webp', import.meta.url).href;
+const advertisementImage = new URL('../aryamba (1).webp', import.meta.url).href;
 
 const heroFeatures = [
   {

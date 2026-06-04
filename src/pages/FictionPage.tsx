@@ -6,7 +6,7 @@ type VideoItem = {
   pill: string;
   headline: string;
   desc: string;
-  duration: string;
+  duration?: string;
 };
 
 type SerialItem = {
@@ -61,6 +61,33 @@ const sections: Section[] = [
       { id: '2', videoId: '2xxcxQvNCGc', pill: 'EPISODE 02', headline: 'Mooruvare Neetigalu Ep02', desc: 'Conversations that change perspectives forever.', duration: '30 min' },
       { id: '3', videoId: 'BGL0pptUdNU', pill: 'EPISODE 03', headline: 'Mooruvare Neetigalu Ep03', desc: 'Family, values and the bonds that make us.', duration: '25 min' },
     ],
+  },
+];
+
+const ciniYaanaCards: VideoItem[] = [
+  {
+    id: 'dear-moments',
+    videoId: 't7V8PxAA1PY',
+    pill: 'SHORT FILM',
+    headline: 'Dear Moments',
+    desc: 'Heartfelt stories that connect, inspire and stay with you.',
+    duration: '24 min',
+  },
+  {
+    id: 'mooruvare-neetigalu',
+    videoId: 'rltBtJw6ULM',
+    pill: 'SHORT FILM',
+    headline: 'Mooruvare Neetigalu',
+    desc: 'A journey of love, values and life lessons.',
+    duration: '28 min',
+  },
+  {
+    id: 'draupadi',
+    videoId: 'pfSgyeqa37k',
+    pill: 'SHORT FILM',
+    headline: 'Draupadi',
+    desc: 'Draupadi from NKR TV Kannada.',
+    duration: 'Promo',
   },
 ];
 
@@ -538,7 +565,7 @@ export default function FictionPage() {
         {/* Aparoopada Athithigalu */}
         <SectionBlock section={sections[0]} onPlay={openModal} />
 
-        {/* Cini Yaana — grouped section */}
+        {/* Cini Yaana */}
         <div className="relative mb-16 z-10 overflow-hidden">
           <div
             className="pointer-events-none absolute right-0 top-0 h-[360px] w-[460px] opacity-35"
@@ -575,44 +602,10 @@ export default function FictionPage() {
             </div>
           </div>
 
-          {/* Dear Moments */}
-          <div className="mb-12">
-            <div className="fiction-subsection-header flex items-center justify-between mb-5 flex-wrap gap-3">
-              <div>
-                <p className="text-[11px] font-extrabold tracking-[0.15em] uppercase" style={{ color: '#E63E1A' }}>{sections[1].eyebrow}</p>
-                <h3 className="text-xl md:text-2xl font-extrabold text-[#1a0a00]">{sections[1].title}</h3>
-              </div>
-              <a href={sections[1].playlistUrl} target="_blank" rel="noopener noreferrer"
-                className="text-sm font-bold px-4 py-2 rounded-full transition-colors"
-                style={{ background: 'rgba(230,62,26,0.1)', color: '#E63E1A' }}>
-                View Full Playlist →
-              </a>
-            </div>
-            <div className="fiction-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sections[1].gridItems?.map((item) => (
-                <GridCard key={item.id} item={item} onPlay={openModal} />
-              ))}
-            </div>
-          </div>
-
-          {/* Mooruvare Neetigalu */}
-          <div>
-            <div className="fiction-subsection-header flex items-center justify-between mb-5 flex-wrap gap-3">
-              <div>
-                <p className="text-[11px] font-extrabold tracking-[0.15em] uppercase" style={{ color: '#E63E1A' }}>{sections[2].eyebrow}</p>
-                <h3 className="text-xl md:text-2xl font-extrabold text-[#1a0a00]">{sections[2].title}</h3>
-              </div>
-              <a href={sections[2].playlistUrl} target="_blank" rel="noopener noreferrer"
-                className="text-sm font-bold px-4 py-2 rounded-full transition-colors"
-                style={{ background: 'rgba(230,62,26,0.1)', color: '#E63E1A' }}>
-                View Full Playlist →
-              </a>
-            </div>
-            <div className="fiction-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sections[2].gridItems?.map((item) => (
-                <GridCard key={item.id} item={item} onPlay={openModal} />
-              ))}
-            </div>
+          <div className="fiction-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {ciniYaanaCards.map((item) => (
+              <GridCard key={item.id} item={item} onPlay={openModal} />
+            ))}
           </div>
         </div>
 
@@ -787,7 +780,9 @@ function GridCard({ item, onPlay }: { item: VideoItem; onPlay: (id: string, titl
             <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white"><polygon points="5 3 19 12 5 21 5 3" /></svg>
             Play
           </div>
-          <span className="text-sm font-bold" style={{ color: '#D52912' }}>{item.duration}</span>
+          {item.duration ? (
+            <span className="text-sm font-bold" style={{ color: '#D52912' }}>{item.duration}</span>
+          ) : null}
         </div>
       </div>
     </div>

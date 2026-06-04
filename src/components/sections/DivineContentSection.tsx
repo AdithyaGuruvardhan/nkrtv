@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DotBackdrop from '../decor/DotBackdrop';
 
 type PlaylistItem = {
@@ -7,6 +7,7 @@ type PlaylistItem = {
   subtitle: string;
   video: string;
   badge: string;
+  captureRatio?: number;
 };
 
 const playlist: PlaylistItem[] = [
@@ -14,21 +15,21 @@ const playlist: PlaylistItem[] = [
     id: '1',
     title: 'Agnihotra',
     subtitle: '720P • NKR TV',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/AGNI_HOTRA_NKRTVKannada_720P-1-1.mp4',
+    video: '/videos/AGNI_HOTRA_NKRTVKannada_720P.mp4',
     badge: 'TOP 5',
   },
   {
     id: '2',
     title: 'Anantha Darshana',
-    subtitle: '720P • Channel',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/NKR_TV_Kannada_720P.mp4',
+    subtitle: 'Promo • NKR TV',
+    video: '/videos/Anantha_Darshana_Promo_NKR_Tv_Kannada.mp4',
     badge: 'TOP 5',
   },
   {
     id: '3',
-    title: 'Nada Lahari',
-    subtitle: '1080P • Promo',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/Naada_Lahari_PROMO_Kannada_Bhakti_Geethegalu_to_Start_Your_Day_Mon_Fri_at_7_00AM_nkrtvkannada_1080P.mp4',
+    title: 'Naada Lahari',
+    subtitle: 'Promo • Bhakti Geethegalu',
+    video: '/videos/Naada_Lahari_PROMO_Kannada.mp4',
     badge: 'TOP 5',
   },
   {
@@ -37,17 +38,117 @@ const playlist: PlaylistItem[] = [
     subtitle: '720P • Promo',
     video: 'https://nkrtv.in/wp-content/uploads/2026/01/yoga-patha-ep-45-nkr-tv-kannada-720p_WutKdSd5.mp4',
     badge: 'TOP 5',
+    captureRatio: 0.5,
   },
   {
     id: '5',
     title: 'Dharma Jyothi',
-    subtitle: '144P • Episode',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/Dharma_Jyothi_EP-149_NKR_TV_Kannada_144P.mp4',
+    subtitle: 'Promo • NKR TV',
+    video: '/videos/Dharma_Jyothi_PROMO_NKR_TV_Kannada.mp4',
     badge: 'TOP 5',
+    captureRatio: 0.5,
   },
 ];
 
 type ModalState = { src: string; title: string } | null;
+
+function AutoVideoThumb({ src, title, captureRatio = 0.12 }: { src: string; title: string; captureRatio?: number }) {
+  const [poster, setPoster] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const video = document.createElement('video');
+    video.crossOrigin = 'anonymous';
+    video.preload = 'metadata';
+    video.muted = true;
+    video.playsInline = true;
+    video.src = src;
+
+    const cleanup = () => {
+      video.removeAttribute('src');
+      video.load();
+    };
+
+    const captureFrame = () => {
+      if (cancelled) return;
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth || 1280;
+      canvas.height = video.videoHeight || 720;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        setPoster(null);
+        return;
+      }
+      try {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        if (!cancelled) setPoster(dataUrl);
+      } catch {
+        if (!cancelled) setPoster(null);
+      }
+    };
+
+    const onLoadedMetadata = () => {
+      const seekTo = Math.min(1, Math.max(0.2, (video.duration || 1) * captureRatio));
+      try {
+        video.currentTime = seekTo;
+      } catch {
+        captureFrame();
+      }
+    };
+
+    const onSeeked = () => {
+      captureFrame();
+    };
+
+    const onError = () => {
+      if (!cancelled) setPoster(null);
+    };
+
+    video.addEventListener('loadedmetadata', onLoadedMetadata);
+    video.addEventListener('seeked', onSeeked);
+    video.addEventListener('error', onError);
+
+    return () => {
+      cancelled = true;
+      video.removeEventListener('loadedmetadata', onLoadedMetadata);
+      video.removeEventListener('seeked', onSeeked);
+      video.removeEventListener('error', onError);
+      cleanup();
+    };
+  }, [src]);
+
+  if (poster) {
+    return (
+      <img
+        src={poster}
+        alt={title}
+        className="h-full w-full object-cover"
+      />
+    );
+  }
+
+  return (
+    <video
+      src={src}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      className="h-full w-full object-cover"
+      onLoadedMetadata={(e) => {
+        const vid = e.currentTarget;
+        if (vid.duration && isFinite(vid.duration)) {
+          try {
+            vid.currentTime = Math.min(1, vid.duration * captureRatio);
+          } catch {
+            // Fallback to the browser's default frame.
+          }
+        }
+      }}
+    />
+  );
+}
 
 function VideoModal({ modal, onClose }: { modal: ModalState; onClose: () => void }) {
   if (!modal) return null;
@@ -85,6 +186,7 @@ function VideoModal({ modal, onClose }: { modal: ModalState; onClose: () => void
 export default function DivineContentSection() {
   const [activeId, setActiveId] = useState('1');
   const [modal, setModal] = useState<ModalState>(null);
+  const activePlaylistItem = playlist.find((item) => item.id === activeId) || playlist[0];
 
   const openModal = (src: string, title: string) => {
     setModal({ src, title });
@@ -113,7 +215,7 @@ export default function DivineContentSection() {
               <div className="h-[1px] w-12 bg-[#D68B45]/50" />
             </div>
             <h2 className=" text-[42px] font-bold leading-[1.1] md:text-[56px]">
-              <span className="text-[#A21D34]">3hrs of Divine Content</span>{' '}
+              <span className="text-[#A21D34]">Three Hours of Divine Content</span>{' '}
               <span className="text-[#311B5E]">For You</span>
             </h2>
             <p className="mt-4 text-[15px] font-medium leading-relaxed text-[#4b485f]">
@@ -162,22 +264,7 @@ export default function DivineContentSection() {
                   >
                     <div className="flex items-center gap-4">
                       <div className="relative aspect-video w-[110px] shrink-0 overflow-hidden rounded-[12px] bg-black shadow-sm sm:w-[130px]">
-                        <video
-                          src={item.video}
-                          muted
-                          loop
-                          playsInline
-                          preload="metadata"
-                          onLoadedMetadata={(e) => {
-                            const vid = e.currentTarget;
-                            if (vid.duration && isFinite(vid.duration)) {
-                              vid.currentTime = vid.duration / 2;
-                            } else {
-                              vid.currentTime = 0.5;
-                            }
-                          }}
-                          className="h-full w-full object-cover"
-                        />
+                        <AutoVideoThumb src={item.video} title={item.title} captureRatio={item.captureRatio ?? 0.5} />
                         <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors hover:bg-black/40">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -218,27 +305,20 @@ export default function DivineContentSection() {
             
             {/* Top Red Gradient Area */}
             <div className="relative flex min-h-[300px] w-full items-center justify-center bg-gradient-to-br from-[#C2151B] via-[#8B101E] to-[#4B061A] p-6 sm:p-10 md:min-h-[400px]">
+              <div className="absolute inset-0">
+                <AutoVideoThumb
+                  src={activePlaylistItem.video}
+                  title={activePlaylistItem.title}
+                  captureRatio={activePlaylistItem.captureRatio ?? 0.5}
+                />
+              </div>
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(194,21,27,0.072)_0%,rgba(139,16,30,0.080)_48%,rgba(75,6,26,0.092)_100%)]" />
               {/* Decorative Border */}
-              <div className="relative flex h-full w-full max-w-2xl flex-col items-center justify-center rounded-[16px] border-[1.5px] border-[#D68B45]/60 p-6 text-center text-white sm:p-10">
+              <div className="relative z-10 flex h-full w-full max-w-2xl flex-col items-center justify-center rounded-[16px] border-[1.5px] border-[#D68B45]/60 p-6 text-center text-white sm:p-10">
                 <div className="absolute -left-1 -top-1 h-3 w-3 border-l-2 border-t-2 border-[#D68B45]" />
                 <div className="absolute -right-1 -top-1 h-3 w-3 border-r-2 border-t-2 border-[#D68B45]" />
                 <div className="absolute -bottom-1 -left-1 h-3 w-3 border-b-2 border-l-2 border-[#D68B45]" />
                 <div className="absolute -bottom-1 -right-1 h-3 w-3 border-b-2 border-r-2 border-[#D68B45]" />
-                
-                <h3 className="mb-6 text-xl font-bold tracking-wide text-[#D68B45] sm:text-2xl">
-                  | ವಿಜಾಪುರದ ಗುಡಿಗಾಳ್ವೆ |
-                </h3>
-                <div className="space-y-4 text-[13px] leading-relaxed text-white/90 sm:text-[15px]">
-                  <p>
-                    "NKR TV" ಚಾನೆಲ್ ನಲ್ಲಿ ಪ್ರಸಾರವಾಗುವ "ಅಗ್ನಿಹೋತ್ರ" ಕಾರ್ಯಕ್ರಮವು ವೇದದ ಜ್ಞಾನವನ್ನು, ಸಂಸ್ಕೃತಿ, ಜೀವನ ಮಾರ್ಗ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕತೆಯಲ್ಲಿ ಹೇಗೆ ತೋರಿಸುತ್ತದೆ. ಈ ಕಾರ್ಯಕ್ರಮವು ಪ್ರತಿಯೊಬ್ಬರ ಜೀವನದ ಪಥಗಳನ್ನು, ಧರ್ಮದ ಪುನರ್ರಚನೆ, ಧ್ಯಾನ ಮತ್ತು ಯೋಗದ ಬಗ್ಗೆ ವ್ಯಕ್ತಿಗತ ನಿಲುವಿಗೆ ಹೆಚ್ಚಿನ ನೆರವು ನೀಡುತ್ತದೆ.
-                  </p>
-                  <p>
-                    ಈ ಕಾರ್ಯಕ್ರಮವು ಜೀವನ ಉನ್ನತಿಗೆ ಹಾಗೂ ವಿಶಿಷ್ಟವಾದ ಮನಸ್ಥಿತಿ ಹಾಗೂ ತೀವ್ರತೆಗಳನ್ನು ಹಾಗೂ ಆಳವಾದ ವೇದ ಸಂಭಾವನೆಯನ್ನು ಅನುಭವಿಸಲು ಸಹಕಾರಿಯಾಗಿದೆ.
-                  </p>
-                  <p className="hidden sm:block">
-                    ಪ್ರತಿ ಸಂಜೆಯೂ ಮೂಲ ಧ್ಯಾನ, ಭಕ್ತಿ ವೇದದ ಜೀವನ ನಮ್ಮ ಮಾರ್ಗದ ನಿಮಿತ್ತ. ಆಧ್ಯಾತ್ಮಿಕ ಜ್ಞಾನ ಈ ಸಂಕುಲವನ್ನು ನಿಮ್ಮ ಹೃದಯದೊಳಗೆ ಸ್ವೀಕರಿಸುತ್ತದೆ. "NKR TV" ಚಾನೆಲ್ ನಲ್ಲಿ ಆದರ್ಶ ಮೂಲದ ಜೀವನದ ಬೆಳವಣಿಗೆ ನಿಮ್ಮನ್ನು ಸೇರಬಲ್ಲದು.
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -301,7 +381,7 @@ export default function DivineContentSection() {
         {/* Monument bg image */}
         <div className="relative z-10 mt-8 -mx-4 sm:-mx-6 lg:-mx-10">
           <img
-            src="/images/aryamba-5.png"
+            src="/images/aryamba-5.webp"
             alt="Karnataka Monuments"
             className="block w-full h-[200px] sm:h-[240px] lg:h-[280px] object-cover object-bottom -mt-6 sm:-mt-8 lg:-mt-10"
           />
@@ -319,9 +399,7 @@ export default function DivineContentSection() {
           <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
-                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current sm:h-5 sm:w-5">
-                  <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
-                </svg>
+                <i className="fa-solid fa-leaf text-[13px] sm:text-[16px]" />
               </div>
               <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
                 Amrutha Vachana
@@ -329,12 +407,14 @@ export default function DivineContentSection() {
             </div>
             <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
-                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current sm:h-5 sm:w-5">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
+                <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" aria-hidden="true">
+                  <rect x="5.2" y="3" width="2.4" height="18" rx="1.1" />
+                  <rect x="10.8" y="3" width="2.4" height="18" rx="1.1" />
+                  <rect x="16.4" y="3" width="2.4" height="18" rx="1.1" />
                 </svg>
               </div>
               <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
-                Narayanin
+                Narayanim
               </h4>
             </div>
             <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">

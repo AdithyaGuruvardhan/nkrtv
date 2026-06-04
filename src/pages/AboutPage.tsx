@@ -17,7 +17,7 @@ type Profile = {
 
 const profiles: Profile[] = [
   {
-    img: 'https://nkrtv.in/wp-content/uploads/2026/05/NKR-TV-blog-thumbnails-1.png',
+    img: '/images/about_page/Dr. P. K. Govind.webp',
     name: 'Dr. P. K. Govind',
     quals: 'B.E., M.I.E., LL.B., PhD.',
     pill: 'Engineer. Entrepreneur. Leader. Public Servant.',
@@ -44,7 +44,7 @@ const profiles: Profile[] = [
     quote: 'Driven by values. Focused on impact. Dedicated to a stronger Karnataka and a proud Kannada identity.',
   },
   {
-    img: 'https://nkrtv.in/wp-content/uploads/2026/05/NKR-TV-blog-thumbnails-2.png',
+    img: '/images/about_page/Rekha K Govind.webp',
     name: 'Smt. Rekha K Govind',
     quals: 'M.A., B.A., NTT. Diploma in French & Interior Design',
     pill: 'CEO of NKR TV. Visionary Leader. Empowering Change.',
@@ -379,7 +379,7 @@ export default function AboutPage() {
             {/* Right: Image */}
             <div className="about-intro-image relative w-full flex items-center justify-center">
               <img
-                src="/images/about_img.png"
+                src="/images/about_img.webp"
                 alt="NKR TV Shows Collage"
                 className="w-full h-auto object-cover"
                 style={{ objectPosition: 'center 45%' }}
@@ -589,14 +589,14 @@ export default function AboutPage() {
                 name: 'P. V. Phani Srivatsa',
                 role: 'Creative & Business Head',
                 desc: 'Leads creative strategy and business growth with innovation, vision, and a results-driven approach.',
-                img: 'https://nkrtv.in/wp-content/uploads/2026/05/NKR-TV-blog-thumbnails-8.png',
+                img: '/images/about_page/phani_nkr.webp',
                 icon: <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
               },
               {
                 name: 'Vibhin',
                 role: 'Technical Head',
                 desc: 'Drives technical excellence and innovation, ensuring robust solutions and seamless execution.',
-                img: 'https://nkrtv.in/wp-content/uploads/2026/05/NKR-TV-blog-thumbnails-7.png',
+                img: '/images/about_page/vibhin_nkr.webp',
                 icon: <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
               }
             ].map((lead, i) => (
@@ -651,7 +651,7 @@ export default function AboutPage() {
                 fontSize: 'clamp(32px,5vw,52px)',
               }}>
               <span style={{ color: '#E63E1A' }}>ನಿಮ್ಮ</span>{' '}
-              <span className="italic" style={{ color: '#5B3E8C' }}>Target </span>{' '}
+              <span className="italic" style={{ color: '#5B3E8C' }}>Target&nbsp;</span>
               <span style={{ color: '#E63E1A' }}> ನಮ್ಮ</span>{' '}
               <span className="italic" style={{ color: '#5B3E8C' }}>Audience</span>
             </h2>
