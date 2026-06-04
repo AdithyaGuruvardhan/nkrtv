@@ -106,9 +106,20 @@ type SerialRowProps = {
   onPlay: (item: SerialItem) => void;
   hideHeader?: boolean;
   hideControls?: boolean;
+  mobileControlsOnly?: boolean;
 };
 
-function SerialRow({ eyebrow, title, description, playlistLabel, items, onPlay, hideHeader, hideControls }: SerialRowProps) {
+function SerialRow({
+  eyebrow,
+  title,
+  description,
+  playlistLabel,
+  items,
+  onPlay,
+  hideHeader,
+  hideControls,
+  mobileControlsOnly,
+}: SerialRowProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeDot, setActiveDot] = useState(0);
 
@@ -240,7 +251,7 @@ function SerialRow({ eyebrow, title, description, playlistLabel, items, onPlay, 
       </div>
 
       {!hideControls && (
-        <div className="mt-6 flex items-center justify-center gap-6">
+        <div className={`${mobileControlsOnly ? 'mt-5 flex items-center justify-center gap-5 md:hidden' : 'mt-6 flex items-center justify-center gap-6'}`}>
           <button
             type="button"
             onClick={() => scrollTrack('left')}
@@ -251,16 +262,18 @@ function SerialRow({ eyebrow, title, description, playlistLabel, items, onPlay, 
             </svg>
           </button>
 
-          <div className="flex items-center gap-2.5">
-            {Array.from({ length: items.length }).map((_, dot) => (
-              <div
-                key={dot}
-                className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-                  activeDot === dot ? 'bg-[#E63E1A]' : 'bg-[#FCECE6]'
-                }`}
-              />
-            ))}
-          </div>
+          {!mobileControlsOnly && (
+            <div className="flex items-center gap-2.5">
+              {Array.from({ length: items.length }).map((_, dot) => (
+                <div
+                  key={dot}
+                  className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                    activeDot === dot ? 'bg-[#E63E1A]' : 'bg-[#FCECE6]'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
 
           <button
             type="button"
@@ -326,7 +339,8 @@ export default function EntertainmentSerialSection() {
           playlistLabel="View All Serials"
           items={serials}
           onPlay={openModal}
-          hideControls
+          hideControls={false}
+          mobileControlsOnly
         />
 
         <SerialRow
@@ -337,7 +351,8 @@ export default function EntertainmentSerialSection() {
           items={aparoopadaSerials}
           onPlay={openModal}
           hideHeader
-          hideControls
+          hideControls={false}
+          mobileControlsOnly
         />
 
         {/* Monument bg image */}

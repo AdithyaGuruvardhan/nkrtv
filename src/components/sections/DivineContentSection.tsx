@@ -308,42 +308,50 @@ export default function DivineContentSection() {
         </div>
 
         {/* Bottom Feature Highlights Bar */}
-        <div className="mt-12 rounded-[20px] border border-[#f0e6d6] bg-[#FDF8F0] p-6 sm:p-8">
-          <div className="mb-5 flex items-center gap-3">
-            <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#D68B45]">
+        <div className="mt-12 rounded-[20px] border border-[#f0e6d6] bg-[#FDF8F0] p-4 sm:p-8">
+          <div className="mb-4 flex items-center gap-3 sm:mb-5">
+            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#D68B45] sm:text-[12px] sm:tracking-[0.2em]">
               Coming Soon
             </span>
-            <div className="h-[1px] w-12 bg-[#D68B45]/50" />
+            <div className="h-[1px] w-8 bg-[#D68B45]/50 sm:w-12" />
           </div>
 
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-            <div className="flex items-center gap-3 rounded-[16px] bg-white px-5 py-4 shadow-[0_6px_18px_rgba(0,0,0,0.04)]">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45]">
-                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current sm:h-5 sm:w-5">
                   <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
                 </svg>
               </div>
-              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Amrutha Vachana</h4>
+              <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
+                Amrutha Vachana
+              </h4>
             </div>
-            <div className="flex items-center gap-3 rounded-[16px] bg-white px-5 py-4 shadow-[0_6px_18px_rgba(0,0,0,0.04)]">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45]">
-                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current sm:h-5 sm:w-5">
                   <path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
                 </svg>
               </div>
-              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Narayanin</h4>
+              <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
+                Narayanin
+              </h4>
             </div>
-            <div className="flex items-center gap-3 rounded-[16px] bg-white px-5 py-4 shadow-[0_6px_18px_rgba(0,0,0,0.04)]">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45]">
-                <i className="fa-solid fa-bottle-water text-[16px]" />
+            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
+                <i className="fa-solid fa-bottle-water text-[13px] sm:text-[16px]" />
               </div>
-              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Amrutha Paana</h4>
+              <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
+                Amrutha Paana
+              </h4>
             </div>
-            <div className="flex items-center gap-3 rounded-[16px] bg-white px-5 py-4 shadow-[0_6px_18px_rgba(0,0,0,0.04)]">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45]">
-                <span className="text-[18px] font-bold leading-none">₹</span>
+            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
+                <span className="text-[15px] font-bold leading-none sm:text-[18px]">₹</span>
               </div>
-              <h4 className="text-[14px] font-bold text-[#311B5E] sm:text-[15px]">Super Kannadiga</h4>
+              <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
+                Super Kannadiga
+              </h4>
             </div>
           </div>
         </div>

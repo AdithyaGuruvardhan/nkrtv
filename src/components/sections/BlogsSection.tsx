@@ -53,7 +53,91 @@ export default function BlogsSection() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#fffdf9] py-20">
+    <section className="blogs-section relative w-full overflow-hidden bg-[#fffdf9] py-20">
+      <style>{`
+        @media (max-width: 639px) {
+          .blogs-section {
+            padding-top: 56px;
+            padding-bottom: 56px;
+          }
+
+          .blogs-section .blogs-shell {
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+
+          .blogs-section .blogs-header {
+            gap: 18px;
+          }
+
+          .blogs-section .blogs-kicker {
+            font-size: 11px;
+            letter-spacing: 0.22em;
+          }
+
+          .blogs-section .blogs-title {
+            font-size: 30px;
+            line-height: 1.08;
+            margin-bottom: 10px;
+          }
+
+          .blogs-section .blogs-divider {
+            margin-bottom: 14px;
+          }
+
+          .blogs-section .blogs-subtitle {
+            font-size: 14px;
+          }
+
+          .blogs-section .blogs-cta {
+            width: 100%;
+            justify-content: center;
+            padding-left: 18px;
+            padding-right: 18px;
+          }
+
+          .blogs-section .blogs-carousel {
+            margin-top: 28px;
+          }
+
+          .blogs-section .blogs-track {
+            gap: 14px;
+            padding-top: 0;
+            padding-bottom: 8px;
+          }
+
+          .blogs-section .blogs-card-wrap {
+            width: min(84vw, 320px);
+          }
+
+          .blogs-section .blogs-card-image {
+            height: 170px;
+          }
+
+          .blogs-section .blogs-card-body {
+            padding: 16px;
+          }
+
+          .blogs-section .blogs-card-title {
+            font-size: 17px;
+            margin-bottom: 10px;
+          }
+
+          .blogs-section .blogs-card-excerpt {
+            font-size: 13px;
+            margin-bottom: 18px;
+          }
+
+          .blogs-section .blogs-card-footer {
+            padding-top: 16px;
+          }
+
+          .blogs-section .blogs-nav {
+            margin-top: 14px;
+            gap: 14px;
+          }
+        }
+      `}</style>
       {/* Decorative Dotted Patterns */}
       <div
         className="pointer-events-none absolute right-0 top-0 h-[400px] w-[500px] opacity-60"
@@ -74,28 +158,28 @@ export default function BlogsSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
+      <div className="blogs-shell relative z-10 mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="blogs-header flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-[600px]">
-            <div className="mb-2 text-[12px] font-bold uppercase tracking-[3px] text-[#E63E1A]">
+            <div className="blogs-kicker mb-2 text-[12px] font-bold uppercase tracking-[3px] text-[#E63E1A]">
               BLOGS
             </div>
-            <h2 className="mb-3  text-[54px] font-extrabold leading-[1.1]">
+            <h2 className="blogs-title mb-3 text-[54px] font-extrabold leading-[1.1]">
               <span className="bg-gradient-to-r from-[#E63E1A] to-[#B21F1F] bg-clip-text text-transparent">
                 Insights & Updates
               </span>
             </h2>
-            <div className="mb-5 h-[3px] w-[60px] bg-[#E63E1A]" />
-            <p className="text-[15px] font-medium leading-[1.6] text-gray-500">
+            <div className="blogs-divider mb-5 h-[3px] w-[60px] bg-[#E63E1A]" />
+            <p className="blogs-subtitle text-[15px] font-medium leading-[1.6] text-gray-500">
               Stay informed with the latest stories, announcements, and perspectives.
             </p>
           </div>
           
           <button
             type="button"
-            className="flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-7 py-3 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.25)] transition-transform hover:scale-105"
+            className="blogs-cta flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-7 py-3 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.25)] transition-transform hover:scale-105"
           >
             View All Blogs
             <svg
@@ -112,21 +196,21 @@ export default function BlogsSection() {
         </div>
 
         {/* Carousel Area */}
-        <div className="relative mt-12">
+        <div className="blogs-carousel relative mt-12">
           <div
             ref={trackRef}
             onScroll={handleScroll}
-            className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-10 pt-4"
+            className="blogs-track no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-10 pt-4"
           >
             {blogs.map((blog) => (
               <div
                 key={blog.id}
-                className="relative w-[85vw] shrink-0 snap-start sm:w-[320px] md:w-[350px] lg:w-[calc(33.333%-16px)]"
+                className="blogs-card-wrap relative w-[85vw] shrink-0 snap-start sm:w-[320px] md:w-[350px] lg:w-[calc(33.333%-16px)]"
               >
                 <div className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_15px_40px_rgba(230,62,26,0.1)]">
                   
                   {/* Image Container - This strictly matches the design: fills full width, top half */}
-                  <div className="relative h-[220px] w-full shrink-0 overflow-hidden bg-gray-100">
+                  <div className="blogs-card-image relative h-[220px] w-full shrink-0 overflow-hidden bg-gray-100">
                     <img
                       src={blog.image}
                       alt={blog.headline}
@@ -157,16 +241,16 @@ export default function BlogsSection() {
                   </div>
 
                   {/* Body Info */}
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="mb-3 text-[20px] font-bold leading-[1.3] text-[#120e2b] transition-colors group-hover:text-[#E63E1A]">
+                  <div className="blogs-card-body flex flex-1 flex-col p-6">
+                    <h3 className="blogs-card-title mb-3 text-[20px] font-bold leading-[1.3] text-[#120e2b] transition-colors group-hover:text-[#E63E1A]">
                       {blog.headline}
                     </h3>
-                    <p className="mb-6 line-clamp-2 text-[14px] leading-relaxed text-gray-500">
+                    <p className="blogs-card-excerpt mb-6 line-clamp-2 text-[14px] leading-relaxed text-gray-500">
                       {blog.excerpt}
                     </p>
 
                     {/* Footer */}
-                    <div className="mt-auto flex items-center justify-between border-t border-gray-100 pt-5">
+                    <div className="blogs-card-footer mt-auto flex items-center justify-between border-t border-gray-100 pt-5">
                       <div className="flex items-center gap-2 text-[13px] font-bold text-[#E63E1A]">
                         <div className="flex h-[26px] w-[26px] items-center justify-center rounded-full bg-[#E63E1A] text-white">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="h-3.5 w-3.5">
@@ -193,7 +277,7 @@ export default function BlogsSection() {
         </div>
 
         {/* Navigation Controls */}
-        <div className="mt-2 flex items-center justify-center gap-5">
+        <div className="blogs-nav mt-2 flex items-center justify-center gap-5">
           <button
             type="button"
             onClick={() => scrollTrack('left')}

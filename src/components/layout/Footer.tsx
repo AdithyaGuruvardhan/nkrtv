@@ -7,7 +7,7 @@ const footerLinks = [
   { label: 'Blogs', path: '/blogs' },
   { label: 'Contact Us', path: '/contact' },
   { label: 'Enquiry For Ads', path: '/ads' },
-  { label: 'Terms & Condition', path: '#' },
+  { label: 'Terms & Condition' },
 ];
 
 const socials = [
@@ -180,10 +180,17 @@ export default function Footer() {
           <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
             {footerLinks.slice(0, 5).map((link) => (
               <li key={link.label}>
-                <a href={link.path} className="group flex items-center gap-3 text-[14px] font-medium text-white/88 hover:text-[#FFC107]">
-                  <span className="text-[#FF5A3C] transition-transform group-hover:translate-x-1">›</span>
-                  {link.label}
-                </a>
+                {link.path ? (
+                  <a href={link.path} className="group flex items-center gap-3 text-[14px] font-medium text-white/88 hover:text-[#FFC107]">
+                    <span className="text-[#FF5A3C] transition-transform group-hover:translate-x-1">›</span>
+                    {link.label}
+                  </a>
+                ) : (
+                  <span className="flex items-center gap-3 text-[14px] font-medium text-white/88">
+                    <span className="text-[#FF5A3C]">›</span>
+                    {link.label}
+                  </span>
+                )}
               </li>
             ))}
           </ul>
@@ -200,18 +207,18 @@ export default function Footer() {
 
         <div>
           <h3 className="text-[17px] font-[900] uppercase tracking-[0.02em]">Stay Connected</h3>
-          <p className="mt-5 max-w-[360px] text-[14px] font-medium leading-relaxed text-white/88">
+          <p className="mt-4 max-w-[360px] text-[13px] leading-[1.55] font-medium text-white/88 sm:mt-5 sm:text-[14px]">
             Register now to get latest updates on promotions & coupons.
           </p>
-          <form className="mt-6 flex max-w-[440px] overflow-hidden rounded-[4px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
+          <form className="mt-5 flex max-w-[440px] flex-col overflow-hidden rounded-[8px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.18)] sm:flex-row">
             <input
               type="email"
               placeholder="Enter Your Email"
-              className="min-w-0 flex-1 px-4 py-3 text-[14px] font-medium text-[#2a0202] outline-none placeholder:text-[#9b8881]"
+              className="min-w-0 flex-1 px-4 py-3 text-[14px] font-medium text-[#2a0202] outline-none placeholder:text-[#9b8881] sm:px-4 sm:py-3"
             />
             <button
               type="button"
-              className="bg-[linear-gradient(135deg,#D11212,#F05B19)] px-5 text-[13px] font-[900] uppercase text-white"
+              className="bg-[linear-gradient(135deg,#D11212,#F05B19)] px-5 py-3 text-[13px] font-[900] uppercase text-white sm:px-5 sm:py-0"
             >
               Subscribe
             </button>
@@ -219,10 +226,17 @@ export default function Footer() {
           <ul className="mt-5 grid gap-3 sm:grid-cols-2">
             {footerLinks.slice(5).map((link) => (
               <li key={link.label}>
-                <a href={link.path} className="group flex items-center gap-3 text-[14px] font-medium text-white/88 hover:text-[#FFC107]">
-                  <span className="text-[#FF5A3C] transition-transform group-hover:translate-x-1">›</span>
-                  {link.label}
-                </a>
+                {link.path ? (
+                  <a href={link.path} className="group flex items-center gap-3 text-[14px] font-medium text-white/88 hover:text-[#FFC107]">
+                    <span className="text-[#FF5A3C] transition-transform group-hover:translate-x-1">›</span>
+                    {link.label}
+                  </a>
+                ) : (
+                  <span className="flex items-center gap-3 text-[14px] font-medium text-white/88">
+                    <span className="text-[#FF5A3C]">›</span>
+                    {link.label}
+                  </span>
+                )}
               </li>
             ))}
           </ul>

@@ -16,30 +16,149 @@ export default function ContactPage() {
   const inputClass = `w-full px-4 py-3.5 rounded-lg border text-sm outline-none transition-all duration-200 bg-white `;
 
   return (
-    <div className="relative flex flex-col w-full overflow-hidden">
+    <div className="contact-page relative flex flex-col w-full overflow-hidden">
+      <style>{`
+        @media (max-width: 639px) {
+          .contact-page .contact-hero {
+            padding: 104px 16px 46px;
+          }
+
+          .contact-page .contact-hero-title {
+            font-size: clamp(30px, 10vw, 40px);
+          }
+
+          .contact-page .contact-hero-copy {
+            font-size: 11px;
+            line-height: 1.6;
+          }
+
+          .contact-page .contact-shell {
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 48px;
+            padding-bottom: 48px;
+          }
+
+          .contact-page .contact-info-grid {
+            gap: 14px;
+            margin-bottom: 40px;
+          }
+
+          .contact-page .contact-info-card {
+            padding: 18px;
+            gap: 14px;
+            align-items: flex-start;
+          }
+
+          .contact-page .contact-info-icon {
+            width: 52px;
+            height: 52px;
+          }
+
+          .contact-page .contact-section-title {
+            font-size: 24px;
+            line-height: 1.12;
+            margin-bottom: 14px;
+          }
+
+          .contact-page .contact-section-kicker {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+          }
+
+          .contact-page .contact-form-map {
+            gap: 18px;
+          }
+
+          .contact-page .contact-form {
+            padding: 18px 16px;
+            border-radius: 16px;
+          }
+
+          .contact-page .contact-form-header {
+            gap: 14px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            align-items: flex-start;
+          }
+
+          .contact-page .contact-form-header-icon {
+            width: 52px;
+            height: 52px;
+          }
+
+          .contact-page .contact-form-header h3 {
+            font-size: 18px;
+          }
+
+          .contact-page .contact-form-header p {
+            font-size: 13px;
+            line-height: 1.55;
+          }
+
+          .contact-page .contact-form-row {
+            gap: 14px;
+          }
+
+          .contact-page .contact-form label {
+            font-size: 12px;
+          }
+
+          .contact-page .contact-form input,
+          .contact-page .contact-form textarea {
+            font-size: 16px;
+          }
+
+          .contact-page .contact-checkbox label {
+            font-size: 13px;
+            line-height: 1.5;
+          }
+
+          .contact-page .contact-submit {
+            width: 100%;
+            justify-content: center;
+          }
+
+          .contact-page .contact-map {
+            position: relative;
+            height: 240px;
+            min-height: 240px;
+            border-radius: 16px;
+            overflow: hidden;
+          }
+
+          .contact-page .contact-map-frame {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+          }
+        }
+      `}</style>
       <DotBackdrop className="-top-20 -right-24 h-[360px] w-[360px] opacity-25" />
       <DotBackdrop className="bottom-16 -left-24 h-[320px] w-[320px] opacity-18" />
 
       {/* Banner — same as Blog page */}
       <section
-        className="w-full text-center px-6 pt-[140px] pb-20"
+        className="contact-hero w-full text-center px-6 pt-[140px] pb-20"
         style={{ background: 'linear-gradient(135deg,#ba2015 0%,#e84310 55%,#f49911 100%)' }}
       >
         <p className="text-[12px] font-extrabold tracking-[0.25em] uppercase text-orange-200 mb-3">NKR TV KANNADA</p>
-        <h1 className="font-extrabold text-white leading-tight mb-4"
+        <h1 className="contact-hero-title font-extrabold text-white leading-tight mb-4"
           style={{ fontSize: 'clamp(36px,6vw,60px)' }}>
           Contact Us
         </h1>
         <div className="mx-auto mb-5 h-[3px] w-16 rounded-full bg-white/40" />
-        <p className="text-[16px] font-medium text-white/90 max-w-xl mx-auto">
+        <p className="contact-hero-copy text-[16px] font-medium text-white/90 max-w-xl mx-auto">
           We'd love to hear from you. Reach out and let's connect.
         </p>
       </section>
 
-      <div className="max-w-[1200px] mx-auto w-full px-5 py-20">
+      <div className="contact-shell max-w-[1200px] mx-auto w-full px-5 py-20">
 
         {/* ── Info Cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        <div className="contact-info-grid grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
           {[
             {
               icon: (
@@ -71,9 +190,9 @@ export default function ContactPage() {
             },
           ].map((card) => (
             <div key={card.title}
-              className="flex items-start gap-5 p-7 rounded-2xl bg-white transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(230,62,26,0.1)]"
+              className="contact-info-card flex items-start gap-5 p-7 rounded-2xl bg-white transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(230,62,26,0.1)]"
               style={{ border: `1px solid ${BORDER}`, boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
+              <div className="contact-info-icon w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{ background: ACCENT_LIGHT, border: `1px solid ${ACCENT_BORDER}` }}>
                 {card.icon}
               </div>
@@ -90,13 +209,13 @@ export default function ContactPage() {
 
         {/* ── Section Title ── */}
         <div className="text-center mb-14">
-          <span className="inline-flex items-center gap-4 text-[12px] font-bold tracking-[0.22em] uppercase mb-4"
+          <span className="contact-section-kicker inline-flex items-center gap-4 text-[12px] font-bold tracking-[0.22em] uppercase mb-4"
             style={{ color: ACCENT }}>
             <span className="h-px w-8 inline-block" style={{ background: ACCENT }} />
             SEND US MESSAGE
             <span className="h-px w-8 inline-block" style={{ background: ACCENT }} />
           </span>
-          <h2 className="text-[42px] md:text-[46px] font-bold leading-tight mb-5"
+          <h2 className="contact-section-title text-[42px] md:text-[46px] font-bold leading-tight mb-5"
             style={{ color: INK }}>
             Stay Connected With Us
           </h2>
@@ -107,15 +226,15 @@ export default function ContactPage() {
         </div>
 
         {/* ── Form + Map ── */}
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="contact-form-map flex flex-col lg:flex-row gap-8">
 
           {/* Form */}
-          <div className="flex-1 rounded-2xl p-10"
+          <div className="contact-form flex-1 rounded-2xl p-10"
             style={{ background: '#fdf8f6', border: `1px solid ${BORDER}` }}>
 
             {/* Form header */}
-            <div className="flex items-center gap-5 pb-8 mb-8" style={{ borderBottom: `1px solid ${BORDER}` }}>
-              <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
+            <div className="contact-form-header flex items-center gap-5 pb-8 mb-8" style={{ borderBottom: `1px solid ${BORDER}` }}>
+              <div className="contact-form-header-icon w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{ background: `linear-gradient(135deg,${ACCENT},#c42d0f)` }}>
                 <svg viewBox="0 0 24 24" className="w-6 h-6 fill-white">
                   <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
@@ -129,7 +248,7 @@ export default function ContactPage() {
 
             <div className="flex flex-col gap-5">
               {/* Row 1 */}
-              <div className="flex flex-col sm:flex-row gap-5">
+              <div className="contact-form-row flex flex-col sm:flex-row gap-5">
                 <div className="flex-1 flex flex-col gap-2">
                   <label className="text-[13px] font-semibold" style={{ color: INK }}>First Name <span className="text-red-500">*</span></label>
                   <input type="text" placeholder="Enter your name" value={form.firstName}
@@ -151,7 +270,7 @@ export default function ContactPage() {
               </div>
 
               {/* Row 2 */}
-              <div className="flex flex-col sm:flex-row gap-5">
+              <div className="contact-form-row flex flex-col sm:flex-row gap-5">
                 <div className="flex-1 flex flex-col gap-2">
                   <label className="text-[13px] font-semibold" style={{ color: INK }}>Your Number</label>
                   <input type="tel" placeholder="Enter your number" value={form.phone}
@@ -185,7 +304,7 @@ export default function ContactPage() {
               </div>
 
               {/* Checkbox */}
-              <div className="flex items-center gap-3">
+              <div className="contact-checkbox flex items-center gap-3">
                 <input type="checkbox" id="privacy" checked={form.agreed}
                   onChange={e => set('agreed', e.target.checked)}
                   className="w-[18px] h-[18px] rounded cursor-pointer"
@@ -197,7 +316,7 @@ export default function ContactPage() {
 
               {/* Submit */}
               <button type="button"
-                className="self-start inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-[15px] font-semibold text-white transition-all duration-200 hover:-translate-y-0.5"
+                className="contact-submit self-start inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-[15px] font-semibold text-white transition-all duration-200 hover:-translate-y-0.5"
                 style={{ background: `linear-gradient(135deg,${ACCENT},#c42d0f)`, boxShadow: '0 6px 20px rgba(230,62,26,0.35)' }}>
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
                   <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
@@ -208,11 +327,11 @@ export default function ContactPage() {
           </div>
 
           {/* Map */}
-          <div className="flex-1 rounded-2xl overflow-hidden min-h-[500px]"
+          <div className="contact-map flex-1 rounded-2xl overflow-hidden min-h-[500px]"
             style={{ border: `1px solid ${BORDER}` }}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.592!2d77.572!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae167b97e1afe7%3A0xf3e9a5eeef5f!2s250%2C%20Old%20Taluk%20Cutchery%20Rd%2C%20Upparpete%2C%20Cottonpete%2C%20Bengaluru%2C%20Karnataka%20560053!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
-              className="w-full h-full border-none block"
+              className="contact-map-frame w-full h-full border-none block"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

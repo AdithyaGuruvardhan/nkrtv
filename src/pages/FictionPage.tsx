@@ -116,10 +116,227 @@ export default function FictionPage() {
     panchamavedaTrackRef.current?.scrollBy({ left: dir === 'left' ? -320 : 320, behavior: 'smooth' });
   };
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#FDF8F3]">
+    <div className="fiction-page relative min-h-screen overflow-hidden bg-[#FDF8F3]">
+      <style>{`
+        @media (max-width: 639px) {
+          .fiction-page .fiction-hero {
+            padding: 108px 16px 48px;
+          }
+
+          .fiction-page .fiction-hero-title {
+            font-size: clamp(28px, 9vw, 40px);
+          }
+
+          .fiction-page .fiction-hero-copy {
+            font-size: 14px;
+            line-height: 1.6;
+          }
+
+          .fiction-page .fiction-content {
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 24px;
+          }
+
+          .fiction-page .fiction-content > * {
+            max-width: 100%;
+          }
+
+          .fiction-page .fiction-section {
+            margin-bottom: 42px;
+          }
+
+          .fiction-page .fiction-section-heading {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 18px;
+          }
+
+          .fiction-page .fiction-section-title {
+            font-size: 18px;
+            line-height: 1.15;
+          }
+
+          .fiction-page .fiction-section-action {
+            font-size: 11px;
+            padding: 8px 12px;
+            width: 100%;
+            justify-content: center;
+          }
+
+          .fiction-page .fiction-program-card {
+            min-height: 150px;
+          }
+
+          .fiction-page .fiction-program-card h3 {
+            max-width: 100%;
+            font-size: 15px;
+          }
+
+          .fiction-page .fiction-carousel-track {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-bottom: 8px;
+            scroll-snap-type: x mandatory;
+          }
+
+          .fiction-page .fiction-carousel-card {
+            min-width: min(84vw, 320px);
+            scroll-snap-align: start;
+          }
+
+          .fiction-page .fiction-carousel-media {
+            height: 140px;
+          }
+
+          .fiction-page .fiction-carousel-body {
+            padding: 14px 12px 12px;
+          }
+
+          .fiction-page .fiction-carousel-number {
+            font-size: 3.1rem;
+          }
+
+          .fiction-page .fiction-carousel-title {
+            font-size: 14px;
+          }
+
+          .fiction-page .fiction-carousel-copy {
+            font-size: 11px;
+          }
+
+          .fiction-page .fiction-carousel-play {
+            font-size: 13px;
+          }
+
+          .fiction-page .fiction-grid-card {
+            min-height: unset;
+          }
+
+          .fiction-page .fiction-grid-media {
+            height: 185px !important;
+          }
+
+          .fiction-page .fiction-grid-body {
+            padding: 16px;
+          }
+
+          .fiction-page .fiction-grid-title {
+            font-size: 16px;
+          }
+
+          .fiction-page .fiction-grid-copy {
+            font-size: 12px;
+          }
+
+          .fiction-page .fiction-grid-play {
+            font-size: 13px;
+          }
+
+          .fiction-page .fiction-panchamaveda-track {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-bottom: 8px;
+            scroll-snap-type: x mandatory;
+          }
+
+          .fiction-page .fiction-panchamaveda-item {
+            min-width: min(84vw, 320px);
+            scroll-snap-align: start;
+          }
+
+          .fiction-page .fiction-panchamaveda-item .fiction-panchamaveda-image {
+            height: 140px;
+          }
+
+          .fiction-page .fiction-panchamaveda-item .fiction-panchamaveda-body {
+            padding: 14px 14px 12px;
+          }
+
+          .fiction-page .fiction-panchamaveda-item .fiction-panchamaveda-number {
+            font-size: 3.25rem;
+          }
+
+          .fiction-page .fiction-panchamaveda-item h3 {
+            font-size: 14px;
+          }
+
+          .fiction-page .fiction-panchamaveda-item p {
+            font-size: 11px;
+          }
+
+          .fiction-page .fiction-panchamaveda-controls {
+            margin-top: 12px;
+          }
+
+          .fiction-page .fiction-carousel-controls {
+            margin-top: 12px;
+          }
+
+          .fiction-page .fiction-cini-title {
+            font-size: 30px;
+          }
+
+          .fiction-page .fiction-subsection-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+          }
+
+          .fiction-page .fiction-grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+          }
+
+          .fiction-page .fiction-grid-card {
+            min-height: unset;
+          }
+
+          .fiction-page .fiction-grid-card .fiction-grid-media {
+            height: 185px;
+          }
+
+          .fiction-page .fiction-grid-card .fiction-grid-body {
+            padding: 16px;
+          }
+
+          .fiction-page .fiction-grid-card .fiction-grid-title {
+            font-size: 16px;
+          }
+
+          .fiction-page .fiction-grid-card .fiction-grid-copy {
+            font-size: 12px;
+          }
+
+          .fiction-page .fiction-grid-card .fiction-grid-play {
+            font-size: 13px;
+          }
+
+          .fiction-page .fiction-modal {
+            padding: 12px;
+          }
+
+          .fiction-page .fiction-modal-shell {
+            height: min(74vh, 640px);
+            border-radius: 16px;
+          }
+
+          .fiction-page .fiction-modal-title {
+            max-width: 72%;
+            font-size: 12px;
+          }
+        }
+      `}</style>
       {/* ===== HERO SECTION ===== */}
       <section
-        className="relative w-full overflow-hidden text-center px-6 pt-[140px] pb-20"
+        className="fiction-hero relative w-full overflow-hidden text-center px-6 pt-[140px] pb-20"
         style={{ background: 'linear-gradient(135deg, #ba2015 0%, #e84310 55%, #f49911 100%)' }}
       >
         <div
@@ -144,19 +361,19 @@ export default function FictionPage() {
           NKR TV KANNADA
         </p>
         <h1
-          className="mb-4 font-extrabold leading-tight text-white"
+          className="fiction-hero-title mb-4 font-extrabold leading-tight text-white"
           style={{ fontSize: 'clamp(36px, 6vw, 60px)' }}
         >
           Fictional Stories
         </h1>
         <div className="mx-auto mb-5 h-[3px] w-16 rounded-full bg-white/40" />
-        <p className="mx-auto max-w-xl text-[16px] font-medium text-white/90">
+        <p className="fiction-hero-copy mx-auto max-w-xl text-[16px] font-medium text-white/90">
           Explore serials and short films that entertain, inspire, and connect.
         </p>
       </section>
 
       {/* ===== MAIN CONTENT ===== */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-10">
+      <div className="fiction-content relative z-10 mx-auto max-w-[1440px] px-4 py-10 sm:px-6 lg:px-10">
         <div
           className="pointer-events-none absolute right-0 top-10 h-[400px] w-[500px] opacity-45"
           style={{
@@ -176,15 +393,15 @@ export default function FictionPage() {
           }}
         />
         {/* ===== POPULAR PROGRAMS ===== */}
-        <section className="relative mb-10 overflow-hidden">
-          <div className="mb-5 flex items-center justify-between">
+        <section className="fiction-section relative mb-10 overflow-hidden">
+          <div className="fiction-section-heading mb-5 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E63E1A] text-white">
                 <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current"><path d="M12 2l2.39 6.93H22l-5.95 4.32 2.27 6.75L12 15.91l-6.32 4.09 2.27-6.75L2 8.93h7.61L12 2z"/></svg>
               </div>
-              <h2 className="text-[15px] sm:text-[17px] font-extrabold uppercase tracking-wide text-[#2D1810]">Popular Programs</h2>
+              <h2 className="fiction-section-title text-[15px] sm:text-[17px] font-extrabold uppercase tracking-wide text-[#2D1810]">Popular Programs</h2>
             </div>
-            <a href="#" className="hidden sm:flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-wide text-[#E63E1A]">
+            <a href="#" className="fiction-section-action hidden sm:flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-wide text-[#E63E1A]">
               View All Programs
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
@@ -195,7 +412,7 @@ export default function FictionPage() {
                 <button
                   key={program.title}
                   onClick={() => openModal(program.videoId, program.title)}
-                  className="group relative min-h-[176px] overflow-hidden rounded-[10px] text-left shadow-[0_10px_22px_rgba(0,0,0,0.11)] transition-transform duration-300 hover:-translate-y-1"
+                  className="fiction-program-card group relative min-h-[176px] overflow-hidden rounded-[10px] text-left shadow-[0_10px_22px_rgba(0,0,0,0.11)] transition-transform duration-300 hover:-translate-y-1"
                 >
                   <img
                     src={`https://i.ytimg.com/vi/${program.videoId}/hqdefault.jpg`}
@@ -227,16 +444,10 @@ export default function FictionPage() {
             </a>
           </div>
 
-          <div className="relative">
-            <button
-              onClick={() => scrollPanchamaveda('left')}
-              className="absolute -left-3 top-1/3 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[#e8ddd6] bg-white text-[#6d5d55] shadow-sm transition-all hover:bg-[#faf5f0]"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
+          <div>
             <div
               ref={panchamavedaTrackRef}
-              className="grid gap-[18px] overflow-x-auto pb-4 px-1"
+              className="fiction-panchamaveda-track grid gap-[18px] overflow-x-auto pb-4 px-1"
               style={{
                 gridTemplateColumns: 'repeat(5,minmax(0,1fr))',
                 scrollbarWidth: 'none',
@@ -247,7 +458,7 @@ export default function FictionPage() {
                 <button
                   key={item.videoId}
                   onClick={() => openModal(item.videoId, item.title)}
-                  className="group relative flex flex-col rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 pb-1.5"
+                  className="fiction-panchamaveda-item group relative flex flex-col rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 pb-1.5"
                   style={{
                     minWidth: 180,
                     background: 'linear-gradient(180deg,#fff9f6 0%,#fff 100%)',
@@ -256,7 +467,7 @@ export default function FictionPage() {
                     paddingBottom: 0,
                   }}
                 >
-                  <div className="relative overflow-hidden rounded-t-[10px]" style={{ height: 150, background: '#fde8e2' }}>
+                  <div className="fiction-panchamaveda-image relative overflow-hidden rounded-t-[10px]" style={{ height: 150, background: '#fde8e2' }}>
                     <img
                       src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
                       alt={item.title}
@@ -275,9 +486,9 @@ export default function FictionPage() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col flex-1 px-3 pt-6 pb-4">
+                  <div className="fiction-panchamaveda-body flex flex-col flex-1 px-3 pt-6 pb-4">
                     <div className="flex items-start gap-2">
-                      <span className="text-5xl font-extrabold leading-none tracking-tight flex-shrink-0"
+                      <span className="fiction-panchamaveda-number text-5xl font-extrabold leading-none tracking-tight flex-shrink-0"
                         style={{ color: 'rgba(230,62,26,0.12)', lineHeight: '0.9' }}>{item.episodeNo}</span>
                       <h3 className="text-[15px] font-extrabold text-[#1a0a00] leading-snug mt-1">{item.title}</h3>
                     </div>
@@ -303,14 +514,24 @@ export default function FictionPage() {
                     </div>
                   </div>
                 </button>
-              ))}
+                ))}
             </div>
-            <button
-              onClick={() => scrollPanchamaveda('right')}
-              className="absolute -right-3 top-1/3 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[#e8ddd6] bg-white text-[#6d5d55] shadow-sm transition-all hover:bg-[#faf5f0]"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
+            <div className="fiction-panchamaveda-controls flex items-center justify-center gap-3 pt-2">
+              <button
+                onClick={() => scrollPanchamaveda('left')}
+                className="fiction-panchamaveda-arrow flex h-10 w-10 items-center justify-center rounded-full border border-[#f0d6c8] bg-white text-[#E63E1A] shadow-[0_8px_18px_rgba(230,62,26,0.08)] transition-all hover:bg-[#fff6f2] hover:shadow-[0_10px_20px_rgba(230,62,26,0.12)]"
+                aria-label="Scroll Panchamaveda left"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button
+                onClick={() => scrollPanchamaveda('right')}
+                className="fiction-panchamaveda-arrow flex h-10 w-10 items-center justify-center rounded-full border border-[#f0d6c8] bg-white text-[#E63E1A] shadow-[0_8px_18px_rgba(230,62,26,0.08)] transition-all hover:bg-[#fff6f2] hover:shadow-[0_10px_20px_rgba(230,62,26,0.12)]"
+                aria-label="Scroll Panchamaveda right"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -346,7 +567,7 @@ export default function FictionPage() {
               Collection
               <span className="w-8 h-[2px]" style={{ background: 'rgba(230,62,26,0.35)' }} />
             </div>
-            <h2 className="text-3xl md:text-[42px] font-black text-[#1a0a00] leading-tight">CINI YAANA</h2>
+            <h2 className="fiction-cini-title text-3xl md:text-[42px] font-black text-[#1a0a00] leading-tight">CINI YAANA</h2>
             <div className="flex items-center justify-center gap-2 mt-3">
               <span className="w-10 h-[2px]" style={{ background: 'rgba(230,62,26,0.25)' }} />
               <span className="w-2 h-2 rounded-full" style={{ background: '#E63E1A' }} />
@@ -356,7 +577,7 @@ export default function FictionPage() {
 
           {/* Dear Moments */}
           <div className="mb-12">
-            <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+            <div className="fiction-subsection-header flex items-center justify-between mb-5 flex-wrap gap-3">
               <div>
                 <p className="text-[11px] font-extrabold tracking-[0.15em] uppercase" style={{ color: '#E63E1A' }}>{sections[1].eyebrow}</p>
                 <h3 className="text-xl md:text-2xl font-extrabold text-[#1a0a00]">{sections[1].title}</h3>
@@ -367,7 +588,7 @@ export default function FictionPage() {
                 View Full Playlist →
               </a>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="fiction-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sections[1].gridItems?.map((item) => (
                 <GridCard key={item.id} item={item} onPlay={openModal} />
               ))}
@@ -376,7 +597,7 @@ export default function FictionPage() {
 
           {/* Mooruvare Neetigalu */}
           <div>
-            <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+            <div className="fiction-subsection-header flex items-center justify-between mb-5 flex-wrap gap-3">
               <div>
                 <p className="text-[11px] font-extrabold tracking-[0.15em] uppercase" style={{ color: '#E63E1A' }}>{sections[2].eyebrow}</p>
                 <h3 className="text-xl md:text-2xl font-extrabold text-[#1a0a00]">{sections[2].title}</h3>
@@ -387,7 +608,7 @@ export default function FictionPage() {
                 View Full Playlist →
               </a>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="fiction-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sections[2].gridItems?.map((item) => (
                 <GridCard key={item.id} item={item} onPlay={openModal} />
               ))}
@@ -404,11 +625,11 @@ export default function FictionPage() {
           style={{ background: 'rgba(10,3,0,0.92)' }}
           onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
         >
-          <div className="relative w-full max-w-[1100px] rounded-2xl overflow-hidden bg-black shadow-[0_30px_90px_rgba(0,0,0,0.8)]"
+          <div className="fiction-modal-shell relative w-full max-w-[1100px] rounded-2xl overflow-hidden bg-black shadow-[0_30px_90px_rgba(0,0,0,0.8)]"
             style={{ height: 'min(76vh,720px)' }}>
             <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between gap-3 px-4 py-3"
               style={{ background: 'linear-gradient(to bottom,rgba(0,0,0,0.85),transparent)' }}>
-              <p className="text-white text-sm font-bold truncate max-w-[80%]">Now playing: {modalVid.title}</p>
+              <p className="fiction-modal-title text-white text-sm font-bold truncate max-w-[80%]">Now playing: {modalVid.title}</p>
               <button onClick={closeModal}
                 className="rounded-full px-3 py-1.5 text-white font-black text-sm bg-white/15 hover:bg-white/25 transition-colors">✕</button>
             </div>
@@ -438,7 +659,7 @@ function SectionBlock({ section, onPlay }: { section: Section; onPlay: (id: stri
   };
 
   return (
-    <div className="relative mb-16 z-10 overflow-hidden">
+    <div className="fiction-section relative mb-16 z-10 overflow-hidden">
       <div
         className="pointer-events-none absolute right-0 top-0 h-[360px] w-[460px] opacity-35"
         style={{
@@ -457,7 +678,7 @@ function SectionBlock({ section, onPlay }: { section: Section; onPlay: (id: stri
           WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
         }}
       />
-      <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+      <div className="fiction-section-heading flex items-center justify-between mb-6 flex-wrap gap-4">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
             style={{ background: 'rgba(230,62,26,0.12)' }}>
@@ -467,18 +688,18 @@ function SectionBlock({ section, onPlay }: { section: Section; onPlay: (id: stri
           </div>
           <div>
             <p className="text-[11px] font-extrabold tracking-[0.15em] uppercase" style={{ color: '#E63E1A' }}>{section.eyebrow}</p>
-            <h2 className=" text-2xl md:text-3xl font-extrabold text-[#1a0a00]">{section.title}</h2>
+            <h2 className="fiction-section-title text-2xl md:text-3xl font-extrabold text-[#1a0a00]">{section.title}</h2>
           </div>
         </div>
         <a href={section.playlistUrl} target="_blank" rel="noopener noreferrer"
-          className="text-sm font-bold px-4 py-2 rounded-full transition-colors"
+          className="fiction-section-action text-sm font-bold px-4 py-2 rounded-full transition-colors"
           style={{ background: 'rgba(230,62,26,0.1)', color: '#E63E1A' }}>
           View Full Playlist →
         </a>
       </div>
 
       {section.type === 'grid' && section.gridItems && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="fiction-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {section.gridItems.map((item) => (
             <GridCard key={item.id} item={item} onPlay={onPlay} />
           ))}
@@ -486,34 +707,38 @@ function SectionBlock({ section, onPlay }: { section: Section; onPlay: (id: stri
       )}
 
       {section.type === 'carousel' && section.carouselItems && (
-        <div className="relative px-10 md:px-11">
-          <button onClick={() => scroll('left')}
-            className="absolute left-0 top-1/3 -translate-y-1/2 z-10 w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-105"
-            style={{ background: 'linear-gradient(180deg,#fff4f0,#ffe8e0)', color: '#E63E1A' }}>
-            <svg viewBox="0 0 24 24" className="w-4 h-4" stroke="currentColor" strokeWidth={2.5} fill="none" strokeLinecap="round">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-
+        <div className="px-0 md:px-0">
           <div ref={trackRef}
-            className="grid gap-[18px] overflow-x-auto pb-4"
+            className="fiction-carousel-track grid gap-[18px] overflow-x-auto pb-4"
             style={{
               gridTemplateColumns: 'repeat(5,minmax(0,1fr))',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
             }}>
             {section.carouselItems.map((item) => (
-              <CarouselCard key={item.videoId} item={item} onPlay={onPlay} />
-            ))}
+                <CarouselCard key={item.videoId} item={item} onPlay={onPlay} />
+              ))}
           </div>
-
-          <button onClick={() => scroll('right')}
-            className="absolute right-0 top-1/3 -translate-y-1/2 z-10 w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-105"
-            style={{ background: 'linear-gradient(180deg,#fff4f0,#ffe8e0)', color: '#E63E1A' }}>
-            <svg viewBox="0 0 24 24" className="w-4 h-4" stroke="currentColor" strokeWidth={2.5} fill="none" strokeLinecap="round">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
+          <div className="fiction-carousel-controls flex items-center justify-center gap-3 pt-2">
+            <button
+              onClick={() => scroll('left')}
+              className="fiction-carousel-arrow flex h-10 w-10 items-center justify-center rounded-full border border-[#f0d6c8] bg-white text-[#E63E1A] shadow-[0_8px_18px_rgba(230,62,26,0.08)] transition-all hover:bg-[#fff6f2] hover:shadow-[0_10px_20px_rgba(230,62,26,0.12)]"
+              aria-label="Scroll left"
+            >
+              <svg viewBox="0 0 24 24" className="w-4 h-4" stroke="currentColor" strokeWidth={2.5} fill="none" strokeLinecap="round">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="fiction-carousel-arrow flex h-10 w-10 items-center justify-center rounded-full border border-[#f0d6c8] bg-white text-[#E63E1A] shadow-[0_8px_18px_rgba(230,62,26,0.08)] transition-all hover:bg-[#fff6f2] hover:shadow-[0_10px_20px_rgba(230,62,26,0.12)]"
+              aria-label="Scroll right"
+            >
+              <svg viewBox="0 0 24 24" className="w-4 h-4" stroke="currentColor" strokeWidth={2.5} fill="none" strokeLinecap="round">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
     </div>
@@ -525,14 +750,14 @@ function GridCard({ item, onPlay }: { item: VideoItem; onPlay: (id: string, titl
     <div
       data-card
       onClick={() => onPlay(item.videoId, item.headline)}
-      className="group bg-white rounded-xl overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:-translate-y-1"
+      className="fiction-grid-card group bg-white rounded-xl overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:-translate-y-1"
       style={{
         border: '1px solid rgba(230,62,26,0.1)',
         boxShadow: '0 4px 16px rgba(230,62,26,0.06)',
         minHeight: 360,
       }}
     >
-      <div className="relative w-full overflow-hidden bg-black" style={{ height: 210 }}>
+      <div className="fiction-grid-media relative w-full overflow-hidden bg-black" style={{ height: 210 }}>
         <img
           src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
           alt={item.headline}
@@ -549,15 +774,15 @@ function GridCard({ item, onPlay }: { item: VideoItem; onPlay: (id: string, titl
         </div>
       </div>
 
-      <div className="flex flex-col flex-1 p-5">
+      <div className="fiction-grid-body flex flex-col flex-1 p-5">
         <span className="self-start text-[10px] font-extrabold tracking-wider rounded-full px-3 py-1.5 mb-3 uppercase"
           style={{ color: '#E63E1A', background: 'rgba(230,62,26,0.1)' }}>
           {item.pill}
         </span>
-        <h3 className="text-[17px] font-extrabold text-[#1a0a00] leading-snug mb-2 line-clamp-2">{item.headline}</h3>
-        <p className="text-[13px] text-[#6e5a55] leading-relaxed line-clamp-3">{item.desc}</p>
+        <h3 className="fiction-grid-title text-[17px] font-extrabold text-[#1a0a00] leading-snug mb-2 line-clamp-2">{item.headline}</h3>
+        <p className="fiction-grid-copy text-[13px] text-[#6e5a55] leading-relaxed line-clamp-3">{item.desc}</p>
         <div className="mt-auto pt-4 flex items-center justify-between">
-          <div className="inline-flex items-center gap-1.5 px-4 h-8 rounded-full text-white text-sm font-bold"
+          <div className="fiction-grid-play inline-flex items-center gap-1.5 px-4 h-8 rounded-full text-white text-sm font-bold"
             style={{ background: '#E63E1A', boxShadow: '0 4px 12px rgba(230,62,26,0.35)' }}>
             <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white"><polygon points="5 3 19 12 5 21 5 3" /></svg>
             Play
@@ -574,7 +799,7 @@ function CarouselCard({ item, onPlay }: { item: SerialItem; onPlay: (id: string,
     <article
       data-card
       onClick={() => onPlay(item.videoId, item.title)}
-      className="group relative flex flex-col rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 pb-1.5"
+      className="fiction-carousel-card group relative flex flex-col rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 pb-1.5"
       style={{
         minWidth: 180,
         background: 'linear-gradient(180deg,#fff9f6 0%,#fff 100%)',
@@ -586,7 +811,7 @@ function CarouselCard({ item, onPlay }: { item: SerialItem; onPlay: (id: string,
       <div className="absolute bottom-0 left-0 right-0 h-1.5 z-10"
         style={{ background: 'linear-gradient(90deg,#E63E1A,#D52912)' }} />
 
-      <div className="relative overflow-hidden rounded-t-[10px]" style={{ height: 150, background: '#fde8e2' }}>
+      <div className="fiction-carousel-media relative overflow-hidden rounded-t-[10px]" style={{ height: 150, background: '#fde8e2' }}>
         <img
           src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
           alt={item.title}
@@ -605,14 +830,14 @@ function CarouselCard({ item, onPlay }: { item: SerialItem; onPlay: (id: string,
         </div>
       </div>
 
-      <div className="flex flex-col flex-1 px-3 pt-6 pb-4">
+      <div className="fiction-carousel-body flex flex-col flex-1 px-3 pt-6 pb-4">
         <div className="flex items-start gap-2">
-          <span className="text-5xl font-extrabold leading-none tracking-tight flex-shrink-0"
+          <span className="fiction-carousel-number text-5xl font-extrabold leading-none tracking-tight flex-shrink-0"
             style={{ color: 'rgba(230,62,26,0.12)', lineHeight: '0.9' }}>{item.episodeNo}</span>
-          <h3 className="text-[15px] font-extrabold text-[#1a0a00] leading-snug mt-1">{item.title}</h3>
+          <h3 className="fiction-carousel-title text-[15px] font-extrabold text-[#1a0a00] leading-snug mt-1">{item.title}</h3>
         </div>
-        <p className="text-[12px] text-[#6e5a55] leading-relaxed mt-2 line-clamp-3" style={{ minHeight: 52 }}>{item.desc}</p>
-        <div className="mt-3 flex items-center gap-2 text-sm font-bold" style={{ color: '#E63E1A' }}>
+        <p className="fiction-carousel-copy text-[12px] text-[#6e5a55] leading-relaxed mt-2 line-clamp-3" style={{ minHeight: 52 }}>{item.desc}</p>
+        <div className="fiction-carousel-play mt-3 flex items-center gap-2 text-sm font-bold" style={{ color: '#E63E1A' }}>
           <span className="w-8 h-8 rounded-full flex items-center justify-center"
             style={{ background: 'linear-gradient(180deg,#E63E1A,#c42d0f)', boxShadow: '0 6px 14px rgba(230,62,26,0.25)' }}>
             <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white ml-0.5"><polygon points="5 3 19 12 5 21 5 3" /></svg>

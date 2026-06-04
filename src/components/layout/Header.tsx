@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { SITE_LOGO_URL } from '../../config/site';
 
 const navItems = [
@@ -35,10 +36,24 @@ const socialLinks = [
 
 export default function Header() {
   const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [currentPath]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-[#eee8e4] bg-white shadow-[0_2px_14px_rgba(72,16,8,0.08)]">
-      <div className="mx-auto flex h-[78px] w-full max-w-[1510px] items-center gap-4 px-4 sm:px-6 lg:h-[92px] lg:px-10">
+      <div className="mx-auto flex h-[78px] w-full max-w-[1510px] items-center gap-3 px-4 sm:px-6 lg:h-[92px] lg:px-10">
         <a href="/" className="relative z-10 shrink-0">
           <img
             src={SITE_LOGO_URL}
@@ -88,6 +103,23 @@ export default function Header() {
           >
             Live TV
           </a>
+          <button
+            type="button"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-[6px] border border-[#e9dfda] bg-white text-[#1a0a00] shadow-[0_4px_12px_rgba(72,16,8,0.08)] transition-transform hover:-translate-y-0.5"
+          >
+            {menuOpen ? (
+              <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            )}
+          </button>
         </div>
 
         <div className="hidden items-center gap-3 xl:flex">
@@ -116,6 +148,66 @@ export default function Header() {
           Live TV
         </a>
       </div>
+
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-[rgba(26,10,0,0.42)] backdrop-blur-[2px] xl:hidden" onClick={closeMenu}>
+          <div
+            className="absolute left-0 right-0 top-[78px] max-h-[calc(100vh-78px)] overflow-y-auto border-t border-[#eee8e4] bg-white px-4 py-5 shadow-[0_20px_40px_rgba(0,0,0,0.12)] sm:px-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <nav className="flex flex-col gap-2">
+              {navItems.map((item) => {
+                let isActive = false;
+                if (item.name === 'Home') {
+                  isActive = currentPath === '/';
+                } else if (item.name === 'About Us') {
+                  isActive = currentPath === '/about';
+                } else if (item.name === 'Blogs') {
+                  isActive = currentPath === '/blog' || currentPath === '/blogs';
+                } else if (item.name === 'Fiction') {
+                  isActive = currentPath === '/fiction';
+                } else if (item.name === 'Advertisements') {
+                  isActive = currentPath === '/advertisements';
+                } else if (item.name === 'Contact Us') {
+                  isActive = currentPath === '/contact';
+                }
+
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={closeMenu}
+                    className={`flex items-center justify-between rounded-[10px] border px-4 py-3 text-[0.95rem] font-extrabold uppercase tracking-[0.01em] transition-colors ${
+                      isActive
+                        ? 'border-[#F1C7BE] bg-[#FFF7F5] text-[#B90D0D]'
+                        : 'border-[#f1ebe7] bg-white text-[#171717] hover:border-[#F1C7BE] hover:bg-[#FFF7F5] hover:text-[#B90D0D]'
+                    }`}
+                  >
+                    <span>{item.name}</span>
+                    <span className="text-[#FF5A3C]">›</span>
+                  </a>
+                );
+              })}
+            </nav>
+
+            <div className="mt-5 grid grid-cols-3 gap-3">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.name}
+                  href="#"
+                  aria-label={item.name}
+                  className="flex h-11 items-center justify-center rounded-full text-white shadow-[0_5px_14px_rgba(0,0,0,0.12)]"
+                  style={{ background: item.bg }}
+                >
+                  <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+                    {item.icon}
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

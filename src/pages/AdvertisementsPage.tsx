@@ -165,10 +165,166 @@ const adFormatTabs: {
 
 export default function AdvertisementsPage() {
   return (
-    <div className="w-full bg-white relative pt-[92px] pb-0 overflow-hidden">
+    <div className="advertisements-page w-full bg-white relative pt-[92px] pb-0 overflow-hidden">
+      <style>{`
+        @media (max-width: 639px) {
+          .advertisements-page {
+            padding-top: 72px;
+          }
+
+          .advertisements-page .advertisements-hero {
+            height: 150px;
+          }
+
+          .advertisements-page .advertisements-hero img {
+            object-position: center center;
+          }
+
+          .advertisements-page .advertisements-section {
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+          }
+
+          .advertisements-page .advertisements-section-title {
+            font-size: 24px;
+            line-height: 1.15;
+          }
+
+          .advertisements-page .advertisements-section-subtitle {
+            font-size: 13px;
+          }
+
+          .advertisements-page .advertisements-services-grid {
+            gap: 14px;
+          }
+
+          .advertisements-page .advertisements-service-image {
+            height: 108px;
+          }
+
+          .advertisements-page .advertisements-service-label {
+            font-size: 12px;
+          }
+
+          .advertisements-page .advertisements-formats-section {
+            padding-left: 0;
+            padding-right: 0;
+          }
+
+          .advertisements-page .advertisements-formats-header {
+            margin-bottom: 28px;
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+
+          .advertisements-page .advertisements-format-tabs {
+            overflow-x: auto;
+            justify-content: flex-start;
+            padding: 6px;
+            margin-left: 16px;
+            margin-right: 16px;
+            max-width: calc(100% - 32px);
+            scrollbar-width: none;
+          }
+
+          .advertisements-page .advertisements-format-tabs::-webkit-scrollbar {
+            display: none;
+          }
+
+          .advertisements-page .advertisements-format-tab {
+            white-space: nowrap;
+            padding-left: 16px;
+            padding-right: 16px;
+            font-size: 11px;
+            flex: 0 0 auto;
+          }
+
+          .advertisements-page .advertisements-format-panel {
+            border-left: none;
+            border-right: none;
+            border-radius: 0;
+            padding: 0;
+          }
+
+          .advertisements-page .advertisements-format-panel-grid {
+            gap: 0;
+          }
+
+          .advertisements-page .advertisements-format-list {
+            padding: 18px 16px 14px;
+            border-right: none;
+          }
+
+          .advertisements-page .advertisements-format-list-item {
+            padding: 12px 14px;
+            font-size: 13px;
+          }
+
+          .advertisements-page .advertisements-format-details {
+            padding: 20px 16px 32px;
+          }
+
+          .advertisements-page .advertisements-format-details h3 {
+            font-size: 22px;
+          }
+
+          .advertisements-page .advertisements-format-card {
+            padding: 16px;
+            border-radius: 14px;
+          }
+
+          .advertisements-page .advertisements-format-specs {
+            grid-template-columns: 1fr;
+          }
+
+          .advertisements-page .advertisements-cta {
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 40px;
+            padding-bottom: 44px;
+          }
+
+          .advertisements-page .advertisements-cta-grid {
+            gap: 28px;
+          }
+
+          .advertisements-page .advertisements-cta-title {
+            font-size: 26px;
+          }
+
+          .advertisements-page .advertisements-contact-row {
+            align-items: flex-start;
+          }
+
+          .advertisements-page .advertisements-contact-row span {
+            font-size: 13px;
+          }
+
+          .advertisements-page .advertisements-form {
+            padding: 18px 16px;
+            border-radius: 16px;
+          }
+
+          .advertisements-page .advertisements-form .grid {
+            gap: 12px;
+          }
+
+          .advertisements-page .advertisements-form input,
+          .advertisements-page .advertisements-form textarea {
+            font-size: 16px;
+          }
+
+          .advertisements-page .advertisements-form button {
+            width: 100%;
+            justify-content: center;
+          }
+        }
+      `}</style>
 
       {/* ── 01 Hero Banner (no text) ── */}
-      <section className="relative w-full h-[320px] sm:h-[420px] md:h-[620px] overflow-hidden">
+      <section className="advertisements-hero relative w-full h-[220px] sm:h-[420px] md:h-[620px] overflow-hidden">
         <img
           src="/images/ad_banner2.png"
           alt="Advertisement Banner"
@@ -177,28 +333,28 @@ export default function AdvertisementsPage() {
       </section>
 
       {/* ── 02 Our Services ── */}
-      <section className="w-full px-5 py-16 bg-white">
+      <section className="advertisements-section w-full px-5 py-16 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-[28px] md:text-[36px] font-black text-[#1a0a00] mb-2">
+            <h2 className="advertisements-section-title text-[28px] md:text-[36px] font-black text-[#1a0a00] mb-2">
               Our Outdoor Advertising Solutions
             </h2>
-            <p className="text-[14px] md:text-[16px] font-medium" style={{ color: '#6e5a55' }}>
+            <p className="advertisements-section-subtitle text-[14px] md:text-[16px] font-medium" style={{ color: '#6e5a55' }}>
               Powerful. Visible. Effective.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+          <div className="advertisements-services-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
             {services.map((s, i) => (
               <div key={i} className="flex flex-col items-center gap-3 group">
                 <div className="w-full overflow-hidden rounded-[14px] bg-[#f5f5f5]">
                   <img
                     src={s.img}
                     alt={s.label}
-                    className="w-full h-[140px] sm:h-[180px] object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="advertisements-service-image w-full h-[140px] sm:h-[180px] object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <span className="text-[13px] sm:text-[14px] font-bold text-[#1a0a00]">{s.label}</span>
+                <span className="advertisements-service-label text-[13px] sm:text-[14px] font-bold text-[#1a0a00]">{s.label}</span>
                 <span className="h-[2px] w-8 rounded-full" style={{ background: ACCENT }} />
               </div>
             ))}
@@ -210,12 +366,12 @@ export default function AdvertisementsPage() {
       <AdFormatsSection />
 
       {/* ── 04 Contact CTA ── */}
-      <section className="w-full px-5 py-16 bg-white">
+      <section className="advertisements-cta w-full px-5 py-16 bg-white">
         <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="advertisements-cta-grid grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Text */}
             <div>
-              <h2 className="text-[28px] md:text-[40px] font-black text-[#1a0a00] leading-tight mb-4">
+              <h2 className="advertisements-cta-title text-[28px] md:text-[40px] font-black text-[#1a0a00] leading-tight mb-4">
                 Let&apos;s Build Your<br />
                 <span style={{ color: ACCENT }}>Brand Presence</span><br />
                 Together
@@ -225,7 +381,7 @@ export default function AdvertisementsPage() {
               </p>
 
               <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-3">
+                <div className="advertisements-contact-row flex items-center gap-3">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full text-white" style={{ background: ACCENT }}>
                     <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
                       <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
@@ -233,7 +389,7 @@ export default function AdvertisementsPage() {
                   </div>
                   <span className="text-[14px] font-medium text-[#1a0a00]">+91 80 4757 3986</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="advertisements-contact-row flex items-center gap-3">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full text-white" style={{ background: ACCENT }}>
                     <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
                       <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
@@ -241,7 +397,7 @@ export default function AdvertisementsPage() {
                   </div>
                   <span className="text-[14px] font-medium text-[#1a0a00]">admin@nkrtvkannada.com</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="advertisements-contact-row flex items-center gap-3">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full text-white" style={{ background: ACCENT }}>
                     <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
                       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
@@ -253,7 +409,7 @@ export default function AdvertisementsPage() {
             </div>
 
             {/* Right: Form */}
-            <div className="rounded-[20px] bg-[#fafafa] p-6 sm:p-8 shadow-sm border border-gray-100">
+            <div className="advertisements-form rounded-[20px] bg-[#fafafa] p-6 sm:p-8 shadow-sm border border-gray-100">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <input
                   type="text"
@@ -308,10 +464,10 @@ function AdFormatsSection() {
   };
 
   return (
-    <section className="w-full px-5 py-20 bg-white">
-      <div className="max-w-[1100px] mx-auto">
-        {/* Section header */}
-        <div className="text-center mb-12">
+      <section className="advertisements-formats-section w-full px-5 py-20 bg-white">
+        <div className="max-w-[1100px] mx-auto">
+          {/* Section header */}
+        <div className="advertisements-formats-header text-center mb-12">
           <div className="inline-flex items-center justify-center gap-3 text-[11px] font-extrabold tracking-[0.2em] uppercase mb-3"
             style={{ color: '#E63E1A' }}>
             <span className="w-10 h-[2px]" style={{ background: 'rgba(230,62,26,0.35)' }} />
@@ -327,12 +483,12 @@ function AdFormatsSection() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex items-center justify-center gap-0 mb-10 bg-[#fafafa] rounded-full p-1.5 max-w-max mx-auto border border-[#f0e8e3]">
+        <div className="advertisements-format-tabs flex items-center justify-center gap-0 mb-10 bg-[#fafafa] rounded-full p-1.5 max-w-max mx-auto border border-[#f0e8e3]">
           {adFormatTabs.map((t) => (
             <button
               key={t.key}
               onClick={() => handleCategoryChange(t.key)}
-              className={`relative px-7 py-2.5 rounded-full text-[13px] font-extrabold uppercase tracking-wide transition-all duration-300 ${
+              className={`advertisements-format-tab relative px-7 py-2.5 rounded-full text-[13px] font-extrabold uppercase tracking-wide transition-all duration-300 ${
                 activeCategory === t.key
                   ? 'text-white shadow-md'
                   : 'text-[#6e5a55] hover:text-[#1a0a00]'
@@ -345,14 +501,14 @@ function AdFormatsSection() {
         </div>
 
         {/* Content panel */}
-        <div className="relative bg-[#fafafa] rounded-[24px] p-1 border border-[#f0e8e3]">
+        <div className="advertisements-format-panel relative bg-[#fafafa] rounded-[24px] p-1 border border-[#f0e8e3]">
           {/* Accent top bar */}
           <div className="absolute top-0 left-6 right-6 sm:left-8 sm:right-8 h-1 rounded-b-full z-10"
             style={{ background: 'linear-gradient(90deg,#E63E1A,#f49911)' }} />
 
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-0">
+          <div className="advertisements-format-panel-grid grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-0">
             {/* Left: Format list */}
-            <div className="p-6 sm:p-8 lg:border-r border-[#f0e8e3]">
+            <div className="advertisements-format-list p-6 sm:p-8 lg:border-r border-[#f0e8e3]">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest mb-5"
                 style={{ background: 'rgba(230,62,26,0.08)', color: '#E63E1A' }}>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E63E1A]" />
@@ -364,7 +520,7 @@ function AdFormatsSection() {
                   <button
                     key={f.name}
                     onClick={() => setActiveFormatIdx(i)}
-                    className={`group w-full flex items-center gap-3 text-left px-4 py-3.5 rounded-xl text-[14px] font-bold transition-all duration-200 border shadow-sm ${
+                    className={`advertisements-format-list-item group w-full flex items-center gap-3 text-left px-4 py-3.5 rounded-xl text-[14px] font-bold transition-all duration-200 border shadow-sm ${
                       activeFormatIdx === i
                         ? 'bg-white border-[#E63E1A] text-[#E63E1A]'
                         : 'bg-white border-[#e8e0db] text-[#1a0a00] hover:border-[#E63E1A] hover:text-[#E63E1A]'
@@ -391,7 +547,7 @@ function AdFormatsSection() {
             </div>
 
             {/* Right: Format details */}
-            <div className="p-6 sm:p-8 lg:p-10">
+            <div className="advertisements-format-details p-6 sm:p-8 lg:p-10">
               <h3 className="text-[22px] sm:text-[28px] font-black text-[#1a0a00] leading-tight mb-6">
                 {format.name}
               </h3>
@@ -412,9 +568,9 @@ function AdFormatsSection() {
                   <h4 className="text-[11px] font-extrabold uppercase tracking-widest text-[#E63E1A] mb-3">
                     {format.optionsLabel || 'Specifications'}
                   </h4>
-                  <div className={`grid gap-4 ${format.specs.length > 3 ? 'grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-3'}`}>
+                  <div className={`advertisements-format-specs grid gap-4 ${format.specs.length > 3 ? 'grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-3'}`}>
                     {format.specs.map((s) => (
-                      <div key={s.label} className="bg-white rounded-[16px] p-4 text-left border border-[#f0e8e3]">
+                      <div key={s.label} className="advertisements-format-card bg-white rounded-[16px] p-4 text-left border border-[#f0e8e3]">
                         <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#9b8881] mb-1">{s.label}</p>
                         <p className="text-[13px] font-semibold text-[#1a0a00] leading-snug">{s.value}</p>
                       </div>
