@@ -2,18 +2,18 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 
 const slides = [
   {
-    src: "/videos/NKRTV_Kannada_720P.mp4",
-    type: "video/mp4",
+    src: "/videos/hero1.webm",
+    type: "video/webm",
     poster: "/images/hero/slide1-poster.jpg",
   },
   {
-    src: "/videos/super_kannadiga_new_promo.webm",
+    src: "/videos/hero2.webm",
     type: "video/webm",
     poster: "/images/hero/slide2-poster.jpg",
   },
   {
-    src: "/videos/Alle_Arambha_Prema_PROMO_A_Heartwarming_Coastal_Love_Story_New_Serial_on_NKRTV_Kannada_serial_720P.mp4",
-    type: "video/mp4",
+    src: "/videos/hero3.webm",
+    type: "video/webm",
     poster: "/images/hero/slide3-poster.jpg",
   },
 ];
