@@ -16,7 +16,7 @@ const playlist: PlaylistItem[] = [
     id: '1',
     title: 'Agnihotra',
     subtitle: '720P • NKR TV',
-    video: '/videos/AGNI_HOTRA_NKRTVKannada_720P.mp4',
+    video: '/videos/AGNI_HOTRA_NKRTVKannada_720P.webm',
     badge: 'TOP 5',
   },
   {
