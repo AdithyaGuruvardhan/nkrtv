@@ -1,3 +1,4 @@
+import { SITE_LOGO_URL } from '../config/site';
 import DotBackdrop from '../components/decor/DotBackdrop';
 
 const heroImage = new URL('../aryamba.webp', import.meta.url).href;
@@ -67,7 +68,7 @@ export default function AdvertisementPage() {
         <div className="relative mx-auto grid min-h-screen w-full max-w-[1440px] items-center gap-4 px-5 py-8 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:px-10 xl:px-12">
           <div className="z-10 flex flex-col items-center pb-3 pt-4 text-center lg:items-start lg:text-left">
             <img
-              src="https://nkrtv.in/wp-content/uploads/2024/12/cropped-NKR_Logo-3.png"
+              src={SITE_LOGO_URL}
               alt="NKR TV Kannada"
               className="h-[150px] w-[220px] object-contain sm:h-[180px] sm:w-[270px] lg:ml-[92px] lg:h-[210px] lg:w-[318px]"
             />

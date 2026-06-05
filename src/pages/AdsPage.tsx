@@ -1,3 +1,4 @@
+import { SITE_LOGO_URL } from '../config/site';
 import DotBackdrop from '../components/decor/DotBackdrop';
 
 const ACCENT = '#E63E1A';
@@ -47,7 +48,7 @@ export default function AdsPage() {
             
             <div className="relative z-10">
               <div className="w-[80px] h-[80px] bg-white rounded-full flex items-center justify-center mb-6 shadow-lg">
-                <img src="https://nkrtv.in/wp-content/uploads/2024/12/cropped-cropped-NKR_Logo-3.png" alt="NKRTV" className="w-full h-full object-cover rounded-full" />
+                <img src={SITE_LOGO_URL} alt="NKRTV" className="w-full h-full object-contain rounded-full" />
               </div>
               
               <h3 className="text-[22px] font-bold mb-3">NKRTV Kannada</h3>

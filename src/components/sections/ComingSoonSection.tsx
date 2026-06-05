@@ -8,11 +8,11 @@ type Program = {
 const programs: Program[] = [
   {
     title: 'ಸ್ವಾದ ಸಂಭ್ರಮ',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/05/NKR-ADS-POSTERS.png',
+    image: '/images/swada_sambrama_banner.jpg',
   },
   {
     title: 'ಸೂಪರ್ ಕನ್ನಡಿಗ',
-    image: 'https://nkrtv.in/wp-content/uploads/2026/05/NKR-ADS-POSTERS-1.png',
+    image: '/images/super_kannadiga_banner.jpg',
   },
 ];
 

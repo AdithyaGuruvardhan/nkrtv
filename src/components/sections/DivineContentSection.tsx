@@ -379,9 +379,9 @@ export default function DivineContentSection() {
           </div>
         </div>
 
-        <div className="relative left-1/2 z-10 mt-6 h-[80px] w-screen -translate-x-1/2 overflow-hidden">
+        <div className="relative left-1/2 z-10 mt-6 h-[90px] w-screen -translate-x-1/2 overflow-hidden">
           <ContinuousImageMarquee
-            className="absolute inset-x-0 -bottom-6"
+            className="absolute inset-x-0 -bottom-8"
             images={[
               '/images/monuments/1.png',
               '/images/monuments/2.png',
@@ -393,8 +393,9 @@ export default function DivineContentSection() {
               '/images/monuments/8.png',
               '/images/monuments/9.png',
             ]}
-            heightClassName="h-[76px] sm:h-[82px] lg:h-[80px]"
-            imageScaleClassName="scale-[1.15]"
+            heightClassName="h-[76px] sm:h-[82px] lg:h-[60px]"
+            imageScaleClassName="scale-[1.2]"
+            imageObjectPositionClassName="object-[center_80%]"
             durationSeconds={24}
             repeatCount={4}
             alt="Karnataka decorative strip"
@@ -402,7 +403,7 @@ export default function DivineContentSection() {
         </div>
 
         {/* Bottom Feature Highlights Bar */}
-        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-[#FDF8F0] px-4 py-4 sm:px-6 sm:py-8 lg:px-10">
+        <div className="relative left-1/2 w-screen -translate-x-1/2 bg-[#EAD5B7] px-4 py-4 sm:px-6 sm:py-8 lg:px-10">
           <div className="mb-4 flex items-center gap-3 sm:mb-5">
             <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#D68B45] sm:text-[12px] sm:tracking-[0.2em]">
               Coming Soon
@@ -411,7 +412,7 @@ export default function DivineContentSection() {
           </div>
 
           <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
                 <i className="fa-solid fa-leaf text-[13px] sm:text-[16px]" />
               </div>
@@ -419,7 +420,7 @@ export default function DivineContentSection() {
                 Amrutha Vachana
               </h4>
             </div>
-            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
                 <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" aria-hidden="true">
                   <rect x="5.2" y="3" width="2.4" height="18" rx="1.1" />
@@ -431,7 +432,7 @@ export default function DivineContentSection() {
                 Narayanim
               </h4>
             </div>
-            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
                 <i className="fa-solid fa-bottle-water text-[13px] sm:text-[16px]" />
               </div>
@@ -439,7 +440,7 @@ export default function DivineContentSection() {
                 Amrutha Paana
               </h4>
             </div>
-            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-white px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
                 <span className="text-[15px] font-bold leading-none sm:text-[18px]">₹</span>
               </div>

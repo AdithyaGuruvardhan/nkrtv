@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 
 type YogaItem = {
   id: string;
-  video: string;
+  youtubeId: string;
   title: string;
   subtitle: string;
   pill: string;
@@ -13,7 +13,7 @@ type YogaItem = {
 const yogaItems: YogaItem[] = [
   {
     id: '1',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/diagnose_Yoga_Patha_EP-46_NKR_TV_Kannada_720P-1.mp4',
+    youtubeId: 'GPqDn-IOmZA',
     title: 'Diagnose Yoga Patha',
     subtitle: 'Promo',
     pill: 'Promo',
@@ -22,7 +22,7 @@ const yogaItems: YogaItem[] = [
   },
   {
     id: '2',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/Scoliosis_Yoga_Patha_EP-42_NKR_TV_Kannada_720P-1.mp4',
+    youtubeId: 'RIARmtSMN_Q',
     title: 'Scoliosis Yoga Patha',
     subtitle: 'Highlights',
     pill: 'Featured',
@@ -31,7 +31,7 @@ const yogaItems: YogaItem[] = [
   },
   {
     id: '3',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/Yoga_Patha_EP-40_NKR_TV_Kannada_720P.mp4',
+    youtubeId: 'kgzgQEy05_g',
     title: 'ಸೂರ್ಯನಮಸ್ಕಾರದವನ್ನು ಎಷ್ಟು ನಿಮಿಷ ಮಾಡಬೇಕು',
     subtitle: 'New',
     pill: 'Highlights',
@@ -40,7 +40,7 @@ const yogaItems: YogaItem[] = [
   },
   {
     id: '4',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/yoga-patha-ep-45-nkr-tv-kannada-720p_WutKdSd5.mp4',
+    youtubeId: 'vQZOlBnbXv0',
     title: 'Yoga Patha',
     subtitle: 'Promo',
     pill: 'Promo',
@@ -49,7 +49,7 @@ const yogaItems: YogaItem[] = [
   },
   {
     id: '5',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/What_are_the_benefits_of_yoga_for_diabetes_Yoga_Patha_720P-1.mp4',
+    youtubeId: 'xoU1dBvpV0c',
     title: 'ಯೋಗದಿಂದ ಡಯಾಬಿಟಿಸ್ ಗಾಗುವ ಪ್ರಯೋಜನಗಳೇನು?',
     subtitle: 'New',
     pill: 'New',
@@ -58,8 +58,14 @@ const yogaItems: YogaItem[] = [
   },
 ];
 
+type ModalState = YogaItem | null;
+
+function getYouTubeThumbnail(youtubeId: string) {
+  return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+}
+
 export default function YogaPathaSection() {
-  const [modal, setModal] = useState<YogaItem | null>(null);
+  const [modal, setModal] = useState<ModalState>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeDot, setActiveDot] = useState(0);
 
@@ -93,7 +99,6 @@ export default function YogaPathaSection() {
 
   return (
     <section className="relative w-full overflow-hidden bg-[#fffdf9] py-16">
-      {/* Decorative Dotted Patterns (matching Serial section) */}
       <div
         className="pointer-events-none absolute right-0 top-0 h-[400px] w-[500px] opacity-60"
         style={{
@@ -114,7 +119,6 @@ export default function YogaPathaSection() {
       />
 
       <div className="relative z-10 mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
-        {/* Header */}
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-[500px]">
             <div className="mb-2 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[3px] text-[#E63E1A]">
@@ -126,7 +130,7 @@ export default function YogaPathaSection() {
               </div>
               YOGA
             </div>
-            <h2 className="mb-3  text-[54px] font-extrabold leading-[1.1]">
+            <h2 className="mb-3 text-[54px] font-extrabold leading-[1.1]">
               Yoga{' '}
               <span className="bg-gradient-to-r from-[#E63E1A] to-[#B21F1F] bg-clip-text text-transparent">
                 Patha
@@ -155,7 +159,6 @@ export default function YogaPathaSection() {
           </button>
         </div>
 
-        {/* Carousel Area */}
         <div className="relative mt-6">
           <div
             ref={trackRef}
@@ -167,89 +170,72 @@ export default function YogaPathaSection() {
                 key={item.id}
                 className="relative w-[85vw] shrink-0 snap-start sm:w-[280px] md:w-[300px] lg:w-[calc(20%-16px)]"
               >
-                {/* Card Body */}
                 <div className="group relative z-10 flex h-full flex-col overflow-hidden rounded-[18px] border border-[#F0E6D6] bg-white shadow-[0_6px_24px_rgba(230,62,26,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#F4D3CA] hover:shadow-[0_18px_48px_rgba(230,62,26,0.12)]">
-                  
-                  {/* Media */}
-                  <div className="relative h-[185px] w-full overflow-hidden bg-[#111]">
-                    <video
-                      src={item.video}
-                      muted
-                      playsInline
-                      preload="metadata"
-                      onLoadedMetadata={(e) => {
-                        const vid = e.currentTarget;
-                        if (vid.duration && isFinite(vid.duration)) {
-                          vid.currentTime = vid.duration / 2;
-                        } else {
-                          vid.currentTime = 0.5;
+                  <div
+                    className="relative aspect-video w-full cursor-pointer overflow-hidden bg-[#111]"
+                    onClick={() => openModal(item)}
+                  >
+                    <img
+                      src={getYouTubeThumbnail(item.youtubeId)}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        const image = e.currentTarget;
+                        if (!image.src.includes('/hqdefault.jpg')) {
+                          image.src = `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`;
                         }
                       }}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    
-                    {/* Top Left Pill */}
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+
                     <div className="absolute left-3 top-3 z-10 rounded-full bg-[#E63E1A]/90 px-3 py-1 text-[10px] font-bold text-white shadow-sm backdrop-blur-md">
                       {item.pill}
                     </div>
-                    
-                    {/* Top Right Tag */}
+
                     <div className="absolute right-3 top-3 z-10 rounded-[6px] bg-[#E63E1A] px-2 py-1.5 text-center text-[10px] font-black leading-[1.2] tracking-wider text-white shadow-sm">
-                      TOP<br />5
+                      TOP
+                      <br />
+                      5
                     </div>
 
-                    {/* Bottom Gradient overlay for text contrast */}
-                    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-black/25 to-transparent z-[4]" />
+                    <div className="absolute left-1/2 top-1/2 z-10 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[2px] border-white bg-[#E63E1A] text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-4 w-4">
+                        <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
+                      </svg>
+                    </div>
                   </div>
 
-                  {/* Body Info */}
-                  <div className="flex flex-1 flex-col items-center p-5 text-center">
-                    <h3 className="mb-1 min-h-[42px] line-clamp-2 text-[15px] font-bold leading-[1.4] text-[#120e2b]">
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="mb-1 text-[16px] font-bold leading-[1.3] text-[#120e2b]">
                       {item.title}
                     </h3>
-                    <div className="min-h-[20px] text-[12px] font-semibold text-[#E63E1A]">
+                    <h4 className="mb-4 text-[12px] font-bold text-[#E63E1A]">
                       {item.subtitle}
+                    </h4>
+
+                    <div className="mb-4 flex flex-wrap gap-2">
+                      <span className="rounded-full bg-[#FCECE6] px-3 py-1 text-[10px] font-bold text-[#E63E1A]">
+                        YouTube
+                      </span>
                     </div>
 
-                    {/* Play Button inside card body */}
-                    <button
-                      type="button"
-                      onClick={() => openModal(item)}
-                      className="my-4 flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#E63E1A] px-6 py-2.5 text-[13px] font-bold text-white shadow-[0_4px_20px_rgba(230,62,26,0.25)] transition-all duration-300 hover:scale-105 hover:bg-[#c22f10]"
-                    >
-                      Play
-                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-white shrink-0">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                      </svg>
-                    </button>
-
-                    {/* Meta Footer */}
-                    <div className="mt-auto flex w-full items-center justify-center gap-4 border-t border-[#F0E6D6] pt-4 text-[12px] font-semibold text-[#6b6680]">
-                      <div className="flex items-center gap-1.5">
-                        <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-none stroke-[#E63E1A] stroke-[1.8]">
-                          <circle cx="12" cy="12" r="10" />
-                          <polyline points="12 6 12 12 16 14" />
-                        </svg>
-                        {item.duration}
+                    <div className="mt-auto flex flex-wrap items-center gap-2 text-[10px] font-medium text-[#6b6680]">
+                      <div className="flex items-center gap-2">
+                        <span>{item.duration}</span>
+                        <span className="h-[3px] w-[3px] rounded-full bg-[#6b6680]/50" />
                       </div>
-                      <div className="h-5 w-[1px] bg-[#F0E6D6]" />
-                      <div className="flex items-center gap-1.5">
-                        <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-none stroke-[#E63E1A] stroke-[1.8]">
-                          <rect x="3" y="3" width="18" height="18" rx="3" />
-                          <path d="M3 9h18M9 21V9" />
-                        </svg>
-                        {item.category}
+                      <div className="flex items-center gap-2">
+                        <span>{item.category}</span>
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Navigation Controls */}
         <div className="mt-1 flex items-center justify-center gap-5">
           <button
             type="button"
@@ -260,7 +246,7 @@ export default function YogaPathaSection() {
               <polyline points="15 18 9 12 15 6" />
             </svg>
           </button>
-          
+
           <div className="flex items-center gap-2">
             {yogaItems.map((_, dot) => (
               <div
@@ -284,13 +270,12 @@ export default function YogaPathaSection() {
         </div>
       </div>
 
-      {/* Video Modal */}
       {modal && (
         <div
           className="fixed inset-0 z-[99999] flex items-center justify-center bg-[rgba(10,6,30,0.9)] p-4"
           onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
         >
-          <div className="relative h-[min(76vh,720px)] w-[min(1100px,96vw)] overflow-hidden rounded-[18px] bg-black shadow-[0_30px_90px_rgba(0,0,0,0.8)]">
+          <div className="relative h-[min(78vh,720px)] w-[min(1200px,96vw)] overflow-hidden rounded-[18px] bg-black shadow-[0_30px_90px_rgba(0,0,0,0.8)]">
             <div className="absolute left-0 right-0 top-0 z-[2] flex items-center justify-between gap-3 bg-gradient-to-b from-[rgba(0,0,0,0.85)] to-transparent px-4 py-3">
               <p className="max-w-[80%] overflow-hidden text-ellipsis whitespace-nowrap text-[14px] font-extrabold text-white">
                 Now playing: {modal.title}
@@ -303,12 +288,12 @@ export default function YogaPathaSection() {
                 ✕
               </button>
             </div>
-            <video
-              className="block h-full w-full bg-black object-contain"
-              src={modal.video}
-              controls
-              autoPlay
-              playsInline
+            <iframe
+              className="h-full w-full border-none"
+              src={`https://www.youtube-nocookie.com/embed/${modal.youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+              title="YouTube video player"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
             />
           </div>
         </div>

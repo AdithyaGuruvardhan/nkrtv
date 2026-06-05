@@ -2,6 +2,7 @@ type ContinuousImageMarqueeProps = {
   images: string[];
   className?: string;
   imageClassName?: string;
+  imageObjectPositionClassName?: string;
   imageScaleClassName?: string;
   itemClassName?: string;
   heightClassName?: string;
@@ -14,6 +15,7 @@ export default function ContinuousImageMarquee({
   images,
   className = '',
   imageClassName = '',
+  imageObjectPositionClassName = 'object-bottom',
   imageScaleClassName = 'scale-[1.6]',
   itemClassName = '',
   heightClassName = 'h-[148px] sm:h-[168px]',
@@ -49,7 +51,7 @@ export default function ContinuousImageMarquee({
                 <img
                   src={src}
                   alt={alt}
-                  className={`h-full w-full object-contain object-center ${imageScaleClassName} ${imageClassName}`}
+                  className={`h-full w-full object-contain ${imageObjectPositionClassName} ${imageScaleClassName} ${imageClassName}`}
                   draggable={false}
                 />
               </div>
