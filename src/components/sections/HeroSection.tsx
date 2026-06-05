@@ -82,8 +82,7 @@ export default function HeroSection() {
             </div>
           ))}
 
-          <div className="pointer-events-none absolute inset-0 z-[11] bg-black/50 md:bg-[linear-gradient(90deg,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.20)_36%,rgba(0,0,0,0.18)_68%,rgba(0,0,0,0.55)_100%)]" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[12] h-28 bg-gradient-to-t from-black/50 to-transparent" />
+
 
           {/* Desktop text - center left, hidden on mobile */}
           <div className="absolute left-[6vw] top-1/2 z-[13] hidden -translate-y-1/2 text-white sm:block sm:max-w-[620px] lg:max-w-[720px]">
