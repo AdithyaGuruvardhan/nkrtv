@@ -595,6 +595,7 @@ export default function FictionPage() {
               <span className="w-8 h-[2px]" style={{ background: 'rgba(230,62,26,0.35)' }} />
             </div>
             <h2 className="fiction-cini-title text-3xl md:text-[42px] font-black text-[#1a0a00] leading-tight">CINI YAANA</h2>
+            <p className="mt-3 mx-auto max-w-2xl text-[14px] md:text-[15px] font-medium leading-relaxed text-[#5a4a3a]">A dedicated platform where short filmmakers bring their vision to life, showcase their work, gain recognition, and inspire audiences through the art of storytelling.</p>
             <div className="flex items-center justify-center gap-2 mt-3">
               <span className="w-10 h-[2px]" style={{ background: 'rgba(230,62,26,0.25)' }} />
               <span className="w-2 h-2 rounded-full" style={{ background: '#E63E1A' }} />
