@@ -4,7 +4,7 @@ import { SITE_LOGO_URL } from '../../config/site';
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
-  { name: 'Our Programs', href: '/fiction' },
+  { name: 'Our Programs', href: '/our-programs' },
   { name: 'Advertisements', href: '/advertisements' },
   { name: 'Blogs', href: '/blogs' },
   { name: 'Contact Us', href: '/contact' }
@@ -72,7 +72,7 @@ export default function Header() {
             } else if (item.name === 'Blogs') {
               isActive = currentPath === '/blog' || currentPath === '/blogs';
             } else if (item.name === 'Our Programs') {
-              isActive = currentPath === '/fiction';
+              isActive = currentPath === '/our-programs';
               isActive = false; // Dummy links aren't separate pages right now
             }
 
@@ -160,7 +160,7 @@ export default function Header() {
                 } else if (item.name === 'Blogs') {
                   isActive = currentPath === '/blog' || currentPath === '/blogs';
                 } else if (item.name === 'Our Programs') {
-                  isActive = currentPath === '/fiction';
+                  isActive = currentPath === '/our-programs';
                 } else if (item.name === 'Advertisements') {
                   isActive = currentPath === '/advertisements';
                 } else if (item.name === 'Contact Us') {

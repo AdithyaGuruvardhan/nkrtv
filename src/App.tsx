@@ -26,10 +26,10 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: SITE_DESCRIPTION,
     path: '/',
   },
-  '/fiction': {
+  '/our-programs': {
     title: 'Fiction',
     description: 'Watch NKR TV Kannada fiction series, short films, and serialized stories.',
-    path: '/fiction',
+    path: '/our-programs',
   },
   '/about': {
     title: 'About Us',
@@ -89,7 +89,7 @@ export default function App() {
     return () => window.removeEventListener('popstate', onLocationChange);
   }, []);
 
-  if (currentPath === '/fiction') {
+  if (currentPath === '/our-programs') {
     return (
       <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
         <PageMetadata {...pageMeta} />
