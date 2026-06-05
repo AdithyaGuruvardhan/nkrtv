@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import DotBackdrop from '../decor/DotBackdrop';
 
 type ContentCard = {
@@ -96,35 +96,16 @@ function ShowcaseCard({
   index: number;
   onOpen: (card: ContentCard) => void;
 }) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  const handleMouseEnter = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.currentTime = 0;
-    video.play().catch(() => { });
-  };
-
-  const handleMouseLeave = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.pause();
-    video.currentTime = 0;
-  };
-
   const cardNumber = useMemo(() => String(index + 1).padStart(2, '0'), [index]);
 
   return (
     <div
       className="carousel-card group/card relative w-full overflow-hidden rounded-[7px] bg-[#2a0303] shadow-[0_8px_22px_rgba(90,12,6,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_34px_rgba(90,12,6,0.24)]"
       data-title={card.title}
-      data-video={card.video}
     >
       <div
         className="relative aspect-[4/3] cursor-pointer overflow-hidden bg-[#1a0101]"
         onClick={() => onOpen(card)}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         role="button"
         tabIndex={0}
         onKeyDown={(event) => {
@@ -149,18 +130,8 @@ function ShowcaseCard({
         <img
           src={card.image}
           alt={card.title}
-          className="block h-full w-full object-cover object-center transition-opacity duration-300 group-hover/card:opacity-0"
+          className="block h-full w-full object-cover object-center transition-transform duration-300 group-hover/card:scale-[1.04]"
         />
-        <video
-          className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover/card:opacity-100"
-          loop
-          muted
-          playsInline
-          preload="none"
-          ref={videoRef}
-        >
-          <source src={card.video} type="video/mp4" />
-        </video>
       </div>
 
       <div className="px-4 py-4 text-white">
