@@ -82,10 +82,10 @@ export default function HeroSection() {
             </div>
           ))}
 
-          <div className="pointer-events-none absolute inset-0 z-[11] bg-[linear-gradient(90deg,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.20)_36%,rgba(0,0,0,0.18)_68%,rgba(0,0,0,0.55)_100%)]" />
+          <div className="pointer-events-none absolute inset-0 z-[11] bg-black/50 md:bg-[linear-gradient(90deg,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.20)_36%,rgba(0,0,0,0.18)_68%,rgba(0,0,0,0.55)_100%)]" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[12] h-28 bg-gradient-to-t from-black/50 to-transparent" />
 
-          <div className="absolute left-[6vw] top-1/2 z-[13] max-w-[620px] -translate-y-1/2 text-white lg:max-w-[720px]">
+          <div className="absolute left-0 right-0 top-1/2 z-[13] -translate-y-1/2 px-5 text-white sm:left-[6vw] sm:right-auto sm:max-w-[620px] sm:px-0 lg:max-w-[720px]">
             <p className="mb-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#FFC107] sm:text-[13px]">NKR TV Kannada</p>
             <h1 className="text-[26px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] sm:text-[36px] lg:text-[58px]">
               ಅಣು ಅಣುವಿನಲ್ಲೂ<br />
