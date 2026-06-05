@@ -33,7 +33,7 @@ export default function FeaturedVideoSection() {
         preload="auto"
       >
         <source
-          src="/videos/Promo-01_Super-Kannadiga_web.webm"
+          src="/videos/super_kannadiga_new_promo.webm"
           type="video/webm"
         />
         <source

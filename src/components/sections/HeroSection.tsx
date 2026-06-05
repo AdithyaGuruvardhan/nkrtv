@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 
 const videos = [
   "/videos/NKRTV_Kannada_720P.mp4",
-  "/videos/Promo-01_Super-Kannadiga_web.mp4",
+  "/videos/super_kannadiga_new_promo.webm",
   "/videos/Alle_Arambha_Prema_PROMO_A_Heartwarming_Coastal_Love_Story_New_Serial_on_NKRTV_Kannada_serial_720P.mp4"
 ];
 
@@ -47,7 +47,7 @@ export default function HeroSection() {
                 playsInline
                 preload={index === 0 ? "auto" : "none"}
               >
-                <source src={src} type="video/mp4" />
+                <source src={src} type={src.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
               </video>
             </div>
           ))}

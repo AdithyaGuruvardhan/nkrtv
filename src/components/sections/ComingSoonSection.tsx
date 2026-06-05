@@ -8,11 +8,11 @@ type Program = {
 const programs: Program[] = [
   {
     title: 'ಸ್ವಾದ ಸಂಭ್ರಮ',
-    image: '/images/swada_sambrama_banner.jpg',
+    image: '/images/swada_sambrama_banner.webp',
   },
   {
     title: 'ಸೂಪರ್ ಕನ್ನಡಿಗ',
-    image: '/images/super_kannadiga_banner.jpg',
+    image: '/images/super_kannadiga_banner.webp',
   },
 ];
 
