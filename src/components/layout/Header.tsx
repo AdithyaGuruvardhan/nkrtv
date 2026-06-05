@@ -4,7 +4,7 @@ import { SITE_LOGO_URL } from '../../config/site';
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
-  { name: 'Fiction', href: '/fiction' },
+  { name: 'Our Programs', href: '/fiction' },
   { name: 'Advertisements', href: '/advertisements' },
   { name: 'Blogs', href: '/blogs' },
   { name: 'Contact Us', href: '/contact' }
@@ -71,13 +71,8 @@ export default function Header() {
               isActive = currentPath === '/about';
             } else if (item.name === 'Blogs') {
               isActive = currentPath === '/blog' || currentPath === '/blogs';
-            } else if (item.name === 'Fiction') {
+            } else if (item.name === 'Our Programs') {
               isActive = currentPath === '/fiction';
-            } else if (item.name === 'Advertisements') {
-              isActive = currentPath === '/advertisements';
-            } else if (item.name === 'Contact Us') {
-              isActive = currentPath === '/contact';
-            } else {
               isActive = false; // Dummy links aren't separate pages right now
             }
 
@@ -164,7 +159,7 @@ export default function Header() {
                   isActive = currentPath === '/about';
                 } else if (item.name === 'Blogs') {
                   isActive = currentPath === '/blog' || currentPath === '/blogs';
-                } else if (item.name === 'Fiction') {
+                } else if (item.name === 'Our Programs') {
                   isActive = currentPath === '/fiction';
                 } else if (item.name === 'Advertisements') {
                   isActive = currentPath === '/advertisements';

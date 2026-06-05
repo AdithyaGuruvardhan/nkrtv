@@ -2,7 +2,7 @@ import { SITE_LOGO_URL } from '../../config/site';
 
 const footerLinks = [
   { label: 'About Us', path: '/about' },
-  { label: 'Fiction', path: '/fiction' },
+  { label: 'Our Programs', path: '/fiction' },
   { label: 'Advertisements', path: '/advertisements' },
   { label: 'Blogs', path: '/blogs' },
   { label: 'Contact Us', path: '/contact' },
