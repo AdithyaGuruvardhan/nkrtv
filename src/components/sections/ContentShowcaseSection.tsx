@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import DotBackdrop from '../decor/DotBackdrop';
 
 type ContentCard = {
@@ -83,11 +83,9 @@ const cards: ContentCard[] = [
 function ShowcaseCard({
   card,
   index,
-  onOpen,
 }: {
   card: ContentCard;
   index: number;
-  onOpen: (card: ContentCard) => void;
 }) {
   const cardNumber = useMemo(() => String(index + 1).padStart(2, '0'), [index]);
 
@@ -96,18 +94,7 @@ function ShowcaseCard({
       className="carousel-card group/card relative w-full overflow-hidden rounded-[7px] bg-[#2a0303] shadow-[0_8px_22px_rgba(90,12,6,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_34px_rgba(90,12,6,0.24)]"
       data-title={card.title}
     >
-      <div
-        className="relative aspect-[4/3] cursor-pointer overflow-hidden bg-[#1a0101]"
-        onClick={() => onOpen(card)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            onOpen(card);
-          }
-        }}
-      >
+      <div className="relative aspect-[4/3] overflow-hidden bg-[#1a0101]">
         <div
           className="absolute left-0 top-0 z-[2] flex h-[34px] w-[38px] items-center justify-center rounded-br-[12px] text-center text-[15px] font-[900] tracking-[-0.5px] text-white"
           style={{ backgroundColor: card.numberColor }}
@@ -140,17 +127,6 @@ function ShowcaseCard({
 }
 
 export default function ContentShowcaseSection() {
-  const [activeCard, setActiveCard] = useState<ContentCard | null>(null);
-
-  const openCard = (card: ContentCard) => {
-    setActiveCard(card);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeCard = () => {
-    setActiveCard(null);
-    document.body.style.overflow = '';
-  };
 
   return (
     <section className="relative bg-[#fffdf9] text-[#1a1a1a]">
@@ -175,7 +151,7 @@ export default function ContentShowcaseSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4">
           {cards.map((card, index) => (
-            <ShowcaseCard key={card.title} card={card} index={index} onOpen={openCard} />
+            <ShowcaseCard key={card.title} card={card} index={index} />
           ))}
         </div>
 
@@ -204,35 +180,7 @@ export default function ContentShowcaseSection() {
         </div>
       </div>
 
-      {activeCard && (
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/88 p-4"
-          onClick={closeCard}
-        >
-          <div
-            className="relative max-h-[90vh] w-[96vw] max-w-3xl overflow-hidden rounded-[14px] shadow-[0_30px_90px_rgba(0,0,0,0.8)]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              onClick={closeCard}
-              className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70"
-              aria-label="Close"
-            >
-              ✕
-            </button>
-            <img
-              src={activeCard.image}
-              alt={activeCard.title}
-              className="block h-full w-full object-cover"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-5 py-4">
-              <p className="text-[18px] font-[900] uppercase text-[#FFD56A]">{activeCard.title}</p>
-              <p className="text-[12px] font-[700] uppercase text-white/80">NKR TV KANNADA</p>
-            </div>
-          </div>
-        </div>
-      )}
+
     </section>
   );
 }
