@@ -86,15 +86,15 @@ export default function HeroSection() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[12] h-28 bg-gradient-to-t from-black/50 to-transparent" />
 
           <div className="absolute left-0 right-0 top-1/2 z-[13] -translate-y-1/2 px-5 text-white sm:left-[6vw] sm:right-auto sm:max-w-[620px] sm:px-0 lg:max-w-[720px]">
-            <p className="mb-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#FFC107] sm:text-[13px]">NKR TV Kannada</p>
-            <h1 className="text-[26px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] sm:text-[36px] lg:text-[58px]">
+            <p className="mb-2 text-[9px] font-extrabold uppercase tracking-[0.28em] text-[#FFC107] sm:mb-3 sm:text-[13px]">NKR TV Kannada</p>
+            <h1 className="text-[18px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] sm:text-[36px] lg:text-[58px]">
               ಅಣು ಅಣುವಿನಲ್ಲೂ<br />
               <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
             </h1>
-            <p className="mt-3 text-[13px] font-medium leading-relaxed text-white/90 sm:mt-5 sm:text-[18px]">
+            <p className="mt-2 text-[11px] font-medium leading-relaxed text-white/90 sm:mt-5 sm:text-[18px]">
               Creating positive entertainment & <br /> celebrating Karnataka&apos;s rich heritage, culture, & stories.
             </p>
-            <div className="mt-4 flex items-center gap-3 sm:mt-7">
+            <div className="mt-3 hidden items-center gap-3 sm:flex sm:mt-7">
               <a
                 href="#"
                 className="inline-flex items-center gap-2 rounded-[5px] bg-[linear-gradient(135deg,#D11212,#F05B19)] px-6 py-3 text-[14px] font-extrabold uppercase text-white shadow-[0_8px_20px_rgba(209,18,18,0.28)]"
