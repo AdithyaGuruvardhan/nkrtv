@@ -30,7 +30,7 @@ const sections: Section[] = [
   {
     title: 'Aparoopada Athithigalu',
     eyebrow: 'Serial',
-    playlistUrl: '#',
+    playlistUrl: 'https://youtube.com/playlist?list=PLIAyJHDGMBfBW54FydZ6XFx343thLEh4T&si=qs5s0SAPSZjOXRKf',
     type: 'carousel',
     carouselItems: [
       { videoId: 'bVo9goe_qAo', episodeNo: '01', title: 'Aparoopada Sunday Promo', desc: 'Aparoopada Athithigalu Sunday promo from NKR TV Kannada.', tags: ['U/A', 'Promo', 'YouTube'] },
@@ -428,10 +428,10 @@ export default function FictionPage() {
               </div>
               <h2 className="fiction-section-title text-[15px] sm:text-[17px] font-extrabold uppercase tracking-wide text-[#2D1810]">Popular Programs</h2>
             </div>
-            <a href="#" className="fiction-section-action hidden sm:flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-wide text-[#E63E1A]">
+            {/* <a href="#" className="fiction-section-action hidden sm:flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-wide text-[#E63E1A]">
               View All Programs
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </a>
+            </a> */}
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -466,7 +466,7 @@ export default function FictionPage() {
               </div>
               <h2 className="text-[15px] sm:text-[17px] font-extrabold uppercase tracking-wide text-[#2D1810]">Panchamaveda</h2>
             </div>
-            <a href="#" className="hidden sm:flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-wide text-[#E63E1A]">
+            <a href="https://youtube.com/playlist?list=PLIAyJHDGMBfDKq1JnQztQFHYdDM4bWcoj&si=FjyLoD4Arg4G8phH" target="_blank" rel="noopener noreferrer" className="hidden sm:flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-wide text-[#E63E1A]">
               View Full Playlist →
             </a>
           </div>

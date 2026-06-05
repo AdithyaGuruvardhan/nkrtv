@@ -1,5 +1,35 @@
+import { useState, useRef } from 'react';
 
 export default function ContactSection() {
+  const [csErrors, setCsErrors] = useState<Record<string, string>>({});
+  const [csSubmitted, setCsSubmitted] = useState(false);
+  const csFormRef = useRef<HTMLFormElement>(null);
+
+  const handleCsSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = csFormRef.current;
+    if (!form) return;
+    const data = new FormData(form);
+    const errors: Record<string, string> = {};
+    const name = (data.get('csName') as string)?.trim();
+    const email = (data.get('csEmail') as string)?.trim();
+
+    if (!name) errors.csName = 'Name is required';
+    if (!email) errors.csEmail = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.csEmail = 'Enter a valid email';
+
+    setCsErrors(errors);
+    if (Object.keys(errors).length > 0) return;
+
+    const phone = (data.get('csPhone') as string) || '-';
+    const address = (data.get('csAddress') as string) || '-';
+    const plan = (data.get('csPlan') as string) || '-';
+    const subject = encodeURIComponent(`Message from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\nPlan: ${plan}`);
+    window.location.href = `mailto:nkrtv@gmail.com?subject=${subject}&body=${body}`;
+    setCsSubmitted(true);
+  };
+
   return (
     <section className="bg-[#fffdf9] py-16">
       <div className="mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
@@ -34,14 +64,14 @@ export default function ContactSection() {
             <div className="h-[1px] w-12 bg-[#E63E1A] sm:w-24"></div>
           </div>
           
-          <button className="relative z-10 flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-8 py-3.5 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.3)] transition-transform hover:scale-105">
+          <a href="https://instagram.com/nkrtvkannada/?next=/" target="_blank" rel="noopener noreferrer" className="relative z-10 flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-8 py-3.5 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.3)] transition-transform hover:scale-105">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
             </svg>
             Follow on Instagram
-          </button>
+          </a>
         </div>
 
         {/* Form Section Header */}
@@ -72,11 +102,11 @@ export default function ContactSection() {
         </div>
 
         {/* Form Container */}
-        <div className="rounded-[32px] border border-[#F4D3CA] bg-[#FFF9F5] p-6 shadow-sm sm:p-10">
+        <form ref={csFormRef} onSubmit={handleCsSubmit} className="rounded-[32px] border border-[#F4D3CA] bg-[#FFF9F5] p-6 shadow-sm sm:p-10">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            
+
             {/* Your Name */}
-            <div className="flex items-center gap-4 rounded-[16px] border border-[#F0E6D6] bg-white p-3 shadow-sm transition-colors focus-within:border-[#E63E1A]">
+            <div className={`flex items-center gap-4 rounded-[16px] border bg-white p-3 shadow-sm transition-colors focus-within:border-[#E63E1A] ${csErrors.csName ? 'border-red-400 bg-red-50' : 'border-[#F0E6D6]'}`}>
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#FF5A3C] to-[#D42200] text-white shadow-md">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -86,12 +116,13 @@ export default function ContactSection() {
                 <label className="mb-0.5 text-[12px] font-bold text-[#120e2b]">
                   Your Name <span className="text-[#E63E1A]">*</span>
                 </label>
-                <input type="text" placeholder="Enter Your Name" className="w-full bg-transparent text-[13px] text-gray-600 outline-none placeholder:text-gray-300" />
+                <input name="csName" type="text" placeholder="Enter Your Name" className="w-full bg-transparent text-[13px] text-gray-600 outline-none placeholder:text-gray-300" />
+                {csErrors.csName && <span className="text-[11px] text-red-500 font-medium">{csErrors.csName}</span>}
               </div>
             </div>
 
             {/* Your Email */}
-            <div className="flex items-center gap-4 rounded-[16px] border border-[#F0E6D6] bg-white p-3 shadow-sm transition-colors focus-within:border-[#E63E1A]">
+            <div className={`flex items-center gap-4 rounded-[16px] border bg-white p-3 shadow-sm transition-colors focus-within:border-[#E63E1A] ${csErrors.csEmail ? 'border-red-400 bg-red-50' : 'border-[#F0E6D6]'}`}>
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#FF5A3C] to-[#D42200] text-white shadow-md">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -101,7 +132,8 @@ export default function ContactSection() {
                 <label className="mb-0.5 text-[12px] font-bold text-[#120e2b]">
                   Your Email <span className="text-[#E63E1A]">*</span>
                 </label>
-                <input type="email" placeholder="Enter Your Email" className="w-full bg-transparent text-[13px] text-gray-600 outline-none placeholder:text-gray-300" />
+                <input name="csEmail" type="email" placeholder="Enter Your Email" className="w-full bg-transparent text-[13px] text-gray-600 outline-none placeholder:text-gray-300" />
+                {csErrors.csEmail && <span className="text-[11px] text-red-500 font-medium">{csErrors.csEmail}</span>}
               </div>
             </div>
 
@@ -116,7 +148,7 @@ export default function ContactSection() {
                 <label className="mb-0.5 text-[12px] font-bold text-[#120e2b]">
                   Your Number
                 </label>
-                <input type="tel" placeholder="Enter Your Number" className="w-full bg-transparent text-[13px] text-gray-600 outline-none placeholder:text-gray-300" />
+                <input name="csPhone" type="tel" placeholder="Enter Your Number" className="w-full bg-transparent text-[13px] text-gray-600 outline-none placeholder:text-gray-300" />
               </div>
             </div>
 
@@ -132,7 +164,7 @@ export default function ContactSection() {
                 <label className="mb-0.5 text-[12px] font-bold text-[#120e2b]">
                   Your Address
                 </label>
-                <input type="text" placeholder="Enter Your Address" className="w-full bg-transparent text-[13px] text-gray-600 outline-none placeholder:text-gray-300" />
+                <input name="csAddress" type="text" placeholder="Enter Your Address" className="w-full bg-transparent text-[13px] text-gray-600 outline-none placeholder:text-gray-300" />
               </div>
             </div>
 
@@ -147,7 +179,7 @@ export default function ContactSection() {
                 <label className="mb-0.5 text-[12px] font-bold text-[#120e2b]">
                   Choose Your Plan
                 </label>
-                <select className="w-full cursor-pointer appearance-none bg-transparent pr-6 text-[13px] text-gray-400 outline-none" defaultValue="">
+                <select name="csPlan" className="w-full cursor-pointer appearance-none bg-transparent pr-6 text-[13px] text-gray-400 outline-none" defaultValue="">
                   <option value="" disabled>Choose Your Plan</option>
                   <option value="basic">Basic Plan</option>
                   <option value="premium">Premium Plan</option>
@@ -170,18 +202,25 @@ export default function ContactSection() {
             </span>
           </label>
 
-          <div className="mt-10 flex items-center justify-center gap-4 sm:gap-8">
-            <div className="tracking-[4px] text-[#E63E1A] opacity-40">........</div>
-            <button className="flex shrink-0 items-center gap-3 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-8 py-3.5 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.3)] transition-transform hover:scale-105">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-              </svg>
-              Send Message
-            </button>
-            <div className="tracking-[4px] text-[#E63E1A] opacity-40">........</div>
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <div className="flex items-center justify-center gap-4 sm:gap-8">
+              <div className="tracking-[4px] text-[#E63E1A] opacity-40">........</div>
+              <button type="submit" className="flex shrink-0 items-center gap-3 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-8 py-3.5 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.3)] transition-transform hover:scale-105">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                </svg>
+                Send Message
+              </button>
+              <div className="tracking-[4px] text-[#E63E1A] opacity-40">........</div>
+            </div>
+            {csSubmitted && (
+              <p className="text-sm font-medium text-[#E63E1A]">
+                ✓ Your email client should open with the message pre-filled. If not, email us directly at <a href="mailto:nkrtv@gmail.com" className="underline">nkrtv@gmail.com</a>.
+              </p>
+            )}
           </div>
 
-        </div>
+        </form>
       </div>
     </section>
   );

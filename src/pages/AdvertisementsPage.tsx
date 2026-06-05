@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const ACCENT = '#E63E1A';
 const ACCENT_DARK = '#b02010';
@@ -133,6 +133,35 @@ const adFormatTabs: {
 ];
 
 export default function AdvertisementsPage() {
+  const [advErrors, setAdvErrors] = useState<Record<string, string>>({});
+  const [advSubmitted, setAdvSubmitted] = useState(false);
+  const advFormRef = useRef<HTMLFormElement>(null);
+
+  const handleAdvSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = advFormRef.current;
+    if (!form) return;
+    const data = new FormData(form);
+    const errors: Record<string, string> = {};
+    const name = (data.get('advName') as string)?.trim();
+    const email = (data.get('advEmail') as string)?.trim();
+    const phone = (data.get('advPhone') as string)?.trim();
+    const message = (data.get('advMessage') as string)?.trim();
+
+    if (!name) errors.advName = 'Name is required';
+    if (!email) errors.advEmail = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.advEmail = 'Enter a valid email';
+    if (!phone) errors.advPhone = 'Phone number is required';
+    if (!message) errors.advMessage = 'Message is required';
+
+    setAdvErrors(errors);
+    if (Object.keys(errors).length > 0) return;
+
+    const subject = encodeURIComponent(`Advertisement Enquiry from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`);
+    window.location.href = `mailto:nkrtv@gmail.com?subject=${subject}&body=${body}`;
+    setAdvSubmitted(true);
+  };
   return (
     <div className="advertisements-page w-full bg-white relative pt-[92px] pb-0 overflow-hidden">
       <style>{`
@@ -364,7 +393,7 @@ export default function AdvertisementsPage() {
                       <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                     </svg>
                   </div>
-                  <span className="text-[14px] font-medium text-[#1a0a00]">admin@nkrtvkannada.com</span>
+                  <span className="text-[14px] font-medium text-[#1a0a00]">nkrtv@gmail.com</span>
                 </div>
                 <div className="advertisements-contact-row flex items-center gap-3">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full text-white" style={{ background: ACCENT }}>
@@ -378,40 +407,63 @@ export default function AdvertisementsPage() {
             </div>
 
             {/* Right: Form */}
-            <div className="advertisements-form rounded-[20px] bg-[#fafafa] p-6 sm:p-8 shadow-sm border border-gray-100">
+            <form ref={advFormRef} onSubmit={handleAdvSubmit} className="advertisements-form rounded-[20px] bg-[#fafafa] p-6 sm:p-8 shadow-sm border border-gray-100">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="rounded-[10px] border border-gray-200 bg-white px-4 py-3 text-[14px] outline-none focus:border-[#E63E1A]"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="rounded-[10px] border border-gray-200 bg-white px-4 py-3 text-[14px] outline-none focus:border-[#E63E1A]"
-                />
+                <div className="flex flex-col gap-1">
+                  <input
+                    name="advName"
+                    type="text"
+                    placeholder="Your Name *"
+                    className={`rounded-[10px] border bg-white px-4 py-3 text-[14px] outline-none focus:border-[#E63E1A] ${advErrors.advName ? 'border-red-400 bg-red-50' : 'border-gray-200'}`}
+                  />
+                  {advErrors.advName && <span className="text-[11px] text-red-500 font-medium">{advErrors.advName}</span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                  <input
+                    name="advEmail"
+                    type="email"
+                    placeholder="Your Email *"
+                    className={`rounded-[10px] border bg-white px-4 py-3 text-[14px] outline-none focus:border-[#E63E1A] ${advErrors.advEmail ? 'border-red-400 bg-red-50' : 'border-gray-200'}`}
+                  />
+                  {advErrors.advEmail && <span className="text-[11px] text-red-500 font-medium">{advErrors.advEmail}</span>}
+                </div>
               </div>
-              <input
-                type="tel"
-                placeholder="Your Phone"
-                className="mb-4 w-full rounded-[10px] border border-gray-200 bg-white px-4 py-3 text-[14px] outline-none focus:border-[#E63E1A]"
-              />
-              <textarea
-                placeholder="Your Message"
-                rows={4}
-                className="mb-5 w-full resize-none rounded-[10px] border border-gray-200 bg-white px-4 py-3 text-[14px] outline-none focus:border-[#E63E1A]"
-              />
-              <button
-                type="button"
-                className="inline-flex items-center gap-2 rounded-full px-8 py-3 text-[14px] font-bold text-white transition-transform hover:-translate-y-0.5"
-                style={{ background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})` }}
-              >
-                Send Message
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="h-4 w-4">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-              </button>
-            </div>
+              <div className="flex flex-col gap-1 mb-4">
+                <input
+                  name="advPhone"
+                  type="tel"
+                  placeholder="Your Phone *"
+                  className={`w-full rounded-[10px] border bg-white px-4 py-3 text-[14px] outline-none focus:border-[#E63E1A] ${advErrors.advPhone ? 'border-red-400 bg-red-50' : 'border-gray-200'}`}
+                />
+                {advErrors.advPhone && <span className="text-[11px] text-red-500 font-medium">{advErrors.advPhone}</span>}
+              </div>
+              <div className="flex flex-col gap-1 mb-5">
+                <textarea
+                  name="advMessage"
+                  placeholder="Your Message *"
+                  rows={4}
+                  className={`w-full resize-none rounded-[10px] border bg-white px-4 py-3 text-[14px] outline-none focus:border-[#E63E1A] ${advErrors.advMessage ? 'border-red-400 bg-red-50' : 'border-gray-200'}`}
+                />
+                {advErrors.advMessage && <span className="text-[11px] text-red-500 font-medium">{advErrors.advMessage}</span>}
+              </div>
+              <div className="flex flex-col gap-3">
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 rounded-full px-8 py-3 text-[14px] font-bold text-white transition-transform hover:-translate-y-0.5"
+                  style={{ background: `linear-gradient(135deg,${ACCENT},${ACCENT_DARK})` }}
+                >
+                  Send Message
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="h-4 w-4">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                  </svg>
+                </button>
+                {advSubmitted && (
+                  <p className="text-sm font-medium text-[#E63E1A]">
+                    ✓ Your email client should open with the message pre-filled. If not, email us directly at <a href="mailto:nkrtv@gmail.com" className="underline">nkrtv@gmail.com</a>.
+                  </p>
+                )}
+              </div>
+            </form>
           </div>
         </div>
       </section>

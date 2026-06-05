@@ -140,13 +140,13 @@ export default function ContentShowcaseSection() {
               Popular Programs
             </h2>
           </div>
-          <a
+          {/* <a
             href="/"
             className="group flex items-center gap-3 text-[13px] font-[900] uppercase text-[#B90D0D] no-underline transition-colors hover:text-[#F05B19]"
           >
             <span>View All Programs</span>
             <span className="text-[24px] leading-none">›</span>
-          </a>
+          </a> */}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4">

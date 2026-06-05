@@ -177,8 +177,8 @@ export default function BlogsSection() {
             </p>
           </div>
           
-          <button
-            type="button"
+          <a
+            href="/blogs"
             className="blogs-cta flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-7 py-3 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.25)] transition-transform hover:scale-105"
           >
             View All Blogs
@@ -192,7 +192,7 @@ export default function BlogsSection() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-          </button>
+          </a>
         </div>
 
         {/* Carousel Area */}

@@ -141,8 +141,10 @@ export default function YogaPathaSection() {
               Discover simple and effective yoga practices to improve your health, flexibility and inner peace.
             </p>
           </div>
-          <button
-            type="button"
+          <a
+            href="https://youtube.com/playlist?list=PLIAyJHDGMBfAAdrPEzmlnwag07AUyR97Y&si=EA9ReTL4Y8TfGu72"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-2 rounded-full border-2 border-[#E63E1A] bg-white px-7 py-3 text-[14px] font-bold text-[#E63E1A] transition-all duration-300 hover:bg-[#E63E1A] hover:text-white"
           >
             View All Yoga
@@ -156,7 +158,7 @@ export default function YogaPathaSection() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-          </button>
+          </a>
         </div>
 
         <div className="relative mt-6">

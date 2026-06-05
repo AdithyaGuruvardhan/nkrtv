@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { SITE_LOGO_URL } from '../config/site';
 import DotBackdrop from '../components/decor/DotBackdrop';
 
@@ -6,6 +7,42 @@ const ACCENT_DARK = '#b02010';
 const COPY = '#4A4A4A';
 
 export default function AdsPage() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleAdsSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = formRef.current;
+    if (!form) return;
+    const data = new FormData(form);
+    const errors: Record<string, string> = {};
+    const fullName = (data.get('fullName') as string)?.trim();
+    const company = (data.get('company') as string)?.trim();
+    const email = (data.get('email') as string)?.trim();
+    const phone = (data.get('phone') as string)?.trim();
+    const adType = data.get('adType') as string;
+    const details = (data.get('details') as string)?.trim();
+
+    if (!fullName) errors.fullName = 'Full name is required';
+    if (!company) errors.company = 'Company name is required';
+    if (!email) errors.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Enter a valid email';
+    if (!phone) errors.phone = 'Phone number is required';
+    if (!adType) errors.adType = 'Please select an advertisement type';
+    if (!details) errors.details = 'Campaign details are required';
+
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) return;
+
+    const subject = encodeURIComponent(`Ad Enquiry from ${fullName} — ${company}`);
+    const body = encodeURIComponent(
+      `Full Name: ${fullName}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nAd Type: ${adType}\nDuration: ${data.get('duration') || '-'}\nBudget: ${data.get('budget') || '-'}\n\nDetails:\n${details}`
+    );
+    window.location.href = `mailto:nkrtv@gmail.com?subject=${subject}&body=${body}`;
+    setFormSubmitted(true);
+  };
+
   return (
     <div className="w-full bg-[#fffdf9] text-ink relative pt-[140px] pb-24 px-5 overflow-hidden min-h-screen">
       <DotBackdrop className="-top-[100px] -left-[200px] h-[600px] w-[600px] opacity-30" />
@@ -84,21 +121,21 @@ export default function AdsPage() {
                 </div>
                 <div className="flex flex-col gap-1 pt-0.5">
                   <span className="text-[14px] font-semibold">Email</span>
-                  <span className="text-[13px] opacity-80 leading-[1.5]">admin@nkrtvkannada.com</span>
+                  <span className="text-[13px] opacity-80 leading-[1.5]">nkrtv@gmail.com</span>
                 </div>
               </div>
               
               <div className="flex items-center gap-5 mt-10">
                 <span className="text-[14px] font-semibold">Follow Us</span>
                 <div className="flex gap-3">
-                  <a href="#" className="w-9 h-9 bg-white/15 hover:bg-white/30 transition-colors rounded-full flex items-center justify-center text-[14px] text-white">
-                    <i className="fa-brands fa-facebook-f" />
+                  <a href="https://youtube.com/@NKRTVKannada" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white/15 hover:bg-white/30 transition-colors rounded-full flex items-center justify-center text-[14px] text-white">
+                    <i className="fa-brands fa-youtube" />
                   </a>
-                  <a href="#" className="w-9 h-9 bg-white/15 hover:bg-white/30 transition-colors rounded-full flex items-center justify-center text-[14px] text-white">
+                  <a href="https://instagram.com/nkrtvkannada/?next=/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white/15 hover:bg-white/30 transition-colors rounded-full flex items-center justify-center text-[14px] text-white">
                     <i className="fa-brands fa-instagram" />
                   </a>
-                  <a href="#" className="w-9 h-9 bg-white/15 hover:bg-white/30 transition-colors rounded-full flex items-center justify-center text-[14px] text-white">
-                    <i className="fa-brands fa-youtube" />
+                  <a href="https://facebook.com/nkrtvkannada" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white/15 hover:bg-white/30 transition-colors rounded-full flex items-center justify-center text-[14px] text-white">
+                    <i className="fa-brands fa-facebook-f" />
                   </a>
                 </div>
               </div>
@@ -108,161 +145,196 @@ export default function AdsPage() {
           
           {/* Right Form Area */}
           <div className="flex-1 bg-white rounded-[24px] p-6 md:p-10 border border-gray-200 shadow-sm">
-            <form action="#" method="POST" className="group">
-              
+            <form ref={formRef} onSubmit={handleAdsSubmit} className="group">
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                
+
                 {/* Row 1 */}
-                <div className="flex items-center border border-gray-200 rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
-                    style={{ backgroundColor: ACCENT }}>
-                    <i className="fa-solid fa-user" />
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center border rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors"
+                    style={{ borderColor: formErrors.fullName ? '#f87171' : '#e5e7eb' }}>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
+                      style={{ backgroundColor: ACCENT }}>
+                      <i className="fa-solid fa-user" />
+                    </div>
+                    <div className="flex flex-col flex-1">
+                      <label className="text-[12px] font-bold text-gray-700 mb-1">Full Name <span className="text-red-600">*</span></label>
+                      <input name="fullName" type="text" className="border-none outline-none text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="Enter your name" />
+                    </div>
                   </div>
-                  <div className="flex flex-col flex-1">
-                    <label className="text-[12px] font-bold text-gray-700 mb-1">Full Name <span className="text-red-600">*</span></label>
-                    <input type="text" className="border-none outline-none text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="Enter your name" required />
-                  </div>
+                  {formErrors.fullName && <p className="text-[11px] text-red-500 font-medium ml-1">{formErrors.fullName}</p>}
                 </div>
 
-                <div className="flex items-center border border-gray-200 rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
-                    style={{ backgroundColor: ACCENT }}>
-                    <i className="fa-solid fa-building" />
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center border rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors"
+                    style={{ borderColor: formErrors.company ? '#f87171' : '#e5e7eb' }}>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
+                      style={{ backgroundColor: ACCENT }}>
+                      <i className="fa-solid fa-building" />
+                    </div>
+                    <div className="flex flex-col flex-1">
+                      <label className="text-[12px] font-bold text-gray-700 mb-1">Company Name <span className="text-red-600">*</span></label>
+                      <input name="company" type="text" className="border-none outline-none text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="Enter company name" />
+                    </div>
                   </div>
-                  <div className="flex flex-col flex-1">
-                    <label className="text-[12px] font-bold text-gray-700 mb-1">Company Name <span className="text-red-600">*</span></label>
-                    <input type="text" className="border-none outline-none text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="Enter company name" required />
-                  </div>
+                  {formErrors.company && <p className="text-[11px] text-red-500 font-medium ml-1">{formErrors.company}</p>}
                 </div>
 
                 {/* Row 2 */}
-                <div className="flex items-center border border-gray-200 rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
-                    style={{ backgroundColor: ACCENT }}>
-                    <i className="fa-solid fa-envelope" />
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center border rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors"
+                    style={{ borderColor: formErrors.email ? '#f87171' : '#e5e7eb' }}>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
+                      style={{ backgroundColor: ACCENT }}>
+                      <i className="fa-solid fa-envelope" />
+                    </div>
+                    <div className="flex flex-col flex-1">
+                      <label className="text-[12px] font-bold text-gray-700 mb-1">Email Address <span className="text-red-600">*</span></label>
+                      <input name="email" type="email" className="border-none outline-none text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="your.email@example.com" />
+                    </div>
                   </div>
-                  <div className="flex flex-col flex-1">
-                    <label className="text-[12px] font-bold text-gray-700 mb-1">Email Address <span className="text-red-600">*</span></label>
-                    <input type="email" className="border-none outline-none text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="your.email@example.com" required />
-                  </div>
+                  {formErrors.email && <p className="text-[11px] text-red-500 font-medium ml-1">{formErrors.email}</p>}
                 </div>
 
-                <div className="flex items-center border border-gray-200 rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
-                    style={{ backgroundColor: ACCENT }}>
-                    <i className="fa-solid fa-phone" />
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center border rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors"
+                    style={{ borderColor: formErrors.phone ? '#f87171' : '#e5e7eb' }}>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
+                      style={{ backgroundColor: ACCENT }}>
+                      <i className="fa-solid fa-phone" />
+                    </div>
+                    <div className="flex flex-col flex-1">
+                      <label className="text-[12px] font-bold text-gray-700 mb-1">Phone Number <span className="text-red-600">*</span></label>
+                      <input name="phone" type="tel" className="border-none outline-none text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="+91 XXXXX XXXXX" />
+                    </div>
                   </div>
-                  <div className="flex flex-col flex-1">
-                    <label className="text-[12px] font-bold text-gray-700 mb-1">Phone Number <span className="text-red-600">*</span></label>
-                    <input type="tel" className="border-none outline-none text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="+91 XXXXX XXXXX" required />
-                  </div>
+                  {formErrors.phone && <p className="text-[11px] text-red-500 font-medium ml-1">{formErrors.phone}</p>}
                 </div>
 
                 {/* Row 3 */}
-                <div className="flex items-center border border-gray-200 rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
-                    style={{ backgroundColor: ACCENT }}>
-                    <i className="fa-solid fa-bullseye" />
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center border rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors"
+                    style={{ borderColor: formErrors.adType ? '#f87171' : '#e5e7eb' }}>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
+                      style={{ backgroundColor: ACCENT }}>
+                      <i className="fa-solid fa-bullseye" />
+                    </div>
+                    <div className="flex flex-col flex-1 relative">
+                      <label className="text-[12px] font-bold text-gray-700 mb-1">Advertisement Type <span className="text-red-600">*</span></label>
+                      <div className="flex relative items-center">
+                        <select name="adType" className="border-none outline-none appearance-none cursor-pointer text-[14px] bg-transparent text-gray-900 w-full pr-6" defaultValue="">
+                            <option value="" disabled>Select type</option>
+                            <option value="TV Commercial Spot">TV Commercial Spot</option>
+                            <option value="Sponsored Content">Sponsored Content</option>
+                            <option value="Product Placement">Product Placement</option>
+                            <option value="Ticker / Banner Ad">Ticker / Banner Ad</option>
+                            <option value="Program Sponsorship">Program Sponsorship</option>
+                        </select>
+                        <i className="fa-solid fa-chevron-down absolute right-0 pointer-events-none" style={{ color: ACCENT }} />
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex flex-col flex-1 relative">
-                    <label className="text-[12px] font-bold text-gray-700 mb-1">Advertisement Type <span className="text-red-600">*</span></label>
-                    <div className="flex relative items-center">
-                      <select className="border-none outline-none appearance-none cursor-pointer text-[14px] bg-transparent text-gray-900 w-full pr-6" required defaultValue="">
-                          <option value="" disabled>Select type</option>
-                          <option value="tv_commercial">TV Commercial Spot</option>
-                          <option value="sponsored">Sponsored Content</option>
-                          <option value="product">Product Placement</option>
-                          <option value="ticker">Ticker / Banner Ad</option>
-                          <option value="program">Program Sponsorship</option>
-                      </select>
-                      <i className="fa-solid fa-chevron-down absolute right-0 pointer-events-none" style={{ color: ACCENT }} />
+                  {formErrors.adType && <p className="text-[11px] text-red-500 font-medium ml-1">{formErrors.adType}</p>}
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center border border-gray-200 rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
+                      style={{ backgroundColor: ACCENT }}>
+                      <i className="fa-solid fa-clock" />
+                    </div>
+                    <div className="flex flex-col flex-1 relative">
+                      <label className="text-[12px] font-bold text-gray-700 mb-1">Preferred Duration</label>
+                      <div className="flex relative items-center">
+                        <select name="duration" className="border-none outline-none appearance-none cursor-pointer text-[14px] bg-transparent text-gray-900 w-full pr-6" defaultValue="">
+                            <option value="" disabled>Select duration</option>
+                            <option value="10 Seconds">10 Seconds</option>
+                            <option value="15 Seconds">15 Seconds</option>
+                            <option value="30 Seconds">30 Seconds</option>
+                            <option value="60 Seconds">60 Seconds</option>
+                            <option value="Custom Duration">Custom Duration</option>
+                        </select>
+                        <i className="fa-solid fa-chevron-down absolute right-0 pointer-events-none" style={{ color: ACCENT }} />
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center border border-gray-200 rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
-                    style={{ backgroundColor: ACCENT }}>
-                    <i className="fa-solid fa-clock" />
-                  </div>
-                  <div className="flex flex-col flex-1 relative">
-                    <label className="text-[12px] font-bold text-gray-700 mb-1">Preferred Duration</label>
-                    <div className="flex relative items-center">
-                      <select className="border-none outline-none appearance-none cursor-pointer text-[14px] bg-transparent text-gray-900 w-full pr-6" defaultValue="">
-                          <option value="" disabled>Select duration</option>
-                          <option value="10s">10 Seconds</option>
-                          <option value="15s">15 Seconds</option>
-                          <option value="30s">30 Seconds</option>
-                          <option value="60s">60 Seconds</option>
-                          <option value="custom">Custom Duration</option>
-                      </select>
-                      <i className="fa-solid fa-chevron-down absolute right-0 pointer-events-none" style={{ color: ACCENT }} />
-                    </div>
-                  </div>
-                </div>
-                
                 {/* Row 4 (Full Width) */}
-                <div className="col-span-1 md:col-span-2 flex items-center border border-gray-200 rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
-                    style={{ backgroundColor: ACCENT }}>
-                    <i className="fa-solid fa-indian-rupee-sign" />
-                  </div>
-                  <div className="flex flex-col flex-1 relative">
-                    <label className="text-[12px] font-bold text-gray-700 mb-1">Estimated Budget</label>
-                    <div className="flex relative items-center">
-                      <select className="border-none outline-none appearance-none cursor-pointer text-[14px] bg-transparent text-gray-900 w-full pr-6" defaultValue="">
-                          <option value="" disabled>Select budget range</option>
-                          <option value="under1">Under ₹1 Lakh</option>
-                          <option value="1to5">₹1 – 5 Lakhs</option>
-                          <option value="5to10">₹5 – 10 Lakhs</option>
-                          <option value="10to25">₹10 – 25 Lakhs</option>
-                          <option value="above25">Above ₹25 Lakhs</option>
-                      </select>
-                      <i className="fa-solid fa-chevron-down absolute right-0 pointer-events-none" style={{ color: ACCENT }} />
+                <div className="col-span-1 md:col-span-2 flex flex-col gap-1">
+                  <div className="flex items-center border border-gray-200 rounded-[12px] p-3 gap-4 focus-within:border-[#E63E1A] transition-colors">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
+                      style={{ backgroundColor: ACCENT }}>
+                      <i className="fa-solid fa-indian-rupee-sign" />
+                    </div>
+                    <div className="flex flex-col flex-1 relative">
+                      <label className="text-[12px] font-bold text-gray-700 mb-1">Estimated Budget</label>
+                      <div className="flex relative items-center">
+                        <select name="budget" className="border-none outline-none appearance-none cursor-pointer text-[14px] bg-transparent text-gray-900 w-full pr-6" defaultValue="">
+                            <option value="" disabled>Select budget range</option>
+                            <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>
+                            <option value="₹1 – 5 Lakhs">₹1 – 5 Lakhs</option>
+                            <option value="₹5 – 10 Lakhs">₹5 – 10 Lakhs</option>
+                            <option value="₹10 – 25 Lakhs">₹10 – 25 Lakhs</option>
+                            <option value="Above ₹25 Lakhs">Above ₹25 Lakhs</option>
+                        </select>
+                        <i className="fa-solid fa-chevron-down absolute right-0 pointer-events-none" style={{ color: ACCENT }} />
+                      </div>
                     </div>
                   </div>
                 </div>
-                
+
               </div>
-              
-              <div className="flex items-start border border-gray-200 rounded-[12px] p-4 gap-4 focus-within:border-[#E63E1A] transition-colors">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
-                  style={{ backgroundColor: ACCENT }}>
-                  <i className="fa-solid fa-pen" />
+
+              <div className="flex flex-col gap-1 mb-5">
+                <div className="flex items-start border rounded-[12px] p-4 gap-4 focus-within:border-[#E63E1A] transition-colors"
+                  style={{ borderColor: formErrors.details ? '#f87171' : '#e5e7eb' }}>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0 text-[16px]"
+                    style={{ backgroundColor: ACCENT }}>
+                    <i className="fa-solid fa-pen" />
+                  </div>
+                  <div className="flex flex-col flex-1 w-full">
+                    <label className="text-[12px] font-bold text-gray-700 mb-1">Campaign Details / Requirements <span className="text-red-600">*</span></label>
+                    <textarea name="details" className="border-none outline-none resize-none h-[80px] mt-1 text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="Tell us about your advertising goals, target audience, preferred time slots, or any specific requirements..."></textarea>
+                    <div className="text-[11px] text-gray-400 text-right mt-2 font-medium">0 / 500</div>
+                  </div>
                 </div>
-                <div className="flex flex-col flex-1 w-full">
-                  <label className="text-[12px] font-bold text-gray-700 mb-1">Campaign Details / Requirements <span className="text-red-600">*</span></label>
-                  <textarea className="border-none outline-none resize-none h-[80px] mt-1 text-[14px] bg-transparent text-gray-900 w-full placeholder:text-gray-400" placeholder="Tell us about your advertising goals, target audience, preferred time slots, or any specific requirements..." required></textarea>
-                  <div className="text-[11px] text-gray-400 text-right mt-2 font-medium">0 / 500</div>
-                </div>
+                {formErrors.details && <p className="text-[11px] text-red-500 font-medium ml-1">{formErrors.details}</p>}
               </div>
-              
+
               <div className="flex items-center gap-3 my-6">
-                <input type="checkbox" id="enq-agree" className="w-4 h-4 cursor-pointer accent-[#E63E1A]" required />
+                <input type="checkbox" id="enq-agree" className="w-4 h-4 cursor-pointer accent-[#E63E1A]" />
                 <label htmlFor="enq-agree" className="text-[13px] text-gray-500 cursor-pointer">
                   I agree that my information may be used to contact me for advertising related communication.
                 </label>
               </div>
-              
-              <div className="flex items-center justify-center gap-5">
-                <div className="hidden md:flex gap-1.5">
-                  <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
-                  <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
-                  <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
-                  <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
+
+              <div className="flex flex-col items-center gap-3">
+                <div className="flex items-center justify-center gap-5">
+                  <div className="hidden md:flex gap-1.5">
+                    <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
+                    <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
+                    <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
+                    <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
+                  </div>
+
+                  <button type="submit" className="text-white px-8 py-3.5 rounded-full text-[15px] font-semibold flex items-center gap-2.5 transition-colors hover:opacity-90 shadow-md"
+                    style={{ backgroundColor: ACCENT }}>
+                    <i className="fa-solid fa-paper-plane" /> Submit Enquiry
+                  </button>
+
+                  <div className="hidden md:flex gap-1.5">
+                    <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
+                    <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
+                    <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
+                    <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
+                  </div>
                 </div>
-                
-                <button type="submit" className="text-white px-8 py-3.5 rounded-full text-[15px] font-semibold flex items-center gap-2.5 transition-colors hover:opacity-90 shadow-md"
-                  style={{ backgroundColor: ACCENT }}>
-                  <i className="fa-solid fa-paper-plane" /> Submit Enquiry
-                </button>
-                
-                <div className="hidden md:flex gap-1.5">
-                  <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
-                  <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
-                  <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
-                  <span className="w-1 h-1 rounded-full" style={{ backgroundColor: 'rgba(230,62,26,0.3)' }} />
-                </div>
+                {formSubmitted && (
+                  <p className="text-sm font-medium text-[#E63E1A]">
+                    ✓ Your email client should open with the enquiry pre-filled. If not, email us directly at <a href="mailto:nkrtv@gmail.com" className="underline">nkrtv@gmail.com</a>.
+                  </p>
+                )}
               </div>
             </form>
           </div>

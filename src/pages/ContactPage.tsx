@@ -10,10 +10,38 @@ const BORDER = '#ede0da';
 
 export default function ContactPage() {
   const [form, setForm] = useState({ firstName: '', email: '', phone: '', subject: '', message: '', agreed: false });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState(false);
 
-  const set = (key: string, val: string | boolean) => setForm(f => ({ ...f, [key]: val }));
+  const set = (key: string, val: string | boolean) => {
+    setForm(f => ({ ...f, [key]: val }));
+    if (errors[key]) setErrors(e => { const n = { ...e }; delete n[key]; return n; });
+  };
 
-  const inputClass = `w-full px-4 py-3.5 rounded-lg border text-sm outline-none transition-all duration-200 bg-white `;
+  const inputClass = (key: string) =>
+    `w-full px-4 py-3.5 rounded-lg border text-sm outline-none transition-all duration-200 bg-white ${errors[key] ? 'border-red-400 bg-red-50' : ''}`;
+
+  const validate = () => {
+    const e: Record<string, string> = {};
+    if (!form.firstName.trim()) e.firstName = 'First name is required';
+    if (!form.email.trim()) e.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Enter a valid email';
+    if (!form.message.trim()) e.message = 'Message is required';
+    if (!form.agreed) e.agreed = 'You must agree to the privacy policy';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handleSubmit = (ev: React.FormEvent) => {
+    ev.preventDefault();
+    if (!validate()) return;
+    const subject = encodeURIComponent(`Contact from ${form.firstName}`);
+    const body = encodeURIComponent(
+      `Name: ${form.firstName}\nEmail: ${form.email}\nPhone: ${form.phone || '-'}\nSubject: ${form.subject || '-'}\n\nMessage:\n${form.message}`
+    );
+    window.location.href = `mailto:nkrtv@gmail.com?subject=${subject}&body=${body}`;
+    setSubmitted(true);
+  };
 
   return (
     <div className="contact-page relative flex flex-col w-full overflow-hidden">
@@ -177,7 +205,7 @@ export default function ContactPage() {
               ),
               title: 'Email Us',
               divider: true,
-              lines: ['nkrtvyt@gmail.com'],
+              lines: ['nkrtv@gmail.com'],
             },
             {
               icon: (
@@ -246,45 +274,47 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-5">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               {/* Row 1 */}
               <div className="contact-form-row flex flex-col sm:flex-row gap-5">
-                <div className="flex-1 flex flex-col gap-2">
+                <div className="flex-1 flex flex-col gap-1.5">
                   <label className="text-[13px] font-semibold" style={{ color: INK }}>First Name <span className="text-red-500">*</span></label>
                   <input type="text" placeholder="Enter your name" value={form.firstName}
                     onChange={e => set('firstName', e.target.value)}
-                    className={inputClass}
-                    style={{ border: `1px solid ${BORDER}`, color: INK }}
+                    className={inputClass('firstName')}
+                    style={{ border: `1px solid ${errors.firstName ? '#f87171' : BORDER}`, color: INK }}
                     onFocus={e => (e.target.style.borderColor = ACCENT)}
-                    onBlur={e => (e.target.style.borderColor = BORDER)} />
+                    onBlur={e => (e.target.style.borderColor = errors.firstName ? '#f87171' : BORDER)} />
+                  {errors.firstName && <span className="text-[11px] text-red-500 font-medium">{errors.firstName}</span>}
                 </div>
-                <div className="flex-1 flex flex-col gap-2">
+                <div className="flex-1 flex flex-col gap-1.5">
                   <label className="text-[13px] font-semibold" style={{ color: INK }}>Your Email <span className="text-red-500">*</span></label>
                   <input type="email" placeholder="Enter your email address" value={form.email}
                     onChange={e => set('email', e.target.value)}
-                    className={inputClass}
-                    style={{ border: `1px solid ${BORDER}`, color: INK }}
+                    className={inputClass('email')}
+                    style={{ border: `1px solid ${errors.email ? '#f87171' : BORDER}`, color: INK }}
                     onFocus={e => (e.target.style.borderColor = ACCENT)}
-                    onBlur={e => (e.target.style.borderColor = BORDER)} />
+                    onBlur={e => (e.target.style.borderColor = errors.email ? '#f87171' : BORDER)} />
+                  {errors.email && <span className="text-[11px] text-red-500 font-medium">{errors.email}</span>}
                 </div>
               </div>
 
               {/* Row 2 */}
               <div className="contact-form-row flex flex-col sm:flex-row gap-5">
-                <div className="flex-1 flex flex-col gap-2">
+                <div className="flex-1 flex flex-col gap-1.5">
                   <label className="text-[13px] font-semibold" style={{ color: INK }}>Your Number</label>
                   <input type="tel" placeholder="Enter your number" value={form.phone}
                     onChange={e => set('phone', e.target.value)}
-                    className={inputClass}
+                    className={inputClass('phone')}
                     style={{ border: `1px solid ${BORDER}`, color: INK }}
                     onFocus={e => (e.target.style.borderColor = ACCENT)}
                     onBlur={e => (e.target.style.borderColor = BORDER)} />
                 </div>
-                <div className="flex-1 flex flex-col gap-2">
+                <div className="flex-1 flex flex-col gap-1.5">
                   <label className="text-[13px] font-semibold" style={{ color: INK }}>Subject</label>
                   <input type="text" placeholder="How can we help you?" value={form.subject}
                     onChange={e => set('subject', e.target.value)}
-                    className={inputClass}
+                    className={inputClass('subject')}
                     style={{ border: `1px solid ${BORDER}`, color: INK }}
                     onFocus={e => (e.target.style.borderColor = ACCENT)}
                     onBlur={e => (e.target.style.borderColor = BORDER)} />
@@ -292,38 +322,49 @@ export default function ContactPage() {
               </div>
 
               {/* Message */}
-              <div className="flex flex-col gap-2">
-                <label className="text-[13px] font-semibold" style={{ color: INK }}>Message</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[13px] font-semibold" style={{ color: INK }}>Message <span className="text-red-500">*</span></label>
                 <textarea placeholder="Write your message here..." value={form.message}
                   onChange={e => set('message', e.target.value)}
                   rows={5}
-                  className={inputClass}
-                  style={{ border: `1px solid ${BORDER}`, color: INK, resize: 'none' }}
+                  className={inputClass('message')}
+                  style={{ border: `1px solid ${errors.message ? '#f87171' : BORDER}`, color: INK, resize: 'none' }}
                   onFocus={e => (e.target.style.borderColor = ACCENT)}
-                  onBlur={e => (e.target.style.borderColor = BORDER)} />
+                  onBlur={e => (e.target.style.borderColor = errors.message ? '#f87171' : BORDER)} />
+                {errors.message && <span className="text-[11px] text-red-500 font-medium">{errors.message}</span>}
               </div>
 
               {/* Checkbox */}
-              <div className="contact-checkbox flex items-center gap-3">
-                <input type="checkbox" id="privacy" checked={form.agreed}
-                  onChange={e => set('agreed', e.target.checked)}
-                  className="w-[18px] h-[18px] rounded cursor-pointer"
-                  style={{ accentColor: ACCENT }} />
-                <label htmlFor="privacy" className="text-sm cursor-pointer" style={{ color: COPY }}>
-                  I agree to the <a href="#" className="font-semibold underline" style={{ color: ACCENT }}>NKR TV privacy policy</a> <span className="text-red-500">*</span>
-                </label>
+              <div className="flex flex-col gap-1">
+                <div className="contact-checkbox flex items-center gap-3">
+                  <input type="checkbox" id="privacy" checked={form.agreed}
+                    onChange={e => set('agreed', e.target.checked)}
+                    className="w-[18px] h-[18px] rounded cursor-pointer"
+                    style={{ accentColor: ACCENT }} />
+                  <label htmlFor="privacy" className="text-sm cursor-pointer" style={{ color: COPY }}>
+                    I agree to the <a href="#" className="font-semibold underline" style={{ color: ACCENT }}>NKR TV privacy policy</a> <span className="text-red-500">*</span>
+                  </label>
+                </div>
+                {errors.agreed && <span className="text-[11px] text-red-500 font-medium ml-7">{errors.agreed}</span>}
               </div>
 
               {/* Submit */}
-              <button type="button"
-                className="contact-submit self-start inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-[15px] font-semibold text-white transition-all duration-200 hover:-translate-y-0.5"
-                style={{ background: `linear-gradient(135deg,${ACCENT},#c42d0f)`, boxShadow: '0 6px 20px rgba(230,62,26,0.35)' }}>
-                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
-                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                </svg>
-                Send Message
-              </button>
-            </div>
+              <div className="flex flex-col gap-3">
+                <button type="submit"
+                  className="contact-submit self-start inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-[15px] font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ background: `linear-gradient(135deg,${ACCENT},#c42d0f)`, boxShadow: '0 6px 20px rgba(230,62,26,0.35)' }}>
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                  </svg>
+                  Send Message
+                </button>
+                {submitted && (
+                  <p className="text-sm font-medium" style={{ color: ACCENT }}>
+                    ✓ Your email client should open with the message pre-filled. If not, please email us directly at <a href="mailto:nkrtv@gmail.com" className="underline">nkrtv@gmail.com</a>.
+                  </p>
+                )}
+              </div>
+            </form>
           </div>
 
           {/* Map */}

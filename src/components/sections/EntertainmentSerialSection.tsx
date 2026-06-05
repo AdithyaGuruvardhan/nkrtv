@@ -102,6 +102,7 @@ type SerialRowProps = {
   title?: string;
   description?: string | JSX.Element;
   playlistLabel?: string;
+  playlistHref?: string;
   items: SerialItem[];
   onPlay: (item: SerialItem) => void;
   hideHeader?: boolean;
@@ -113,6 +114,7 @@ function SerialRow({
   eyebrow,
   title,
   description,
+  playlistHref,
   playlistLabel,
   items,
   onPlay,
@@ -159,8 +161,10 @@ function SerialRow({
               {description}
             </p>
           </div>
-          <button
-            type="button"
+          <a
+            href={playlistHref || '#'}
+            target={playlistHref?.startsWith('http') ? '_blank' : undefined}
+            rel={playlistHref?.startsWith('http') ? 'noopener noreferrer' : undefined}
             className="group flex items-center gap-2 rounded-full border border-[#E63E1A] bg-white px-6 py-2.5 text-[13px] font-semibold text-[#E63E1A] transition-all duration-300 hover:bg-[#E63E1A] hover:text-white"
           >
             {playlistLabel}
@@ -174,7 +178,7 @@ function SerialRow({
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-          </button>
+          </a>
         </div>
       )}
 
@@ -337,6 +341,7 @@ export default function EntertainmentSerialSection() {
             </>
           }
           playlistLabel="View All Serials"
+          playlistHref="https://youtube.com/playlist?list=PLIAyJHDGMBfDKq1JnQztQFHYdDM4bWcoj&si=FjyLoD4Arg4G8phH"
           items={serials}
           onPlay={openModal}
           hideControls={false}
@@ -348,6 +353,7 @@ export default function EntertainmentSerialSection() {
           title="Aparoopada Athithigalu"
           description="A fresh lineup of promos, episodes, and highlights from NKR TV Kannada."
           playlistLabel="View Full Playlist →"
+          playlistHref="https://youtube.com/playlist?list=PLIAyJHDGMBfBW54FydZ6XFx343thLEh4T&si=qs5s0SAPSZjOXRKf"
           items={aparoopadaSerials}
           onPlay={openModal}
           hideHeader
