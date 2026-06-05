@@ -6,3 +6,7 @@ dist/videos/*.mp4
 dist/videos/*.mov
 dist/videos/*.avi
 dist/videos/*.mkv
+public/videos/*.mp4
+public/videos/*.mov
+public/videos/*.avi
+public/videos/*.mkv
