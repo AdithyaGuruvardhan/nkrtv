@@ -190,7 +190,7 @@ export default function App() {
           <div className="mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
             <div className="mb-6">
               <h2 className="mb-2 text-[28px] md:text-[36px] font-black text-[#1a0a00]">
-                Partner your brand with NKR TV kannada
+                Partner your brand with NKR TV Kannada
               </h2>
               <div className="h-[3px] w-10 rounded-full bg-[#FF5A3C]" />
             </div>
