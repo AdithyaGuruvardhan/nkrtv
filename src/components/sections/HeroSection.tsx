@@ -85,16 +85,16 @@ export default function HeroSection() {
           <div className="pointer-events-none absolute inset-0 z-[11] bg-[linear-gradient(90deg,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.20)_36%,rgba(0,0,0,0.18)_68%,rgba(0,0,0,0.55)_100%)]" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[12] h-28 bg-gradient-to-t from-black/50 to-transparent" />
 
-          <div className="absolute left-[6vw] top-1/2 z-[13] hidden max-w-[620px] -translate-y-1/2 text-white md:block lg:max-w-[720px]">
-            <p className="mb-3 text-[13px] font-extrabold uppercase tracking-[0.28em] text-[#FFC107]">NKR TV Kannada</p>
-            <h1 className="text-[46px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] lg:text-[58px]">
+          <div className="absolute left-[6vw] top-1/2 z-[13] max-w-[620px] -translate-y-1/2 text-white lg:max-w-[720px]">
+            <p className="mb-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#FFC107] sm:text-[13px]">NKR TV Kannada</p>
+            <h1 className="text-[26px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] sm:text-[36px] lg:text-[58px]">
               ಅಣು ಅಣುವಿನಲ್ಲೂ<br />
               <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
             </h1>
-            <p className="mt-5 text-[18px] font-medium leading-relaxed text-white/90">
+            <p className="mt-3 text-[13px] font-medium leading-relaxed text-white/90 sm:mt-5 sm:text-[18px]">
               Creating positive entertainment & <br /> celebrating Karnataka&apos;s rich heritage, culture, & stories.
             </p>
-            <div className="mt-7 flex items-center gap-3">
+            <div className="mt-4 flex items-center gap-3 sm:mt-7">
               <a
                 href="#"
                 className="inline-flex items-center gap-2 rounded-[5px] bg-[linear-gradient(135deg,#D11212,#F05B19)] px-6 py-3 text-[14px] font-extrabold uppercase text-white shadow-[0_8px_20px_rgba(209,18,18,0.28)]"
