@@ -1,2 +1,8 @@
 .vercel
 .env*.local
+
+# Large video files
+dist/videos/*.mp4
+dist/videos/*.mov
+dist/videos/*.avi
+dist/videos/*.mkv
