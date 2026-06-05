@@ -4,37 +4,24 @@ const slides = [
   {
     src: '/videos/hero1.webm',
     poster: '/images/hero/slide1-poster.jpg',
-    posterMobile: '/images/hero/slide1-poster-mobile.jpg',
   },
   {
     src: '/videos/hero2.webm',
     poster: '/images/hero/slide2-poster.jpg',
-    posterMobile: '/images/hero/slide2-poster-mobile.jpg',
   },
   {
     src: '/videos/hero3.webm',
     poster: '/images/hero/slide3-poster.jpg',
-    posterMobile: '/images/hero/slide3-poster-mobile.jpg',
   },
 ];
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(true);
-  const [loaded, setLoaded] = useState<boolean[]>([false, false, false]);
+  const [loaded, setLoaded] = useState<boolean[]>([true, false, false]);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-  // Detect mobile once on mount
+  // Play active, pause others
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  // Play/pause videos on desktop
-  useEffect(() => {
-    if (isMobile) return;
     videoRefs.current.forEach((video, i) => {
       if (!video) return;
       if (i === currentSlide) {
@@ -44,11 +31,10 @@ export default function HeroSection() {
         video.pause();
       }
     });
-  }, [currentSlide, isMobile]);
+  }, [currentSlide]);
 
-  // Pre-load next slide video on desktop
+  // Pre-load next slide
   useEffect(() => {
-    if (isMobile) return;
     const next = (currentSlide + 1) % slides.length;
     setLoaded((prev) => {
       if (prev[next]) return prev;
@@ -56,16 +42,7 @@ export default function HeroSection() {
       updated[next] = true;
       return updated;
     });
-  }, [currentSlide, isMobile]);
-
-  // Auto-advance on mobile (image slideshow)
-  useEffect(() => {
-    if (!isMobile) return;
-    const timer = setInterval(() => {
-      setCurrentSlide((p) => (p + 1) % slides.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [isMobile]);
+  }, [currentSlide]);
 
   const nextSlide = useCallback(() => setCurrentSlide((p) => (p + 1) % slides.length), []);
   const prevSlide = useCallback(() => setCurrentSlide((p) => (p - 1 + slides.length) % slides.length), []);
@@ -82,40 +59,25 @@ export default function HeroSection() {
                 index === currentSlide ? 'z-10 opacity-100' : 'z-0 opacity-0 pointer-events-none'
               }`}
             >
-              {/* Mobile: just show poster image, no video */}
-              {isMobile ? (
-                <img
-                  src={slide.posterMobile}
-                  alt=""
-                  aria-hidden="true"
+              <img
+                src={slide.poster}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full object-cover"
+                fetchPriority={index === 0 ? 'high' : 'low'}
+              />
+              {loaded[index] && (
+                <video
+                  ref={(el) => (videoRefs.current[index] = el)}
                   className="absolute inset-0 h-full w-full object-cover"
-                  fetchPriority={index === 0 ? 'high' : 'low'}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                />
-              ) : (
-                <>
-                  {/* Desktop: poster behind video */}
-                  <img
-                    src={slide.poster}
-                    alt=""
-                    aria-hidden="true"
-                    className="absolute inset-0 h-full w-full object-cover"
-                    fetchPriority={index === 0 ? 'high' : 'low'}
-                  />
-                  {(index === 0 || loaded[index]) && (
-                    <video
-                      ref={(el) => (videoRefs.current[index] = el)}
-                      className="absolute inset-0 h-full w-full object-cover"
-                      muted
-                      loop
-                      playsInline
-                      preload="none"
-                      poster={slide.poster}
-                    >
-                      <source src={slide.src} type="video/webm" />
-                    </video>
-                  )}
-                </>
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  poster={slide.poster}
+                >
+                  <source src={slide.src} type="video/webm" />
+                </video>
               )}
             </div>
           ))}
