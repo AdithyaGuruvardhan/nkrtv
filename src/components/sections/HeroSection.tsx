@@ -1,54 +1,89 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
-const videos = [
-  "/videos/NKRTV_Kannada_720P.mp4",
-  "/videos/super_kannadiga_new_promo.webm",
-  "/videos/Alle_Arambha_Prema_PROMO_A_Heartwarming_Coastal_Love_Story_New_Serial_on_NKRTV_Kannada_serial_720P.mp4"
+const slides = [
+  {
+    src: "/videos/NKRTV_Kannada_720P.mp4",
+    type: "video/mp4",
+    poster: "/images/hero/slide1-poster.jpg",
+  },
+  {
+    src: "/videos/super_kannadiga_new_promo.webm",
+    type: "video/webm",
+    poster: "/images/hero/slide2-poster.jpg",
+  },
+  {
+    src: "/videos/Alle_Arambha_Prema_PROMO_A_Heartwarming_Coastal_Love_Story_New_Serial_on_NKRTV_Kannada_serial_720P.mp4",
+    type: "video/mp4",
+    poster: "/images/hero/slide3-poster.jpg",
+  },
 ];
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loaded, setLoaded] = useState<boolean[]>([false, false, false]);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
+  // Play active, pause others
   useEffect(() => {
-    // Manage video playback based on active slide
-    videoRefs.current.forEach((video, index) => {
-      if (video) {
-        if (index === currentSlide) {
-          video.currentTime = 0;
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
+    videoRefs.current.forEach((video, i) => {
+      if (!video) return;
+      if (i === currentSlide) {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      } else {
+        video.pause();
       }
     });
   }, [currentSlide]);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % videos.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + videos.length) % videos.length);
+  // Lazy-load next slide when current one starts playing
+  useEffect(() => {
+    const next = (currentSlide + 1) % slides.length;
+    setLoaded((prev) => {
+      if (prev[next]) return prev;
+      const updated = [...prev];
+      updated[next] = true;
+      return updated;
+    });
+  }, [currentSlide]);
+
+  const nextSlide = useCallback(() => setCurrentSlide((p) => (p + 1) % slides.length), []);
+  const prevSlide = useCallback(() => setCurrentSlide((p) => (p - 1 + slides.length) % slides.length), []);
 
   return (
     <section className="mt-[78px] flex w-full flex-1 bg-[#fffdf9] lg:mt-[92px]">
       <div className="w-full">
         <div className="relative h-[320px] w-full overflow-hidden bg-black sm:h-[430px] lg:h-[520px] xl:h-[560px]">
-          
-          {videos.map((src, index) => (
+
+          {slides.map((slide, index) => (
             <div
-              key={src}
+              key={slide.src}
               className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                index === currentSlide ? 'z-10 opacity-100' : 'z-0 opacity-0'
+                index === currentSlide ? 'z-10 opacity-100' : 'z-0 opacity-0 pointer-events-none'
               }`}
             >
-              <video
-                ref={(el) => (videoRefs.current[index] = el)}
-                className="h-full w-full object-cover"
-                muted
-                loop
-                playsInline
-                preload={index === 0 ? "auto" : "none"}
-              >
-                <source src={src} type={src.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
-              </video>
+              {/* Poster shown until video loads */}
+              <img
+                src={slide.poster}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full object-cover"
+                fetchPriority={index === 0 ? 'high' : 'low'}
+              />
+              {/* Only render video when slide is active or pre-loaded */}
+              {(index === 0 || loaded[index]) && (
+                <video
+                  ref={(el) => (videoRefs.current[index] = el)}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  poster={slide.poster}
+                >
+                  <source src={slide.src} type={slide.type} />
+                </video>
+              )}
             </div>
           ))}
 
@@ -61,10 +96,6 @@ export default function HeroSection() {
               ಅಣು ಅಣುವಿನಲ್ಲೂ<br />
               <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
             </h1>
-            {/* <h1 className="text-[46px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] lg:text-[58px]">
-              ಮನೆ ಮನೆಗಳಲ್ಲಿ<br />
-              <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
-            </h1> */}
             <p className="mt-5 text-[18px] font-medium leading-relaxed text-white/90">
               Creating positive entertainment & <br /> celebrating Karnataka&apos;s rich heritage, culture, & stories.
             </p>
@@ -98,7 +129,7 @@ export default function HeroSection() {
           </button>
 
           <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
-            {videos.map((_, index) => (
+            {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}

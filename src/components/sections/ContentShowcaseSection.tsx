@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import DotBackdrop from '../decor/DotBackdrop';
 
 type ContentCard = {
   title: string;
-  video: string;
   image: string;
   badge: string;
   badgeColor: string;
@@ -46,7 +45,6 @@ const featureItems = [
 const cards: ContentCard[] = [
   {
     title: 'DHARMA JYOTHI',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/videoplayback.mp4',
     image: '/images/popular_programs/dharma-jyothi.webp',
     badge: 'New Episode',
     badgeColor: '#FFC107',
@@ -54,7 +52,6 @@ const cards: ContentCard[] = [
   },
   {
     title: 'ANANTHA DARSHAANA',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/videoplayback-1.mp4',
     image: '/images/popular_programs/anantha-dharshana.webp',
     badge: 'New Season',
     badgeColor: '#FF5A3C',
@@ -62,7 +59,6 @@ const cards: ContentCard[] = [
   },
   {
     title: 'AGNI HOTHRA',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/2025_NKRTV_720P.mp4',
     image: '/images/popular_programs/agni-hothra.webp',
     badge: 'Recently Added',
     badgeColor: '#BD2E8B',
@@ -70,8 +66,6 @@ const cards: ContentCard[] = [
   },
   {
     title: 'SWADA SAMBHRAMA',
-    video:
-      'https://nkrtv.in/wp-content/uploads/2026/01/Dr._Cinema_PROMO_Behind-the-Scenes_Truths_of_Kannada_Film_Industry_Ganesh_Kasaragod_NKR_TV_1080P.mp4',
     image: '/images/popular_programs/swada-sambhrama.webp',
     badge: 'Trending',
     badgeColor: '#5B2D91',
@@ -79,7 +73,6 @@ const cards: ContentCard[] = [
   },
   {
     title: 'DEAR MOMENTS',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/videoplayback-2.mp4',
     image: '/images/popular_programs/dear-moments.webp',
     badge: 'Top Pick',
     badgeColor: '#1D3FA3',
@@ -147,33 +140,17 @@ function ShowcaseCard({
 }
 
 export default function ContentShowcaseSection() {
-  const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const [activeCard, setActiveCard] = useState<ContentCard | null>(null);
 
-  useEffect(() => {
-    const video = modalVideoRef.current;
-    if (!video) return;
+  const openCard = (card: ContentCard) => {
+    setActiveCard(card);
+    document.body.style.overflow = 'hidden';
+  };
 
-    if (activeCard) {
-      video.src = activeCard.video;
-      video.load();
-      video.play().catch(() => { });
-      document.body.style.overflow = 'hidden';
-      return;
-    }
-
-    video.pause();
-    video.removeAttribute('src');
-    video.load();
+  const closeCard = () => {
+    setActiveCard(null);
     document.body.style.overflow = '';
-  }, [activeCard]);
-
-  useEffect(
-    () => () => {
-      document.body.style.overflow = '';
-    },
-    [],
-  );
+  };
 
   return (
     <section className="relative bg-[#fffdf9] text-[#1a1a1a]">
@@ -198,7 +175,7 @@ export default function ContentShowcaseSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4">
           {cards.map((card, index) => (
-            <ShowcaseCard key={card.title} card={card} index={index} onOpen={setActiveCard} />
+            <ShowcaseCard key={card.title} card={card} index={index} onOpen={openCard} />
           ))}
         </div>
 
@@ -227,39 +204,35 @@ export default function ContentShowcaseSection() {
         </div>
       </div>
 
-      <div
-        className={`fixed inset-0 z-[9999] items-center justify-center bg-[rgba(0,0,0,0.88)] p-[16px] ${activeCard ? 'flex' : 'hidden'
-          }`}
-        aria-hidden={!activeCard}
-      >
+      {activeCard && (
         <div
-          className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_30px_90px_rgba(0,0,0,0.8)] h-[56vh] w-[96vw] md:h-[min(78vh,720px)] md:w-[min(1200px,96vw)]"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Video player"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/88 p-4"
+          onClick={closeCard}
         >
-          <div className="absolute left-0 right-0 top-0 z-[2] flex items-center justify-between gap-[12px] bg-gradient-to-b from-[rgba(0,0,0,0.85)] to-[rgba(0,0,0,0.35)] px-[12px] py-[10px]">
-            <div className="max-w-[80%] overflow-hidden text-ellipsis whitespace-nowrap text-[14px] font-[700] text-white">
-              {activeCard ? `Now playing: ${activeCard.title}` : 'Now playing'}
-            </div>
+          <div
+            className="relative max-h-[90vh] w-[96vw] max-w-3xl overflow-hidden rounded-[14px] shadow-[0_30px_90px_rgba(0,0,0,0.8)]"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
-              className="cursor-pointer rounded-full border-none bg-[rgba(255,255,255,0.12)] px-[12px] py-[8px] font-[800] text-white hover:bg-[rgba(255,255,255,0.18)]"
               type="button"
-              onClick={() => setActiveCard(null)}
+              onClick={closeCard}
+              className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70"
+              aria-label="Close"
             >
               ✕
             </button>
+            <img
+              src={activeCard.image}
+              alt={activeCard.title}
+              className="block h-full w-full object-cover"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-5 py-4">
+              <p className="text-[18px] font-[900] uppercase text-[#FFD56A]">{activeCard.title}</p>
+              <p className="text-[12px] font-[700] uppercase text-white/80">NKR TV KANNADA</p>
+            </div>
           </div>
-          <video
-            className="block h-full w-full bg-black object-contain"
-            controls
-            autoPlay
-            playsInline
-            preload="none"
-            ref={modalVideoRef}
-          />
         </div>
-      </div>
+      )}
     </section>
   );
 }
