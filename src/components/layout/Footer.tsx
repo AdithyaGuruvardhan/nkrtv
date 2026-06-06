@@ -7,7 +7,7 @@ const footerLinks = [
   { label: 'Blogs', path: '/blogs' },
   { label: 'Contact Us', path: '/contact' },
   { label: 'Enquiry For Ads', path: '/ads' },
-  { label: 'Terms & Condition' },
+  { label: 'Terms & Condition', path: '#' },
 ];
 
 const socials = [

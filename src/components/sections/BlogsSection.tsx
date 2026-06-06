@@ -9,6 +9,7 @@ const blogs = [
     headline: 'Why NKR Kannada Channel',
     excerpt: 'NKR TV Kannada: Boundless empowerment entertaining Kannadans culture and heritage.',
     readTime: '5 min read',
+    link: '/blog/why-nkr-kannada-channel',
   },
   {
     id: '2',
@@ -18,6 +19,7 @@ const blogs = [
     headline: 'NKR Specialities',
     excerpt: 'Explore our takes on cultural programming with authentic storytelling.',
     readTime: '6 min read',
+    link: '/blog/nkr-specialities',
   },
   {
     id: '3',
@@ -27,6 +29,7 @@ const blogs = [
     headline: 'A note from CEO',
     excerpt: 'NKR TV delivers exclusive content that informs, inspires, and empowers viewers.',
     readTime: '4 min read',
+    link: '/blog/a-note-from-ceo',
   },
 ];
 
@@ -207,7 +210,7 @@ export default function BlogsSection() {
                 key={blog.id}
                 className="blogs-card-wrap relative w-[85vw] shrink-0 snap-start sm:w-[320px] md:w-[350px] lg:w-[calc(33.333%-16px)]"
               >
-                <div className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_15px_40px_rgba(230,62,26,0.1)]">
+                <a href={blog.link || '#'} className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_15px_40px_rgba(230,62,26,0.1)] block">
                   
                   {/* Image Container - This strictly matches the design: fills full width, top half */}
                   <div className="blogs-card-image relative h-[220px] w-full shrink-0 overflow-hidden bg-gray-100">
@@ -270,7 +273,7 @@ export default function BlogsSection() {
                     </div>
                   </div>
 
-                </div>
+                </a>
               </div>
             ))}
           </div>

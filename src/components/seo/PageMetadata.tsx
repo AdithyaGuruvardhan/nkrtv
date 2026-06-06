@@ -12,6 +12,7 @@ type PageMetadataProps = {
   title?: string;
   description?: string;
   path?: string;
+  keywords?: string;
 };
 
 function upsertMeta(selector: string, key: 'name' | 'property', value: string, content: string) {
@@ -42,6 +43,7 @@ export default function PageMetadata({
   title = SITE_NAME,
   description = SITE_DESCRIPTION,
   path = '/',
+  keywords = '',
 }: PageMetadataProps) {
   useEffect(() => {
     const fullTitle = getPageTitle(title === SITE_NAME || title === 'Home' ? undefined : title);
@@ -50,6 +52,9 @@ export default function PageMetadata({
     document.title = fullTitle;
 
     upsertMeta('meta[name="description"]', 'name', 'description', description);
+    if (keywords) {
+      upsertMeta('meta[name="keywords"]', 'name', 'keywords', keywords);
+    }
     upsertMeta('meta[property="og:type"]', 'property', 'og:type', 'website');
     upsertMeta('meta[property="og:site_name"]', 'property', 'og:site_name', SITE_SHORT_NAME);
     upsertMeta('meta[property="og:title"]', 'property', 'og:title', fullTitle);

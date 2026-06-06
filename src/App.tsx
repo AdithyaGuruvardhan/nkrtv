@@ -17,59 +17,90 @@ import AboutPage from './pages/AboutPage';
 import AdsPage from './pages/AdsPage';
 import AdvertisementPage from './pages/AdvertisementPage';
 import AdvertisementsPage from './pages/AdvertisementsPage';
+import WhyNKRBlogPage from './pages/WhyNKRBlogPage';
+import NKRSpecialitiesBlogPage from './pages/NKRSpecialitiesBlogPage';
+import CEOBlogPage from './pages/CEOBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
-const pageMetaByPath: Record<string, { title: string; description: string; path: string }> = {
+const pageMetaByPath: Record<string, { title: string; description: string; path: string; keywords: string }> = {
   '/': {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     path: '/',
+    keywords: 'NKR TV, NKR TV Kannada, Kannada Entertainment, Live TV Kannada, Kannada Culture',
   },
   '/our-programs': {
     title: 'Fiction',
     description: 'Watch NKR TV Kannada fiction series, short films, and serialized stories.',
     path: '/our-programs',
+    keywords: 'Kannada Serial, Kannada Fiction, Panchamaveda, Kannada Short Films, NKR TV Programs',
   },
   '/about': {
     title: 'About Us',
     description: 'Learn about the vision, people, and mission behind NKR TV Kannada.',
     path: '/about',
+    keywords: 'About NKR TV, Kannada TV Channel, NKR Vision, NKR Mission',
   },
   '/contact': {
     title: 'Contact Us',
     description: 'Get in touch with NKR TV Kannada for questions, feedback, or partnerships.',
     path: '/contact',
+    keywords: 'Contact NKR TV, NKR TV Kannada contact, reach NKR TV',
   },
   '/blogs': {
     title: 'Blogs',
     description: 'Read the latest NKR TV Kannada blogs, updates, and stories.',
     path: '/blogs',
+    keywords: 'Kannada Culture Blogs, NKR TV Updates, Karnataka Heritage Blog',
   },
   '/blog': {
     title: 'Blogs',
     description: 'Read the latest NKR TV Kannada blogs, updates, and stories.',
     path: '/blogs',
+    keywords: 'Kannada Culture Blogs, NKR TV Updates, Karnataka Heritage Blog',
   },
   '/ads': {
     title: 'Enquiry For Ads',
     description: 'Advertise with NKR TV Kannada and reach a broad regional audience.',
     path: '/ads',
+    keywords: 'Kannada TV Advertising, Advertise with NKR, NKR TV Ad Enquiry',
   },
   '/advertisement': {
     title: 'Advertisement',
     description: 'Advertise with NKR TV Kannada and reach a broad regional audience.',
     path: '/advertisement',
+    keywords: 'Kannada TV Advertising, Advertise with NKR',
   },
   '/Advertisement': {
     title: 'Advertisement',
     description: 'Advertise with NKR TV Kannada and reach a broad regional audience.',
     path: '/advertisement',
+    keywords: 'Kannada TV Advertising, Advertise with NKR',
   },
   '/advertisements': {
     title: 'Advertisements',
     description: 'Explore advertisement opportunities and brand placement with NKR TV Kannada.',
     path: '/advertisements',
+    keywords: 'Brand Placement NKR TV, Advertisement opportunities Kannada TV',
+  },
+  '/blog/why-nkr-kannada-channel': {
+    title: 'Why NKR Kannada Channel',
+    description: 'A Celebration of Karnataka\'s Rich Culture and Heritage',
+    path: '/blog/why-nkr-kannada-channel',
+    keywords: 'Why NKR TV, Kannada Heritage, NKR TV Culture, Kannada Magic',
+  },
+  '/blog/nkr-specialities': {
+    title: 'NKR Specialities',
+    description: 'Exploring the Rich Tapestry of Karnataka\'s Culture with NKR Specialities.',
+    path: '/blog/nkr-specialities',
+    keywords: 'NKR Specialities, Panchamaveda, Dharma Jyothi, Swada Sambhrama, Kannada TV Shows',
+  },
+  '/blog/a-note-from-ceo': {
+    title: 'A Note from CEO',
+    description: 'Celebrating Karnataka\'s Culture and Identity with NKR TV.',
+    path: '/blog/a-note-from-ceo',
+    keywords: 'NKR TV CEO, Rekha K Govind, Kannada Identity, NKR Leadership',
   },
 };
 
@@ -79,6 +110,7 @@ export default function App() {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     path: '/',
+    keywords: 'NKR TV, Kannada TV, Entertainment',
   };
 
   useEffect(() => {
@@ -135,6 +167,45 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <BlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/why-nkr-kannada-channel') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <WhyNKRBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/nkr-specialities') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <NKRSpecialitiesBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/a-note-from-ceo') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <CEOBlogPage />
           <Footer />
         </div>
       </main>
