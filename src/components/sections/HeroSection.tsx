@@ -1,56 +1,35 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 const slides = [
   {
-    src: '/videos/hero1.webm',
-    poster: '/images/hero/slide1-poster.jpg',
+    src: '/images/NKR_TV_banner.png',
   },
   {
-    src: '/videos/hero2.webm',
-    poster: '/images/hero/slide2-poster.jpg',
+    src: '/images/banner2.png',
   },
-  {
-    src: '/videos/hero3.webm',
-    poster: '/images/hero/slide3-poster.jpg',
+    {
+    src: '/images/banner3.png',
   },
 ];
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [loaded, setLoaded] = useState<boolean[]>([true, false, false]);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-  // Play active, pause others
-  useEffect(() => {
-    videoRefs.current.forEach((video, i) => {
-      if (!video) return;
-      if (i === currentSlide) {
-        video.currentTime = 0;
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    });
-  }, [currentSlide]);
-
-  // Pre-load next slide
-  useEffect(() => {
-    const next = (currentSlide + 1) % slides.length;
-    setLoaded((prev) => {
-      if (prev[next]) return prev;
-      const updated = [...prev];
-      updated[next] = true;
-      return updated;
-    });
-  }, [currentSlide]);
 
   const nextSlide = useCallback(() => setCurrentSlide((p) => (p + 1) % slides.length), []);
   const prevSlide = useCallback(() => setCurrentSlide((p) => (p - 1 + slides.length) % slides.length), []);
 
+  // Auto-play the slider
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((p) => (p + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="mt-[78px] flex w-full flex-1 bg-[#fffdf9] lg:mt-[92px]">
       <div className="w-full">
-        <div className="relative h-[320px] w-full overflow-hidden bg-black sm:h-[430px] lg:h-[520px] xl:h-[560px]">
+        <div className="relative h-[220px] w-full overflow-hidden bg-black sm:h-[420px] md:h-[620px]">
 
           {slides.map((slide, index) => (
             <div
@@ -60,60 +39,14 @@ export default function HeroSection() {
               }`}
             >
               <img
-                src={slide.poster}
+                src={slide.src}
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 h-full w-full object-cover"
                 fetchPriority={index === 0 ? 'high' : 'low'}
               />
-              {loaded[index] && (
-                <video
-                  ref={(el) => (videoRefs.current[index] = el)}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  poster={slide.poster}
-                >
-                  <source src={slide.src} type="video/webm" />
-                </video>
-              )}
             </div>
           ))}
-
-
-
-          {/* Desktop text - center left, hidden on mobile */}
-          <div className="absolute left-[6vw] top-1/2 z-[13] hidden -translate-y-1/2 text-white sm:block sm:max-w-[620px] lg:max-w-[720px]">
-            <p className="mb-3 text-[13px] font-extrabold uppercase tracking-[0.28em] text-[#FFC107]">NKR TV Kannada</p>
-            <h1 className="text-[36px] font-black uppercase leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] lg:text-[58px]">
-              ಅಣು ಅಣುವಿನಲ್ಲೂ<br />
-              <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
-            </h1>
-            <p className="mt-5 text-[18px] font-medium leading-relaxed text-white/90">
-              Creating positive entertainment & <br /> celebrating Karnataka&apos;s rich heritage, culture, & stories.
-            </p>
-            <div className="mt-7 flex items-center gap-3">
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 rounded-[5px] bg-[linear-gradient(135deg,#D11212,#F05B19)] px-6 py-3 text-[14px] font-extrabold uppercase text-white shadow-[0_8px_20px_rgba(209,18,18,0.28)]"
-              >
-                Watch Live
-              </a>
-            </div>
-          </div>
-
-          {/* Mobile text - bottom of video, hidden on sm+ */}
-          <div className="absolute bottom-10 left-0 right-0 z-[13] px-5 text-white sm:hidden">            
-            <p className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#FFC107]">NKR TV Kannada</p>
-            <h1 className="text-[20px] font-black uppercase leading-[1.1] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
-              ಅಣು ಅಣುವಿನಲ್ಲೂ <span className="text-[#FFC107]">ಕನ್ನಡತನ</span>
-            </h1>
-            <p className="mt-1 text-[11px] font-medium leading-snug text-white/90">
-              Creating positive entertainment & celebrating Karnataka&apos;s rich heritage.
-            </p>
-          </div>
 
           <button
             onClick={prevSlide}

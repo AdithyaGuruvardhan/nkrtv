@@ -10,6 +10,7 @@ import ContactSection from './components/sections/ContactSection'
 import Header from './components/layout/Header';
 import HeroSection from './components/sections/HeroSection';
 import Footer from './components/layout/Footer';
+import InlineVideoSection from './components/sections/InlineVideoSection';
 import FictionPage from './pages/FictionPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
@@ -293,7 +294,13 @@ export default function App() {
 
         <FeaturedVideoSection />
         <DivineContentSection />
+
+        <InlineVideoSection videoSrc="/videos/NKRTV_Kannada.webm" />
+
         <EntertainmentSerialSection />
+
+        <InlineVideoSection videoSrc="/videos/Alle_Arambha_Prema.webm" />
+
         <YogaPathaSection />
         <BlogsSection />
         <ContactSection />
