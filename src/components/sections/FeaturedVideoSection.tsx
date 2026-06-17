@@ -34,8 +34,24 @@ function PauseIcon({ className }: { className?: string }) {
   );
 }
 
-export default function FeaturedVideoSection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
+interface FeaturedVideoPlayerProps {
+  webmSrc: string;
+  mp4Src: string;
+  poster: string;
+  title: string;
+  description: string[];
+  playAriaLabel: string;
+}
+
+function FeaturedVideoPlayer({
+  webmSrc,
+  mp4Src,
+  poster,
+  title,
+  description,
+  playAriaLabel,
+}: FeaturedVideoPlayerProps) {
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [muted, setMuted] = useState(true);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -43,8 +59,8 @@ export default function FeaturedVideoSection() {
   const [playIntent, setPlayIntent] = useState(false);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -62,7 +78,7 @@ export default function FeaturedVideoSection() {
       { threshold: 0.2 },
     );
 
-    observer.observe(section);
+    observer.observe(wrapper);
     return () => observer.disconnect();
   }, []);
 
@@ -104,8 +120,17 @@ export default function FeaturedVideoSection() {
   }, [shouldLoad, playIntent]);
 
   const handlePlay = () => {
+    const vid = videoRef.current;
     setShouldLoad(true);
-    setPlayIntent(true);
+    setMuted(false);
+    if (vid) {
+      vid.muted = false;
+      vid.play()
+        .then(() => setPlayIntent(false))
+        .catch(() => setPlayIntent(true));
+    } else {
+      setPlayIntent(true);
+    }
   };
 
   const handlePause = () => {
@@ -137,35 +162,27 @@ export default function FeaturedVideoSection() {
     setMuted(false);
     vid.currentTime = 0;
     setShouldLoad(true);
-    setPlayIntent(true);
+    vid.play()
+      .then(() => setPlayIntent(false))
+      .catch(() => setPlayIntent(true));
   };
 
   return (
-    <section
-      ref={sectionRef}
-      id="featured-video"
-      className="mx-auto w-full max-w-[1510px] overflow-hidden bg-[#fffdf9] px-4 py-10 sm:px-6 sm:py-12 lg:px-10"
-    >
+    <div ref={wrapperRef}>
       <div className="group relative aspect-video w-full overflow-hidden rounded-[8px] bg-black">
         <video
           ref={videoRef}
           className="block h-full w-full"
-          muted
+          muted={muted}
           loop
           playsInline
           preload={shouldLoad ? 'auto' : 'none'}
-          poster="/images/super_kannadiga_banner.webp"
+          poster={poster}
         >
           {shouldLoad && (
             <>
-              <source
-                src="/videos/super_kannadiga_new_promo.webm"
-                type="video/webm"
-              />
-              <source
-                src="/videos/super_kannadiga_new_promo.mp4"
-                type="video/mp4"
-              />
+              <source src={webmSrc} type="video/webm" />
+              <source src={mp4Src} type="video/mp4" />
             </>
           )}
         </video>
@@ -173,7 +190,7 @@ export default function FeaturedVideoSection() {
         <button
           type="button"
           onClick={togglePlayback}
-          aria-label={isPlaying ? 'Pause Super Kannadiga promo' : 'Play Super Kannadiga promo'}
+          aria-label={isPlaying ? `Pause ${playAriaLabel}` : `Play ${playAriaLabel}`}
           className={`absolute inset-0 flex items-center justify-center transition-colors ${
             isPlaying
               ? 'bg-transparent hover:bg-black/30'
@@ -191,11 +208,14 @@ export default function FeaturedVideoSection() {
       <div className="mt-6 flex flex-col gap-5 sm:mt-8 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-[38rem]">
           <h2 className="mb-2 text-[22px] font-extrabold text-[#A21D34] sm:text-[28px] md:text-[32px]">
-            Super Kannadiga
+            {title}
           </h2>
           <p className="text-[11px] font-medium leading-[1.45] text-[#A21D34] sm:text-[13px] md:text-[15px] lg:text-[16px]">
-            <span className="block">Experience the ultimate celebration of Karnataka's rich heritage and culture.</span>
-            <span className="block">Join us on this extraordinary journey.</span>
+            {description.map((line, index) => (
+              <span key={index} className="block">
+                {line}
+              </span>
+            ))}
           </p>
         </div>
 
@@ -249,6 +269,40 @@ export default function FeaturedVideoSection() {
             )}
           </button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+export default function FeaturedVideoSection() {
+  return (
+    <section
+      id="featured-video"
+      className="mx-auto w-full max-w-[1510px] overflow-hidden bg-[#fffdf9] px-4 py-10 sm:px-6 sm:py-12 lg:px-10"
+    >
+      <div className="flex flex-col gap-10 sm:gap-12">
+        <FeaturedVideoPlayer
+          webmSrc="/videos/super_kannadiga_new_promo.webm"
+          mp4Src="/videos/super_kannadiga_new_promo.mp4"
+          poster="/images/super_kannadiga_banner.webp"
+          title="Super Kannadiga"
+          description={[
+            "Experience the ultimate celebration of Karnataka's rich heritage and culture.",
+            "Join us on this extraordinary journey.",
+          ]}
+          playAriaLabel="Super Kannadiga promo"
+        />
+        <FeaturedVideoPlayer
+          webmSrc="/videos/swada_sambrama_weekly_promo.webm"
+          mp4Src="/videos/swada_sambrama_weekly_promo.mp4"
+          poster="/images/swada_sambrama_weekly_promo_banner.jpg"
+          title="Swada Sambrama Promo"
+          description={[
+            "Catch the latest highlights and celebrations from Swada Sambrama.",
+            "",
+          ]}
+          playAriaLabel="Swada Sambrama Weekly Promo"
+        />
       </div>
     </section>
   );
