@@ -206,7 +206,7 @@ function FeaturedVideoPlayer({
       </div>
 
       <div className="mt-6 flex flex-col gap-5 sm:mt-8 sm:flex-row sm:items-end sm:justify-between">
-        <div className="max-w-[38rem]">
+        <div className="max-w-[56rem]">
           <h2 className="mb-2 text-[22px] font-extrabold text-[#A21D34] sm:text-[28px] md:text-[32px]">
             {title}
           </h2>
@@ -287,8 +287,8 @@ export default function FeaturedVideoSection() {
           poster="/images/super_kannadiga_banner.webp"
           title="Super Kannadiga"
           description={[
-            "Experience the ultimate celebration of Karnataka's rich heritage and culture.",
-            "Join us on this extraordinary journey.",
+            "Call in, answer three questions correctly, and win ₹3,000 instantly.",
+            "Filled with excitement, suspense, and audience participation, Super Kannadiga gives every viewer a chance to showcase their knowledge and walk away with exciting cash prizes.",
           ]}
           playAriaLabel="Super Kannadiga promo"
         />
@@ -298,8 +298,8 @@ export default function FeaturedVideoSection() {
           poster="/images/swada_sambrama_weekly_promo_banner.jpg"
           title="Swada Sambrama Promo"
           description={[
-            "Catch the latest highlights and celebrations from Swada Sambrama.",
-            "",
+            "From age-old family recipes to exciting new culinary creations, discover the flavors that connect generations.",
+            "Tune in every week for delicious dishes, unique delicacies, and a heartfelt celebration of food and culture.",
           ]}
           playAriaLabel="Swada Sambrama Weekly Promo"
         />

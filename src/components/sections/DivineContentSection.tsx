@@ -7,6 +7,7 @@ type PlaylistItem = {
   title: string;
   subtitle: string;
   video: string;
+  webm?: string;
   badge: string;
   captureRatio?: number;
 };
@@ -31,6 +32,7 @@ const playlist: PlaylistItem[] = [
     title: 'Naada Lahari',
     subtitle: 'Promo • Bhakti Geethegalu',
     video: '/videos/Naada_Lahari_PROMO_Kannada.mp4',
+    webm: '/videos/Naada_Lahari_PROMO_Kannada.webm',
     badge: 'TOP 5',
   },
   {
@@ -51,9 +53,9 @@ const playlist: PlaylistItem[] = [
   },
 ];
 
-type ModalState = { src: string; title: string } | null;
+type ModalState = { mp4: string; webm?: string; title: string } | null;
 
-function AutoVideoThumb({ src, title, captureRatio = 0.12 }: { src: string; title: string; captureRatio?: number }) {
+function AutoVideoThumb({ mp4, webm, title, captureRatio = 0.12 }: { mp4: string; webm?: string; title: string; captureRatio?: number }) {
   const [poster, setPoster] = useState<string | null>(null);
 
   useEffect(() => {
@@ -63,7 +65,17 @@ function AutoVideoThumb({ src, title, captureRatio = 0.12 }: { src: string; titl
     video.preload = 'metadata';
     video.muted = true;
     video.playsInline = true;
-    video.src = src;
+
+    if (webm) {
+      const sourceWebm = document.createElement('source');
+      sourceWebm.src = webm;
+      sourceWebm.type = 'video/webm';
+      video.appendChild(sourceWebm);
+    }
+    const sourceMp4 = document.createElement('source');
+    sourceMp4.src = mp4;
+    sourceMp4.type = 'video/mp4';
+    video.appendChild(sourceMp4);
 
     const cleanup = () => {
       video.removeAttribute('src');
@@ -117,7 +129,7 @@ function AutoVideoThumb({ src, title, captureRatio = 0.12 }: { src: string; titl
       video.removeEventListener('error', onError);
       cleanup();
     };
-  }, [src]);
+  }, [mp4, webm]);
 
   if (poster) {
     return (
@@ -131,7 +143,6 @@ function AutoVideoThumb({ src, title, captureRatio = 0.12 }: { src: string; titl
 
   return (
     <video
-      src={src}
       muted
       loop
       playsInline
@@ -147,7 +158,10 @@ function AutoVideoThumb({ src, title, captureRatio = 0.12 }: { src: string; titl
           }
         }
       }}
-    />
+    >
+      {webm && <source src={webm} type="video/webm" />}
+      <source src={mp4} type="video/mp4" />
+    </video>
   );
 }
 
@@ -177,8 +191,10 @@ function VideoModal({ modal, onClose }: { modal: ModalState; onClose: () => void
           autoPlay
           playsInline
           preload="none"
-          src={modal.src}
-        />
+        >
+          {modal.webm && <source src={modal.webm} type="video/webm" />}
+          <source src={modal.mp4} type="video/mp4" />
+        </video>
       </div>
     </div>
   );
@@ -189,8 +205,8 @@ export default function DivineContentSection() {
   const [modal, setModal] = useState<ModalState>(null);
   const activePlaylistItem = playlist.find((item) => item.id === activeId) || playlist[0];
 
-  const openModal = (src: string, title: string) => {
-    setModal({ src, title });
+  const openModal = (mp4: string, webm: string | undefined, title: string) => {
+    setModal({ mp4, webm, title });
     document.body.style.overflow = 'hidden';
   };
 
@@ -265,7 +281,7 @@ export default function DivineContentSection() {
                   >
                     <div className="flex items-center gap-4">
                       <div className="relative aspect-video w-[110px] shrink-0 overflow-hidden rounded-[12px] bg-black shadow-sm sm:w-[130px]">
-                        <AutoVideoThumb src={item.video} title={item.title} captureRatio={item.captureRatio ?? 0.5} />
+                        <AutoVideoThumb mp4={item.video} webm={item.webm} title={item.title} captureRatio={item.captureRatio ?? 0.5} />
                         <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors hover:bg-black/40">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -308,7 +324,8 @@ export default function DivineContentSection() {
             <div className="relative flex min-h-[300px] w-full items-center justify-center bg-gradient-to-br from-[#C2151B] via-[#8B101E] to-[#4B061A] p-6 sm:p-10 md:min-h-[400px]">
               <div className="absolute inset-0">
                 <AutoVideoThumb
-                  src={activePlaylistItem.video}
+                  mp4={activePlaylistItem.video}
+                  webm={activePlaylistItem.webm}
                   title={activePlaylistItem.title}
                   captureRatio={activePlaylistItem.captureRatio ?? 0.5}
                 />
@@ -338,7 +355,7 @@ export default function DivineContentSection() {
                   type="button"
                   onClick={() => {
                     const activeItem = playlist.find((p) => p.id === activeId);
-                    if (activeItem) openModal(activeItem.video, activeItem.title);
+                    if (activeItem) openModal(activeItem.video, activeItem.webm, activeItem.title);
                   }}
                   className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#EF5923] via-[#E22262] to-[#881D6C] px-8 py-3.5 text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(226,34,98,0.3)] transition-transform hover:scale-105"
                 >
