@@ -21,6 +21,7 @@ import AdvertisementsPage from './pages/AdvertisementsPage';
 import WhyNKRBlogPage from './pages/WhyNKRBlogPage';
 import NKRSpecialitiesBlogPage from './pages/NKRSpecialitiesBlogPage';
 import CEOBlogPage from './pages/CEOBlogPage';
+import NarayaneeyamBlogPage from './pages/NarayaneeyamBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -102,6 +103,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'Celebrating Karnataka\'s Culture and Identity with NKR TV.',
     path: '/blog/a-note-from-ceo',
     keywords: 'NKR TV CEO, Rekha K Govind, Kannada Identity, NKR Leadership',
+  },
+  '/blog/narayaneeyam-divine-journey': {
+    title: 'Narayaneeyam (ನಾರಾಯಣೀಯಂ)',
+    description: 'A Divine Journey of Bhakti, Wisdom & Lord Krishna\'s Stories',
+    path: '/blog/narayaneeyam-divine-journey',
+    keywords: 'Narayaneeyam, Guruji Narayaneeyam, Lord Krishna Stories, Lord Vishnu Devotion, NKR TV, Bhakti, Jnana, Moksha',
   },
 };
 
@@ -207,6 +214,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <CEOBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/narayaneeyam-divine-journey') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <NarayaneeyamBlogPage />
           <Footer />
         </div>
       </main>

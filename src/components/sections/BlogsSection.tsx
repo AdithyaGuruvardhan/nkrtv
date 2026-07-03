@@ -2,6 +2,16 @@ import { useState, useRef } from 'react';
 
 const blogs = [
   {
+    id: '4',
+    image: '/images/blog_imgs/narayaneeyam_blog.webp',
+    category: 'Devotion',
+    date: 'July 3, 2026',
+    headline: 'Narayaneeyam (ನಾರಾಯಣೀಯಂ)',
+    excerpt: 'A Divine Journey of Bhakti, Wisdom & Lord Krishna\'s Stories on NKR TV.',
+    readTime: '5 min read',
+    link: '/blog/narayaneeyam-divine-journey',
+  },
+  {
     id: '1',
     image: '/images/blog_imgs/why_nkr_blog.webp',
     category: 'Updates',
