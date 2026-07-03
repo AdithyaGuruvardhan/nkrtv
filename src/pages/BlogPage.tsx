@@ -51,8 +51,8 @@ export default function BlogPage() {
         </p>
       </section>
 
-      {/* Blog cards — reuses the exact same section from the home page */}
-      <BlogsSection />
+      {/* Blog cards — reuses the exact same section from the home page in grid layout */}
+      <BlogsSection layout="grid" />
 
     </div>
   );

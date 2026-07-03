@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 const blogs = [
   {
     id: '4',
-    image: '/images/blog_imgs/narayaneeyam_blog.webp',
+    image: '/images/blog_imgs/narayaneeyam_blog.jpg',
     category: 'Devotion',
     date: 'July 3, 2026',
     headline: 'Narayaneeyam (ನಾರಾಯಣೀಯಂ)',
@@ -13,7 +13,7 @@ const blogs = [
   },
   {
     id: '1',
-    image: '/images/blog_imgs/why_nkr_blog.webp',
+    image: '/images/blog_imgs/why_nkr_blog.jpg',
     category: 'Updates',
     date: 'May 28, 2025',
     headline: 'Why NKR Kannada Channel',
@@ -23,7 +23,7 @@ const blogs = [
   },
   {
     id: '2',
-    image: '/images/blog_imgs/nkr_specialities_blog.webp',
+    image: '/images/blog_imgs/nkr_specialities_blog.jpg',
     category: 'Insights',
     date: 'May 18, 2025',
     headline: 'NKR Specialities',
@@ -33,7 +33,7 @@ const blogs = [
   },
   {
     id: '3',
-    image: '/images/blog_imgs/note_ceo_nkr_blog.webp',
+    image: '/images/blog_imgs/note_ceo_nkr_blog.jpg',
     category: 'Leadership',
     date: 'May 10, 2025',
     headline: 'A note from CEO',
@@ -43,7 +43,11 @@ const blogs = [
   },
 ];
 
-export default function BlogsSection() {
+interface BlogsSectionProps {
+  layout?: 'carousel' | 'grid';
+}
+
+export default function BlogsSection({ layout = 'carousel' }: BlogsSectionProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeDot, setActiveDot] = useState(0);
 
@@ -190,35 +194,45 @@ export default function BlogsSection() {
             </p>
           </div>
           
-          <a
-            href="/blogs"
-            className="blogs-cta flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-7 py-3 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.25)] transition-transform hover:scale-105"
-          >
-            View All Blogs
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2.5}
-              stroke="currentColor"
-              className="h-4 w-4"
+          {layout !== 'grid' && (
+            <a
+              href="/blogs"
+              className="blogs-cta flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-7 py-3 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.25)] transition-transform hover:scale-105"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </a>
+              View All Blogs
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2.5}
+                stroke="currentColor"
+                className="h-4 w-4"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          )}
         </div>
 
-        {/* Carousel Area */}
+        {/* Carousel or Grid Area */}
         <div className="blogs-carousel relative mt-8">
           <div
-            ref={trackRef}
-            onScroll={handleScroll}
-            className="blogs-track no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-3"
+            ref={layout === 'carousel' ? trackRef : undefined}
+            onScroll={layout === 'carousel' ? handleScroll : undefined}
+            className={
+              layout === 'grid'
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-3 pb-8"
+                : "blogs-track no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-3"
+            }
           >
             {blogs.map((blog) => (
               <div
                 key={blog.id}
-                className="blogs-card-wrap relative w-[85vw] shrink-0 snap-start sm:w-[320px] md:w-[350px] lg:w-[calc(33.333%-16px)]"
+                className={
+                  layout === 'grid'
+                    ? "blogs-card-wrap relative w-full"
+                    : "blogs-card-wrap relative w-[85vw] shrink-0 snap-start sm:w-[320px] md:w-[350px] lg:w-[calc(33.333%-16px)]"
+                }
               >
                 <a href={blog.link || '#'} className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_15px_40px_rgba(230,62,26,0.1)] block">
                   
@@ -229,8 +243,6 @@ export default function BlogsSection() {
                       alt={blog.headline}
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    {/* Dark Overlay for better text readability */}
-                    <div className="absolute inset-0 bg-black/20" />
                     
                     {/* Top Left Tag */}
                     <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-[6px] bg-[#E63E1A] px-3 py-1.5 text-[11px] font-bold text-white shadow-sm backdrop-blur-md">
@@ -290,38 +302,40 @@ export default function BlogsSection() {
         </div>
 
         {/* Navigation Controls */}
-        <div className="blogs-nav mt-2 flex items-center justify-center gap-5">
-          <button
-            type="button"
-            onClick={() => scrollTrack('left')}
-            className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-[#F4D3CA] bg-white text-[#E63E1A] transition-colors hover:border-[#E63E1A] hover:bg-[#FCECE6]"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-          
-          <div className="flex items-center gap-2">
-            {blogs.map((_, dot) => (
-              <div
-                key={dot}
-                className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-                  activeDot === dot ? 'bg-[#E63E1A]' : 'bg-[#F4D3CA]'
-                }`}
-              />
-            ))}
-          </div>
+        {layout !== 'grid' && (
+          <div className="blogs-nav mt-2 flex items-center justify-center gap-5">
+            <button
+              type="button"
+              onClick={() => scrollTrack('left')}
+              className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-[#F4D3CA] bg-white text-[#E63E1A] transition-colors hover:border-[#E63E1A] hover:bg-[#FCECE6]"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+            
+            <div className="flex items-center gap-2">
+              {blogs.map((_, dot) => (
+                <div
+                  key={dot}
+                  className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                    activeDot === dot ? 'bg-[#E63E1A]' : 'bg-[#F4D3CA]'
+                  }`}
+                />
+              ))}
+            </div>
 
-          <button
-            type="button"
-            onClick={() => scrollTrack('right')}
-            className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-[#F4D3CA] bg-white text-[#E63E1A] transition-colors hover:border-[#E63E1A] hover:bg-[#FCECE6]"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
+            <button
+              type="button"
+              onClick={() => scrollTrack('right')}
+              className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-[#F4D3CA] bg-white text-[#E63E1A] transition-colors hover:border-[#E63E1A] hover:bg-[#FCECE6]"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        )}
 
       </div>
     </section>
