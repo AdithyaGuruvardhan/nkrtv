@@ -35,7 +35,7 @@ export default function ComingSoonSection() {
   };
 
   return (
-    <section className="-mt-px bg-white py-8 pb-14">
+    <section className="-mt-px bg-transparent py-8 pb-14">
       <div className="mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
         <div className="rounded-[26px] border border-[#ead5b3] bg-[#fbf7ea] px-4 py-6 shadow-[0_10px_30px_rgba(88,44,6,0.06)] sm:px-6 sm:py-7">
           {/* Section Header */}

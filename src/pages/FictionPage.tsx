@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import ComingSoonSection from '../components/sections/ComingSoonSection';
 
 type VideoItem = {
   id: string;
@@ -97,52 +98,53 @@ export default function FictionPage() {
 
   const featuredPrograms = [
     {
+      title: 'Agni Hotra',
+      desc: 'Discover the sacred Vedic ritual of Agnihothra and its profound spiritual significance. Learn how this ancient fire ceremony promotes inner peace, positive energy, and harmony for individuals, families, and the environment.',
+      image: '/images/agni_hothra_1k_res.webp',
+      time: 'Everyday 5:30 AM',
+      videoId: '/videos/AGNI_HOTRA_NKRTVKannada_720P.webm',
+    },
+    {
       title: 'Narayaneeyam',
-      desc: 'Immerse yourself in the divine tales and spiritual journey of Narayaneeyam. Watch the serial every Monday to Friday at 6:00 AM on NKR TV Kannada.',
+      desc: 'Begin your day with the divine wisdom of Narayaneeyam, a timeless spiritual masterpiece that inspires devotion, and a deeper connection with Lord Krishna. Explore its profound teachings and discover the path to faith, wisdom, and spiritual fulfillment.',
       image: '/images/narayaneeyam_1k_res.webp',
       time: 'Mon-Fri 6:00 AM',
       videoId: '/videos/Narayaneyam_Promo.webm',
-      badge: 'Featured Serial'
     },
     {
       title: 'Anantha Darshana',
-      desc: 'Experience the profound teachings and stories of Anantha Darshana. Watch the serial every Monday to Friday at 6:30 AM on NKR TV Kannada.',
+      desc: 'Embark on a sacred journey to renowned temples across Karnataka and beyond. Discover their fascinating history, unique architecture, spiritual significance, and the inspiring stories that have shaped centuries of devotion.',
       image: '/images/anantha_dharshana_1k_res.webp',
       time: 'Mon-Fri 6:30 AM',
       videoId: '/videos/Anantha_Darshana_Promo_NKR_Tv_Kannada.webm',
-      badge: 'Popular Serial'
     },
     {
       title: 'Naada Lahari',
-      desc: 'Begin your day with the soulful melodies of Naada Lahari. Watch the program every Monday to Friday at 7:00 AM on NKR TV Kannada.',
+      desc: 'Experience the soothing power of devotional music with melodious bhajans, keerthanas, and timeless compositions by legendary saints and composers. Let every morning begin with divine melodies that uplift the soul.',
       image: '/images/nada_lahari_1k_res.webp',
       time: 'Mon-Fri 7:00 AM',
       videoId: '/videos/Naada_Lahari_PROMO_Kannada.webm',
-      badge: 'Music Show'
     },
     {
       title: 'Dharma Jyothi',
-      desc: 'Find the light of righteousness with Dharma Jyothi. Watch the program every Monday to Saturday at 7:30 AM on NKR TV Kannada.',
+      desc: 'Explore the timeless wisdom of the Bhagavad Gita and other sacred scriptures through insightful spiritual discourses. Learn practical life lessons, discover the values of Dharma, and find guidance for leading a meaningful and balanced life.',
       image: '/images/dharma_jyothi_1k_res.webp',
       time: 'Mon-Sat 7:30 AM',
       videoId: '/videos/Dharma_Jyothi_PROMO_NKR_TV_Kannada.webm',
-      badge: 'Devotional'
     },
     {
       title: 'Swaada Sambrama',
-      desc: 'Explore the culinary delights of Swaada Sambrama. Watch the program everyday at 1:00 PM on NKR TV Kannada.',
+      desc: 'Celebrate the joy of cooking with authentic Karnataka recipes, regional delicacies, healthy dishes, and innovative culinary creations. From traditional flavors to modern twists, every episode brings delicious inspiration to your kitchen.',
       image: '/images/swada_sambhrama_1k_res.webp',
       time: 'Everyday 1:00 PM',
       videoId: '/videos/swada_sambrama_weekly_promo.webm',
-      badge: 'Cooking Show'
     },
     {
       title: 'Super Kannadiga',
-      desc: 'Celebrate the spirit of Karnataka with Super Kannadiga. Watch the program every Monday to Friday at 7:00 PM on NKR TV Kannada.',
+      desc: 'Challenge your general knowledge with exciting questions covering Karnataka, India, history, culture, science, sports, and more. Answer correctly, participate from the comfort of your home, and stand a chance to win exciting cash prizes.',
       image: '/images/super_kannadiga_1k_res.webp',
       time: 'Mon-Fri 7:00 PM',
       videoId: '/videos/super_kannadiga_new_promo.webm',
-      badge: 'Entertainment'
     }
   ];
 
@@ -417,11 +419,11 @@ export default function FictionPage() {
           className="fiction-hero-title mb-4 font-extrabold leading-tight text-white"
           style={{ fontSize: 'clamp(36px, 6vw, 60px)' }}
         >
-          Stories
+          Our Programs
         </h1>
         <div className="mx-auto mb-5 h-[3px] w-16 rounded-full bg-white/40" />
         <p className="fiction-hero-copy mx-auto max-w-xl text-[16px] font-medium text-white/90">
-          Immerse yourself in a diverse world of captivating serials, devotional tales, musical mornings, and endless entertainment.
+          Discover the essence of Karnataka through inspiring spiritual discourses, divine temple journeys, soulful devotional music, authentic culinary experiences, & engaging knowledge-based shows, all in one destination.
         </p>
       </section>
 
@@ -468,9 +470,7 @@ export default function FictionPage() {
                       WebkitMaskImage: `radial-gradient(circle at ${index % 2 !== 0 ? 'top left' : 'top right'}, black 35%, transparent 70%)`,
                     }}
                   />
-                  <div className="mb-3 inline-flex w-max items-center rounded-full bg-[#E63E1A]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#E63E1A]">
-                    {program.badge}
-                  </div>
+
                   <h2 className="mb-4 text-3xl font-extrabold leading-tight text-[#2D1810] sm:text-4xl">
                     {program.title}
                   </h2>
@@ -494,6 +494,8 @@ export default function FictionPage() {
             </section>
           ))}
         </div>
+
+        <ComingSoonSection />
 
         <section className="relative mb-8 overflow-hidden">
           <div className="mb-5 flex items-center justify-between">

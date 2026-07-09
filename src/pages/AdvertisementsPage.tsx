@@ -1,13 +1,13 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const ACCENT = '#E63E1A';
 const ACCENT_DARK = '#b02010';
 
 const services = [
-  { label: 'Hoardings', img: '/images/ads/HOARDINGS 2.webp' },
-  { label: 'Buses', img: '/images/ads/buses.webp' },
-  { label: 'Bus Stop Branding', img: '/images/ads/bus stop.webp' },
-  { label: 'Auto Branding', img: '/images/ads/auto.webp' },
+  { label: 'Hoardings', imgs: ['/images/ads/HOARDINGS 2.webp', '/images/ads/HOARDINGS (1).webp'] },
+  { label: 'Buses', imgs: ['/images/ads/buses.webp', '/images/ads/buses 2.webp'] },
+  { label: 'Bus Stop Branding', imgs: ['/images/ads/bus stop_.webp', '/images/ads/bus stop 2.webp'] },
+  { label: 'Auto Branding', imgs: ['/images/ads/auto.webp', '/images/ads/auto (1).webp'] },
 ];
 
 const adFormatTabs: {
@@ -136,6 +136,27 @@ export default function AdvertisementsPage() {
   const [advErrors, setAdvErrors] = useState<Record<string, string>>({});
   const [advSubmitted, setAdvSubmitted] = useState(false);
   const advFormRef = useRef<HTMLFormElement>(null);
+  const [heroIndex, setHeroIndex] = useState(0);
+  const [serviceIndex, setServiceIndex] = useState(0);
+
+  const heroImages = [
+    '/images/ad_banner.webp',
+    '/images/ad_banner2.webp'
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000); // 4s quick fade interval
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setServiceIndex((prev) => (prev + 1) % 2); // all services have 2 images
+    }, 3500); // slightly offset from hero
+    return () => clearInterval(interval);
+  }, []);
 
   const handleAdvSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -322,12 +343,17 @@ export default function AdvertisementsPage() {
       `}</style>
 
       {/* ── 01 Hero Banner (no text) ── */}
-      <section className="advertisements-hero relative w-full h-[220px] sm:h-[420px] md:h-[620px] overflow-hidden">
-        <img
-          src="/images/ad_banner.webp"
-          alt="Advertisement Banner"
-          className="w-full h-full object-cover"
-        />
+      <section className="advertisements-hero relative w-full h-[220px] sm:h-[420px] md:h-[620px] overflow-hidden bg-[#1a0a00]">
+        {heroImages.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt={`Advertisement Banner ${i + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+              i === heroIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          />
+        ))}
       </section>
 
       {/* ── 02 Our Services ── */}
@@ -345,12 +371,17 @@ export default function AdvertisementsPage() {
           <div className="advertisements-services-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
             {services.map((s, i) => (
               <div key={i} className="flex flex-col items-center gap-3 group">
-                <div className="w-full overflow-hidden rounded-[14px] bg-[#f5f5f5]">
-                  <img
-                    src={s.img}
-                    alt={s.label}
-                    className="advertisements-service-image w-full h-[140px] sm:h-[180px] object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                <div className="w-full overflow-hidden rounded-[14px] bg-[#f5f5f5] relative h-[140px] sm:h-[180px]">
+                  {s.imgs.map((src, imgIdx) => (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={`${s.label} ${imgIdx + 1}`}
+                      className={`absolute inset-0 w-full h-[140px] sm:h-[180px] object-cover group-hover:scale-105 transition-all duration-700 ease-in-out ${
+                        imgIdx === serviceIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                      }`}
+                    />
+                  ))}
                 </div>
                 <span className="advertisements-service-label text-[13px] sm:text-[14px] font-bold text-[#1a0a00]">{s.label}</span>
                 <span className="h-[2px] w-8 rounded-full" style={{ background: ACCENT }} />

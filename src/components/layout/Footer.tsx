@@ -48,6 +48,17 @@ const viewershipStats = [
   { label: '558', count: '558', img: '/images/footer_viewership/23.webp' },
 ];
 
+const viewershipStats2 = [
+  { label: '43', count: '', img: '/images/footer_viewership/43.webp' },
+  { label: '44', count: '', img: '/images/footer_viewership/44.webp' },
+  { label: '45', count: '', img: '/images/footer_viewership/45.webp' },
+  { label: '46', count: '', img: '/images/footer_viewership/46.webp' },
+  { label: '47', count: '', img: '/images/footer_viewership/47.webp' },
+  { label: '48', count: '', img: '/images/footer_viewership/48.webp' },
+  { label: '49', count: '', img: '/images/footer_viewership/49.webp' },
+];
+
+
 export default function Footer() {
   return (
     <footer className="w-full bg-[linear-gradient(180deg,#7b0606_0%,#3c0101_100%)] text-white">
@@ -78,9 +89,9 @@ export default function Footer() {
             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#7c3b63]">
               Viewership &amp; Distribution
             </p>
-            <p className="mt-2 max-w-[640px] text-[15px] leading-[1.45] text-[#6d4f78] sm:text-[17px]">
-              Overall, in Karnataka, we have viewership of <span className="font-black text-[#6f4eb7]">30 lakhs weekdays</span>,<br />
-              and on <span className="font-black text-[#6f4eb7]">weekends, 45 lakhs</span><br />
+            <p className="mt-2 max-w-[800px] text-[15px] leading-[1.45] text-[#6d4f78] sm:text-[17px]">
+              Overall, in Karnataka, we have viewership of <span className="font-black text-[#6f4eb7]">60 lakhs weekdays</span>,
+              and on <span className="font-black text-[#6f4eb7]">weekends, 80 lakhs</span>
             </p>
 
             <div className="mt-5 flex flex-col gap-3">
@@ -115,6 +126,25 @@ export default function Footer() {
                     <span className="text-[15px] font-black leading-none text-[#6d2a4f]">
                       {item.count}
                     </span>
+                  </div>
+                ))}
+              </div>
+              {/* Row 3 */}
+              <div className="flex flex-wrap gap-x-5 gap-y-3">
+                {viewershipStats2.map((item) => (
+                  <div key={item.label} className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d9c8bf] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.05)] overflow-hidden">
+                      <img
+                        src={item.img || SITE_LOGO_URL}
+                        alt="NKRTV"
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                    {item.count && (
+                      <span className="text-[15px] font-black leading-none text-[#6d2a4f]">
+                        {item.count}
+                      </span>
+                    )}
                   </div>
                 ))}
               </div>

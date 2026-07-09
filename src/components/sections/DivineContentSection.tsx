@@ -216,7 +216,7 @@ export default function DivineContentSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-white py-16">
+    <section className="relative overflow-hidden bg-white pt-16">
       <DotBackdrop className="-top-16 -right-16 z-0 h-[420px] w-[420px] opacity-28" />
       <DotBackdrop className="top-[22%] -left-20 z-0 h-[360px] w-[360px] opacity-18" />
       <DotBackdrop className="bottom-[4%] right-[8%] z-0 h-[260px] w-[260px] opacity-12" />
@@ -384,13 +384,13 @@ export default function DivineContentSection() {
               <div className="h-[1px] w-8 bg-[#D68B45]/50 sm:w-12" />
             </div>
 
-            <div className="flex w-full max-w-4xl flex-wrap justify-center gap-3 sm:gap-4">
+            <div className="flex w-full flex-wrap justify-center gap-3 sm:gap-4">
               <div className="flex min-h-[68px] w-full sm:w-auto min-w-[200px] flex-1 items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
-                  <i className="fa-solid fa-leaf text-[13px] sm:text-[16px]" />
+                  <i className="fa-solid fa-scroll text-[13px] sm:text-[16px]" />
                 </div>
                 <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
-                  Amrutha Vachana
+                  Kannadada Saahithya Siri
                 </h4>
               </div>
 
