@@ -2,13 +2,13 @@ import { useState, useCallback, useEffect } from 'react';
 
 const slides = [
   {
-    src: '/images/NKR_TV_banner.png',
+    src: '/images/NKR_TV_banner.webp',
   },
   {
-    src: '/images/banner2.png',
+    src: '/images/NKR_TV_banner2.webp',
   },
-    {
-    src: '/images/banner3.png',
+  {
+    src: '/images/NKR_TV_banner3.webp',
   },
 ];
 

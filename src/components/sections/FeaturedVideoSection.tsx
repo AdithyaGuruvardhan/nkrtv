@@ -283,7 +283,7 @@ export default function FeaturedVideoSection() {
       <div className="flex flex-col gap-10 sm:gap-12">
         <FeaturedVideoPlayer
           webmSrc="/videos/super_kannadiga_new_promo.webm"
-          mp4Src="/videos/super_kannadiga_new_promo.mp4"
+          mp4Src="/videos/super_kannadiga_new_promo.webm"
           poster="/images/super_kannadiga_banner.webp"
           title="Super Kannadiga"
           description={[
@@ -294,7 +294,7 @@ export default function FeaturedVideoSection() {
         />
         <FeaturedVideoPlayer
           webmSrc="/videos/swada_sambrama_weekly_promo.webm"
-          mp4Src="/videos/swada_sambrama_weekly_promo.mp4"
+          mp4Src="/videos/swada_sambrama_weekly_promo.webm"
           poster="/images/swada_sambrama_weekly_promo_banner.jpg"
           title="Swada Sambrama Promo"
           description={[

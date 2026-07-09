@@ -95,32 +95,58 @@ export default function FictionPage() {
   const [modalVid, setModalVid] = useState<{ id: string; title: string } | null>(null);
   const panchamavedaTrackRef = useRef<HTMLDivElement>(null);
 
-  const popularPrograms = [
+  const featuredPrograms = [
     {
-      title: 'Panchamaveda',
-      subtitle: 'Serial',
-      videoId: 'ohwMhi7F2UU',
-      time: 'Monday - Friday\nMorning 5.30 AM',
+      title: 'Narayaneeyam',
+      desc: 'Immerse yourself in the divine tales and spiritual journey of Narayaneeyam. Watch the serial every Monday to Friday at 6:00 AM on NKR TV Kannada.',
+      image: '/images/narayaneeyam_1k_res.webp',
+      time: 'Mon-Fri 6:00 AM',
+      videoId: '/videos/Narayaneyam_Promo.webm',
+      badge: 'Featured Serial'
     },
     {
-      title: 'Aparoopada Athithigalu',
-      subtitle: 'Serial',
-      videoId: 'bVo9goe_qAo',
-      time: 'Sunday - Saturday\nEvening 6.00 PM',
+      title: 'Anantha Darshana',
+      desc: 'Experience the profound teachings and stories of Anantha Darshana. Watch the serial every Monday to Friday at 6:30 AM on NKR TV Kannada.',
+      image: '/images/anantha_dharshana_1k_res.webp',
+      time: 'Mon-Fri 6:30 AM',
+      videoId: '/videos/Anantha_Darshana_Promo_NKR_Tv_Kannada.webm',
+      badge: 'Popular Serial'
     },
     {
-      title: 'Dear Moments',
-      subtitle: 'Short Film',
-      videoId: 't7V8PxAA1PY',
-      time: 'Sunday - Friday\nMorning 6.30 AM',
+      title: 'Naada Lahari',
+      desc: 'Begin your day with the soulful melodies of Naada Lahari. Watch the program every Monday to Friday at 7:00 AM on NKR TV Kannada.',
+      image: '/images/nada_lahari_1k_res.webp',
+      time: 'Mon-Fri 7:00 AM',
+      videoId: '/videos/Naada_Lahari_PROMO_Kannada.webm',
+      badge: 'Music Show'
     },
     {
-      title: 'Mooruvare Neetigalu',
-      subtitle: 'Short Film',
-      videoId: 'rltBtJw6ULM',
-      time: 'Monday - Saturday\nEvening 7.30 PM',
+      title: 'Dharma Jyothi',
+      desc: 'Find the light of righteousness with Dharma Jyothi. Watch the program every Monday to Saturday at 7:30 AM on NKR TV Kannada.',
+      image: '/images/dharma_jyothi_1k_res.webp',
+      time: 'Mon-Sat 7:30 AM',
+      videoId: '/videos/Dharma_Jyothi_PROMO_NKR_TV_Kannada.webm',
+      badge: 'Devotional'
     },
+    {
+      title: 'Swaada Sambrama',
+      desc: 'Explore the culinary delights of Swaada Sambrama. Watch the program everyday at 1:00 PM on NKR TV Kannada.',
+      image: '/images/swada_sambhrama_1k_res.webp',
+      time: 'Everyday 1:00 PM',
+      videoId: '/videos/swada_sambrama_weekly_promo.webm',
+      badge: 'Cooking Show'
+    },
+    {
+      title: 'Super Kannadiga',
+      desc: 'Celebrate the spirit of Karnataka with Super Kannadiga. Watch the program every Monday to Friday at 7:00 PM on NKR TV Kannada.',
+      image: '/images/super_kannadiga_1k_res.webp',
+      time: 'Mon-Fri 7:00 PM',
+      videoId: '/videos/super_kannadiga_new_promo.webm',
+      badge: 'Entertainment'
+    }
   ];
+
+
 
   const panchamavedaEpisodes = [
     { videoId: 'ohwMhi7F2UU', episodeNo: '15', title: 'Panchamaveda Episode 15', desc: 'Promo from NKR TV Kannada for Panchamaveda episode 15.', tags: ['U/A', 'Promo', 'YouTube'] },
@@ -385,17 +411,17 @@ export default function FictionPage() {
           }}
         />
         <p className="mb-3 text-[12px] font-extrabold uppercase tracking-[0.25em] text-orange-200">
-          NKR TV KANNADA
+          NKR TV EXCLUSIVES
         </p>
         <h1
           className="fiction-hero-title mb-4 font-extrabold leading-tight text-white"
           style={{ fontSize: 'clamp(36px, 6vw, 60px)' }}
         >
-          Fictional Stories
+          Stories
         </h1>
         <div className="mx-auto mb-5 h-[3px] w-16 rounded-full bg-white/40" />
         <p className="fiction-hero-copy mx-auto max-w-xl text-[16px] font-medium text-white/90">
-          Explore serials and short films that entertain, inspire, and connect.
+          Immerse yourself in a diverse world of captivating serials, devotional tales, musical mornings, and endless entertainment.
         </p>
       </section>
 
@@ -419,44 +445,55 @@ export default function FictionPage() {
             WebkitMaskImage: 'radial-gradient(circle at bottom left, black 30%, transparent 80%)',
           }}
         />
-        {/* ===== POPULAR PROGRAMS ===== */}
-        <section className="fiction-section relative mb-8 overflow-hidden">
-          <div className="fiction-section-heading mb-5 flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E63E1A] text-white">
-                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current"><path d="M12 2l2.39 6.93H22l-5.95 4.32 2.27 6.75L12 15.91l-6.32 4.09 2.27-6.75L2 8.93h7.61L12 2z"/></svg>
-              </div>
-              <h2 className="fiction-section-title text-[15px] sm:text-[17px] font-extrabold uppercase tracking-wide text-[#2D1810]">Popular Programs</h2>
-            </div>
-            {/* <a href="#" className="fiction-section-action hidden sm:flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-wide text-[#E63E1A]">
-              View All Programs
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </a> */}
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {popularPrograms.map((program) => (
-                <button
-                  key={program.title}
-                  onClick={() => openModal(program.videoId, program.title)}
-                  className="fiction-program-card group relative min-h-[176px] overflow-hidden rounded-[10px] text-left shadow-[0_10px_22px_rgba(0,0,0,0.11)] transition-transform duration-300 hover:-translate-y-1"
-                >
+        {/* ===== FEATURED PROGRAMS ===== */}
+        <div className="flex flex-col gap-8 mb-12">
+          {featuredPrograms.map((program, index) => (
+            <section key={program.title} className="fiction-section group relative overflow-hidden rounded-[16px] bg-[#FDF8F0] shadow-[0_8px_30px_rgba(90,12,6,0.08)] border border-[#efe2dc] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(230,62,26,0.15)] hover:-translate-y-1">
+              <div className={`flex flex-col md:flex-row ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+                <div className="md:w-1/2 overflow-hidden">
                   <img
-                    src={`https://i.ytimg.com/vi/${program.videoId}/hqdefault.jpg`}
+                    src={program.image}
                     alt={program.title}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={{ minHeight: '300px' }}
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(77,18,9,0.94)_0%,rgba(77,18,9,0.72)_52%,rgba(77,18,9,0.28)_100%)]" />
-                  <div className="relative z-10 flex h-full flex-col justify-end p-4 text-white">
-                    <div>
-                      <h3 className="max-w-[72%] text-[18px] font-black leading-[1.08]">{program.title}</h3>
-                      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/82">{program.subtitle}</p>
+                </div>
+                <div className="relative flex flex-col justify-center p-8 md:w-1/2 lg:p-12 overflow-hidden z-0">
+                  <div
+                    className={`pointer-events-none absolute ${index % 2 !== 0 ? 'left-0' : 'right-0'} top-0 h-[350px] w-[350px] opacity-[0.28] -z-10`}
+                    style={{
+                      backgroundImage: 'radial-gradient(#E63E1A 2px, transparent 2px)',
+                      backgroundSize: '24px 24px',
+                      maskImage: `radial-gradient(circle at ${index % 2 !== 0 ? 'top left' : 'top right'}, black 35%, transparent 70%)`,
+                      WebkitMaskImage: `radial-gradient(circle at ${index % 2 !== 0 ? 'top left' : 'top right'}, black 35%, transparent 70%)`,
+                    }}
+                  />
+                  <div className="mb-3 inline-flex w-max items-center rounded-full bg-[#E63E1A]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#E63E1A]">
+                    {program.badge}
+                  </div>
+                  <h2 className="mb-4 text-3xl font-extrabold leading-tight text-[#2D1810] sm:text-4xl">
+                    {program.title}
+                  </h2>
+                  <p className="mb-6 text-sm leading-relaxed text-[#5A3A2C] sm:text-base">
+                    {program.desc}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-4">
+                    <button
+                      onClick={() => openModal(program.videoId, program.title)}
+                      className="flex items-center gap-2 rounded-full bg-[#E63E1A] px-6 py-3 text-sm font-bold text-white transition-transform hover:scale-105 shadow-md shadow-[#E63E1A]/20"
+                    >
+                      <i className="fa-solid fa-play"></i>
+                      Watch Promo
+                    </button>
+                    <div className="text-sm font-bold text-[#E63E1A]">
+                      {program.time}
                     </div>
                   </div>
-                </button>
-              ))}
-          </div>
-        </section>
+                </div>
+              </div>
+            </section>
+          ))}
+        </div>
 
         <section className="relative mb-8 overflow-hidden">
           <div className="mb-5 flex items-center justify-between">
@@ -627,13 +664,22 @@ export default function FictionPage() {
               <button onClick={closeModal}
                 className="rounded-full px-3 py-1.5 text-white font-black text-sm bg-white/15 hover:bg-white/25 transition-colors">✕</button>
             </div>
-            <iframe
-              className="w-full h-full border-none"
-              src={`https://www.youtube.com/embed/${modalVid.id}?autoplay=1&rel=0`}
-              title="Video player"
-              allow="autoplay; encrypted-media; fullscreen"
-              allowFullScreen
-            />
+            {modalVid.id.endsWith('.mp4') || modalVid.id.endsWith('.webm') ? (
+              <video
+                src={modalVid.id}
+                className="w-full h-full object-contain bg-black"
+                autoPlay
+                controls
+              />
+            ) : (
+              <iframe
+                className="w-full h-full border-none"
+                src={`https://www.youtube.com/embed/${modalVid.id}?autoplay=1&rel=0`}
+                title="Video player"
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+              />
+            )}
           </div>
         </div>
       )}

@@ -16,38 +16,38 @@ const playlist: PlaylistItem[] = [
   {
     id: '1',
     title: 'Agnihotra',
-    subtitle: '720P • NKR TV',
+    subtitle: 'Promo • NKR TV',
     video: '/videos/AGNI_HOTRA_NKRTVKannada_720P.webm',
     badge: 'TOP 5',
   },
   {
     id: '2',
-    title: 'Anantha Darshana',
+    title: 'Narayaneeyam',
     subtitle: 'Promo • NKR TV',
-    video: '/videos/Anantha_Darshana_Promo_NKR_Tv_Kannada.mp4',
+    video: '/videos/Narayaneyam_Promo.webm',
     badge: 'TOP 5',
+    captureRatio: 0.5,
   },
   {
     id: '3',
-    title: 'Naada Lahari',
-    subtitle: 'Promo • Bhakti Geethegalu',
-    video: '/videos/Naada_Lahari_PROMO_Kannada.mp4',
-    webm: '/videos/Naada_Lahari_PROMO_Kannada.webm',
+    title: 'Anantha Darshana',
+    subtitle: 'Promo • NKR TV',
+    video: '/videos/Anantha_Darshana_Promo_NKR_Tv_Kannada.webm',
     badge: 'TOP 5',
   },
   {
     id: '4',
-    title: 'Yoga Patha',
-    subtitle: '720P • Promo',
-    video: 'https://nkrtv.in/wp-content/uploads/2026/01/yoga-patha-ep-45-nkr-tv-kannada-720p_WutKdSd5.mp4',
+    title: 'Naada Lahari',
+    subtitle: 'Promo • NKR TV',
+    video: '/videos/Naada_Lahari_PROMO_Kannada.webm',
+    webm: '/videos/Naada_Lahari_PROMO_Kannada.webm',
     badge: 'TOP 5',
-    captureRatio: 0.5,
   },
   {
     id: '5',
     title: 'Dharma Jyothi',
     subtitle: 'Promo • NKR TV',
-    video: '/videos/Dharma_Jyothi_PROMO_NKR_TV_Kannada.mp4',
+    video: '/videos/Dharma_Jyothi_PROMO_NKR_TV_Kannada.webm',
     badge: 'TOP 5',
     captureRatio: 0.5,
   },
@@ -221,7 +221,7 @@ export default function DivineContentSection() {
       <DotBackdrop className="top-[22%] -left-20 z-0 h-[360px] w-[360px] opacity-18" />
       <DotBackdrop className="bottom-[4%] right-[8%] z-0 h-[260px] w-[260px] opacity-12" />
       <div className="relative z-10 mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
-        
+
         {/* Header Area */}
         <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
@@ -239,27 +239,11 @@ export default function DivineContentSection() {
               Immerse yourself in spiritual wisdom, powerful teachings and inspiring stories.
             </p>
           </div>
-          {/* <button
-            type="button"
-            className="group flex w-max items-center gap-3 rounded-full border border-[#D68B45] px-7 py-2.5 text-[14px] font-semibold text-[#311B5E] transition-all duration-300 hover:bg-[#D68B45] hover:text-white"
-          >
-            View All Content
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-4 w-4 transition-transform group-hover:translate-x-1"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </button> */}
         </div>
 
         {/* Main Content Area */}
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
-          
+
           {/* Left: Playlist */}
           <div className="flex w-full flex-col gap-4 lg:w-[35%]">
             {playlist.map((item) => {
@@ -268,16 +252,14 @@ export default function DivineContentSection() {
                 <div
                   key={item.id}
                   onClick={() => setActiveId(item.id)}
-                  className={`relative cursor-pointer rounded-[20px] p-[2px] transition-all duration-300 ${
-                    isActive
+                  className={`relative cursor-pointer rounded-[20px] p-[2px] transition-all duration-300 ${isActive
                       ? 'bg-gradient-to-r from-[#D68B45] to-[#A21D34] shadow-[0_12px_30px_rgba(162,29,52,0.15)] hover:scale-[1.01]'
                       : 'bg-transparent hover:scale-[1.01]'
-                  }`}
+                    }`}
                 >
                   <div
-                    className={`flex items-center justify-between rounded-[18px] p-3 transition-colors duration-300 ${
-                      isActive ? 'bg-white' : 'bg-[#FDF8F0] hover:bg-[#f6efe4]'
-                    }`}
+                    className={`flex items-center justify-between rounded-[18px] p-3 transition-colors duration-300 ${isActive ? 'bg-white' : 'bg-[#FDF8F0] hover:bg-[#f6efe4]'
+                      }`}
                   >
                     <div className="flex items-center gap-4">
                       <div className="relative aspect-video w-[110px] shrink-0 overflow-hidden rounded-[12px] bg-black shadow-sm sm:w-[130px]">
@@ -295,9 +277,8 @@ export default function DivineContentSection() {
                       </div>
                       <div>
                         <h4
-                          className={`text-[14px] font-bold sm:text-[16px] ${
-                            isActive ? 'text-[#A21D34]' : 'text-[#311B5E]'
-                          }`}
+                          className={`text-[14px] font-bold sm:text-[16px] ${isActive ? 'text-[#A21D34]' : 'text-[#311B5E]'
+                            }`}
                         >
                           {item.title}
                         </h4>
@@ -319,7 +300,7 @@ export default function DivineContentSection() {
 
           {/* Right: Featured Player Card */}
           <div className="flex w-full flex-col overflow-hidden rounded-[24px] border border-gray-100 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] lg:w-[65%]">
-            
+
             {/* Top Red Gradient Area */}
             <div className="relative flex min-h-[300px] w-full items-center justify-center bg-gradient-to-br from-[#C2151B] via-[#8B101E] to-[#4B061A] p-6 sm:p-10 md:min-h-[400px]">
               <div className="absolute inset-0">
@@ -394,49 +375,51 @@ export default function DivineContentSection() {
 
         {/* Bottom Feature Highlights Bar */}
         <div className="relative left-1/2 w-screen -translate-x-1/2 bg-[#EAD5B7] px-4 py-4 sm:px-6 sm:py-8 lg:px-10">
-          <div className="mb-4 flex items-center gap-3 sm:mb-5">
-            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#D68B45] sm:text-[12px] sm:tracking-[0.2em]">
-              Coming Soon
-            </span>
-            <div className="h-[1px] w-8 bg-[#D68B45]/50 sm:w-12" />
-          </div>
+          <div className="mx-auto flex w-full max-w-[1510px] flex-col items-center justify-center">
+            <div className="mb-4 flex items-center justify-center gap-3 sm:mb-5">
+              <div className="h-[1px] w-8 bg-[#D68B45]/50 sm:w-12" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#D68B45] sm:text-[12px] sm:tracking-[0.2em]">
+                Coming Soon
+              </span>
+              <div className="h-[1px] w-8 bg-[#D68B45]/50 sm:w-12" />
+            </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
-                <i className="fa-solid fa-leaf text-[13px] sm:text-[16px]" />
+            <div className="flex w-full max-w-4xl flex-wrap justify-center gap-3 sm:gap-4">
+              <div className="flex min-h-[68px] w-full sm:w-auto min-w-[200px] flex-1 items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
+                  <i className="fa-solid fa-leaf text-[13px] sm:text-[16px]" />
+                </div>
+                <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
+                  Amrutha Vachana
+                </h4>
               </div>
-              <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
-                Amrutha Vachana
-              </h4>
-            </div>
-            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
-                <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" aria-hidden="true">
-                  <rect x="5.2" y="3" width="2.4" height="18" rx="1.1" />
-                  <rect x="10.8" y="3" width="2.4" height="18" rx="1.1" />
-                  <rect x="16.4" y="3" width="2.4" height="18" rx="1.1" />
-                </svg>
+
+              <div className="flex min-h-[68px] w-full sm:w-auto min-w-[200px] flex-1 items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
+                  <i className="fa-solid fa-bottle-water text-[13px] sm:text-[16px]" />
+                </div>
+                <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
+                  Amrutha Paana
+                </h4>
               </div>
-              <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
-                Narayanim
-              </h4>
-            </div>
-            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
-                <i className="fa-solid fa-bottle-water text-[13px] sm:text-[16px]" />
+
+              <div className="flex min-h-[68px] w-full sm:w-auto min-w-[200px] flex-1 items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
+                  <i className="fa-solid fa-tv text-[13px] sm:text-[16px]" />
+                </div>
+                <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
+                  Bhaagi
+                </h4>
               </div>
-              <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
-                Amrutha Paana
-              </h4>
-            </div>
-            <div className="flex min-h-[68px] items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
-                <span className="text-[15px] font-bold leading-none sm:text-[18px]">₹</span>
+
+              <div className="flex min-h-[68px] w-full sm:w-auto min-w-[200px] flex-1 items-center gap-2.5 rounded-[16px] bg-[#FBF4EA] px-3 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.04)] sm:gap-3 sm:px-5 sm:py-4">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FDF8F0] text-[#D68B45] sm:h-10 sm:w-10">
+                  <i className="fa-solid fa-heart text-[13px] sm:text-[16px]" />
+                </div>
+                <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
+                  Alle Aarambha Prema
+                </h4>
               </div>
-              <h4 className="text-[11px] font-bold leading-[1.15] text-[#311B5E] sm:text-[14px] sm:leading-tight">
-                Super Kannadiga
-              </h4>
             </div>
           </div>
         </div>

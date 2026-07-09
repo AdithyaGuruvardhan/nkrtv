@@ -4,7 +4,7 @@ const ACCENT = '#E63E1A';
 const ACCENT_DARK = '#b02010';
 
 const services = [
-  { label: 'Hoardings', img: '/images/ads/HOARDINGS.webp' },
+  { label: 'Hoardings', img: '/images/ads/HOARDINGS 2.webp' },
   { label: 'Buses', img: '/images/ads/buses.webp' },
   { label: 'Bus Stop Branding', img: '/images/ads/bus stop.webp' },
   { label: 'Auto Branding', img: '/images/ads/auto.webp' },

@@ -90,12 +90,6 @@ export default function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-3 xl:hidden">
-          <a
-            href="/ads"
-            className="inline-flex items-center gap-2 rounded-[5px] bg-[linear-gradient(135deg,#D11212,#F05B19)] px-4 py-2 text-[0.78rem] font-extrabold uppercase text-white shadow-[0_5px_14px_rgba(185,13,13,0.25)] transition-transform hover:-translate-y-0.5"
-          >
-            Live TV
-          </a>
           <button
             type="button"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -131,15 +125,6 @@ export default function Header() {
           ))}
         </div>
 
-        <a
-          href="#featured-video"
-          className="ml-2 hidden items-center gap-2 rounded-[5px] bg-[linear-gradient(135deg,#B90D0D,#F05B19)] px-5 py-3 text-[0.86rem] font-extrabold uppercase tracking-[0.01em] text-white shadow-[0_5px_14px_rgba(185,13,13,0.25)] transition-transform hover:-translate-y-0.5 xl:inline-flex"
-        >
-          <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-            <path d="M3 7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v.73l3.04-1.74A1.3 1.3 0 0 1 22 7.12v9.76a1.3 1.3 0 0 1-1.96 1.13L17 16.27V17a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7z" />
-          </svg>
-          Live TV
-        </a>
       </div>
 
       {menuOpen && (

@@ -3,6 +3,7 @@ import DotBackdrop from '../decor/DotBackdrop';
 
 type ContentCard = {
   title: string;
+  desc: string;
   image: string;
   badge: string;
   badgeColor: string;
@@ -44,39 +45,52 @@ const featureItems = [
 
 const cards: ContentCard[] = [
   {
-    title: 'DHARMA JYOTHI',
-    image: '/images/popular_programs/dharma-jyothi.webp',
+    title: 'NARAYANEEYAM',
+    desc: 'Mon-Fri 6:00AM',
+    image: '/images/popular_programs/narayaneeyam.webp',
     badge: 'New Episode',
     badgeColor: '#FFC107',
     numberColor: '#FFC107',
   },
   {
     title: 'ANANTHA DARSHAANA',
+    desc: 'Mon-Fri 6:30AM',
     image: '/images/popular_programs/anantha-dharshana.webp',
     badge: 'New Season',
     badgeColor: '#FF5A3C',
     numberColor: '#FF5A3C',
   },
   {
-    title: 'AGNI HOTHRA',
-    image: '/images/popular_programs/agni-hothra.webp',
+    title: 'NAADA LAHARI',
+    desc: 'Mon-Fri 7:00AM',
+    image: '/images/popular_programs/nada_lahari.webp',
     badge: 'Recently Added',
     badgeColor: '#BD2E8B',
     numberColor: '#BD2E8B',
   },
   {
-    title: 'SWADA SAMBHRAMA',
-    image: '/images/popular_programs/swada-sambhrama.webp',
+    title: 'DHARMA JYOTHI',
+    desc: 'Mon-Sat 7:30AM',
+    image: '/images/popular_programs/dharma-jyothi.webp',
     badge: 'Trending',
     badgeColor: '#5B2D91',
     numberColor: '#5B2D91',
   },
   {
-    title: 'DEAR MOMENTS',
-    image: '/images/popular_programs/dear-moments.webp',
+    title: 'SWAADA SAMBRAMA',
+    desc: 'Everyday 1:00PM',
+    image: '/images/popular_programs/swada-sambhrama.webp',
     badge: 'Top Pick',
     badgeColor: '#1D3FA3',
     numberColor: '#1D3FA3',
+  },
+    {
+    title: 'SUPER KANNADIGA',
+    desc: 'Mon-Fri 7:00PM',
+    image: '/images/popular_programs/super_kannadiga.webp',
+    badge: 'Top Pick',
+    badgeColor: '#FFC107',
+    numberColor: '#FFC107',
   },
 ];
 
@@ -96,13 +110,13 @@ function ShowcaseCard({
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-[#1a0101]">
         <div
-          className="absolute left-0 top-0 z-[2] flex h-[34px] w-[38px] items-center justify-center rounded-br-[12px] text-center text-[15px] font-[900] tracking-[-0.5px] text-white"
+          className="absolute left-0 top-0 z-[2] flex h-[28px] w-[32px] items-center justify-center rounded-br-[10px] text-center text-[13px] font-[900] tracking-[-0.5px] text-white"
           style={{ backgroundColor: card.numberColor }}
         >
           {cardNumber}
         </div>
         <div
-          className="absolute left-[48px] top-[9px] z-[2] rounded-[20px] px-[9px] py-[4px] text-[9px] font-[800] uppercase tracking-[0.3px] text-white"
+          className="absolute left-[38px] top-[6px] z-[2] rounded-[16px] px-[8px] py-[3px] text-[8px] font-[800] uppercase tracking-[0.3px] text-white"
           style={{ backgroundColor: card.badgeColor }}
         >
           {card.badge}
@@ -114,12 +128,12 @@ function ShowcaseCard({
         />
       </div>
 
-      <div className="px-4 py-4 text-white">
-        <div className="mb-1 text-[16px] font-[900] uppercase leading-tight text-[#FFD56A] drop-shadow sm:text-[18px]">
+      <div className="px-3 py-3 text-white">
+        <div className="mb-1 text-[13px] font-[900] uppercase leading-tight text-[#FFD56A] drop-shadow sm:text-[14px]">
           {card.title}
         </div>
         <div className="text-[11px] font-[800] uppercase tracking-[0.5px] text-white/90">
-          NKR TV KANNADA
+          {card.desc}
         </div>
       </div>
     </div>
@@ -140,16 +154,9 @@ export default function ContentShowcaseSection() {
               Popular Programs
             </h2>
           </div>
-          {/* <a
-            href="/"
-            className="group flex items-center gap-3 text-[13px] font-[900] uppercase text-[#B90D0D] no-underline transition-colors hover:text-[#F05B19]"
-          >
-            <span>View All Programs</span>
-            <span className="text-[24px] leading-none">›</span>
-          </a> */}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-3">
           {cards.map((card, index) => (
             <ShowcaseCard key={card.title} card={card} index={index} />
           ))}

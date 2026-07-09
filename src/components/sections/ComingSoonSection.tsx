@@ -7,12 +7,12 @@ type Program = {
 
 const programs: Program[] = [
   {
-    title: 'ಸ್ವಾದ ಸಂಭ್ರಮ',
-    image: '/images/swada_sambrama_banner.webp',
+    title: 'Bhaagi',
+    image: '/images/bhaagi.webp',
   },
   {
-    title: 'ಸೂಪರ್ ಕನ್ನಡಿಗ',
-    image: '/images/super_kannadiga_banner.webp',
+    title: 'Alle Aarambha Prema',
+    image: '/images/alle_arambha_prema.webp',
   },
 ];
 
