@@ -22,6 +22,12 @@ import WhyNKRBlogPage from './pages/WhyNKRBlogPage';
 import NKRSpecialitiesBlogPage from './pages/NKRSpecialitiesBlogPage';
 import CEOBlogPage from './pages/CEOBlogPage';
 import NarayaneeyamBlogPage from './pages/NarayaneeyamBlogPage';
+import BhagavadGitaTransformLifeBlogPage from './pages/BhagavadGitaTransformLifeBlogPage';
+import BhagavadGitaSummaryBlogPage from './pages/BhagavadGitaSummaryBlogPage';
+import NarayaneeyamSignificanceBlogPage from './pages/NarayaneeyamSignificanceBlogPage';
+import KarnatakaTemplesBlogPage from './pages/KarnatakaTemplesBlogPage';
+import PurandaraDasaBlogPage from './pages/PurandaraDasaBlogPage';
+import KarnatakaTraditionalCuisineBlogPage from './pages/KarnatakaTraditionalCuisineBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -227,6 +233,84 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <NarayaneeyamBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/bhagavad-gita-transform-life') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <BhagavadGitaTransformLifeBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/bhagavad-gita-18-chapters-summary') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <BhagavadGitaSummaryBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/what-is-narayaneeyam-significance') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <NarayaneeyamSignificanceBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/karnataka-ancient-temples-10') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <KarnatakaTemplesBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/purandara-dasa-keertanas') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <PurandaraDasaBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/karnataka-traditional-cuisine') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <KarnatakaTraditionalCuisineBlogPage />
           <Footer />
         </div>
       </main>

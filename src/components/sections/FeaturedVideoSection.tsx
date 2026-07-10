@@ -284,7 +284,7 @@ export default function FeaturedVideoSection() {
         <FeaturedVideoPlayer
           webmSrc="/videos/super_kannadiga_new_promo.webm"
           mp4Src="/videos/super_kannadiga_new_promo.webm"
-          poster="/images/super_kannadiga_banner.webp"
+          poster="/images/super_kannadiga_40s.jpg"
           title="Super Kannadiga"
           description={[
             "Call in, answer three questions correctly, and win ₹3,000 instantly.",
@@ -293,9 +293,9 @@ export default function FeaturedVideoSection() {
           playAriaLabel="Super Kannadiga promo"
         />
         <FeaturedVideoPlayer
-          webmSrc="/videos/swada_sambrama_weekly_promo.webm"
-          mp4Src="/videos/swada_sambrama_weekly_promo.webm"
-          poster="/images/swada_sambrama_weekly_promo_banner.jpg"
+          webmSrc="/videos/swaada_sambra_latest_promo.webm"
+          mp4Src="/videos/swaada_sambra_latest_promo.mp4"
+          poster="/images/swaada_sambra_latest_promo_poster.jpg"
           title="Swada Sambrama Promo"
           description={[
             "From age-old family recipes to exciting new culinary creations, discover the flavors that connect generations.",

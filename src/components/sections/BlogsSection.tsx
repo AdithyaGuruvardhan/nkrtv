@@ -1,9 +1,69 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '10',
+    image: '/images/blog_imgs/swaada_sambrama_blog.webp',
+    category: 'Culinary Heritage',
+    date: 'July 10, 2026',
+    headline: 'The Speciality of Karnataka\'s Traditional Cuisine',
+    excerpt: 'Explore what truly makes Karnataka\'s traditional cooking so distinctive.',
+    readTime: '6 min read',
+    link: '/blog/karnataka-traditional-cuisine',
+  },
+  {
+    id: '9',
+    image: '/images/blog_imgs/purandara.webp',
+    category: 'Music & Culture',
+    date: 'July 10, 2026',
+    headline: 'The Significance of Purandara Dasa\'s Keertanas',
+    excerpt: 'Discover why the work of the Pitamaha of Carnatic music still matters centuries later.',
+    readTime: '7 min read',
+    link: '/blog/purandara-dasa-keertanas',
+  },
+  {
+    id: '8',
+    image: '/images/blog_imgs/temples.webp',
+    category: 'Culture & Heritage',
+    date: 'July 10, 2026',
+    headline: '10 Wonderful Ancient Temples of Karnataka',
+    excerpt: 'Join us on a sacred journey through 10 of Karnataka\'s most remarkable ancient temples.',
+    readTime: '8 min read',
+    link: '/blog/karnataka-ancient-temples-10',
+  },
+  {
+    id: '7',
+    image: '/images/blog_imgs/narayaneeyam_wts_tat.webp',
+    category: 'Devotion',
+    date: 'July 10, 2026',
+    headline: 'What Is Narayaneeyam? Its Significance and the Fruits of Parayana',
+    excerpt: 'Learn about the remarkable story behind Narayaneeyam and the benefits of regular recitation.',
+    readTime: '5 min read',
+    link: '/blog/what-is-narayaneeyam-significance',
+  },
+  {
+    id: '6',
+    image: '/images/blog_imgs/bhagavad_gita_2.webp',
+    category: 'Spirituality',
+    date: 'July 10, 2026',
+    headline: 'A Summary of All 18 Chapters of the Bhagavad Gita',
+    excerpt: 'Walk through all 18 chapters of the Gita in simple terms.',
+    readTime: '10 min read',
+    link: '/blog/bhagavad-gita-18-chapters-summary',
+  },
+  {
+    id: '5',
+    image: '/images/blog_imgs/bhagavad_gita.webp',
+    category: 'Spirituality',
+    date: 'July 10, 2026',
+    headline: 'How the Bhagavad Gita Can Transform Your Life',
+    excerpt: 'Discover how the timeless wisdom of the Gita can reshape your life.',
+    readTime: '5 min read',
+    link: '/blog/bhagavad-gita-transform-life',
+  },
+  {
     id: '4',
-    image: '/images/blog_imgs/narayaneeyam_blog.jpg',
+    image: '/images/blog_imgs/narayaneeyam_blog.webp',
     category: 'Devotion',
     date: 'July 3, 2026',
     headline: 'Narayaneeyam (ನಾರಾಯಣೀಯಂ)',
@@ -13,7 +73,7 @@ const blogs = [
   },
   {
     id: '1',
-    image: '/images/blog_imgs/why_nkr_blog.jpg',
+    image: '/images/blog_imgs/why_nkr_blog.webp',
     category: 'Updates',
     date: 'May 28, 2025',
     headline: 'Why NKR Kannada Channel',
@@ -23,7 +83,7 @@ const blogs = [
   },
   {
     id: '2',
-    image: '/images/blog_imgs/nkr_specialities_blog.jpg',
+    image: '/images/blog_imgs/nkr_specialities_blog.webp',
     category: 'Insights',
     date: 'May 18, 2025',
     headline: 'NKR Specialities',
@@ -33,7 +93,7 @@ const blogs = [
   },
   {
     id: '3',
-    image: '/images/blog_imgs/note_ceo_nkr_blog.jpg',
+    image: '/images/blog_imgs/note_ceo_nkr_blog.webp',
     category: 'Leadership',
     date: 'May 10, 2025',
     headline: 'A note from CEO',
@@ -48,26 +108,75 @@ interface BlogsSectionProps {
 }
 
 export default function BlogsSection({ layout = 'carousel' }: BlogsSectionProps) {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [activeDot, setActiveDot] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
 
-  const handleScroll = () => {
-    if (!trackRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = trackRef.current;
-    if (scrollWidth <= clientWidth) return;
-    const scrollPercentage = scrollLeft / (scrollWidth - clientWidth);
-    const dotIndex = Math.round(scrollPercentage * (blogs.length - 1));
-    setActiveDot(dotIndex);
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(window.innerWidth < 640 ? 4 : 6);
+    };
+    handleResize(); // Initialize on mount
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const totalPages = Math.ceil(blogs.length / itemsPerPage);
+
+  // Ensure current page remains valid after resizing
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(totalPages);
+    }
+  }, [totalPages, currentPage]);
+
+  const currentBlogs = blogs.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const goToPage = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
   };
 
-  const scrollTrack = (direction: 'left' | 'right') => {
-    if (!trackRef.current) return;
-    const scrollAmount = trackRef.current.clientWidth * 0.8;
-    trackRef.current.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth',
-    });
-  };
+  const PaginationControls = () => (
+    <div className="flex items-center gap-2">
+      <button
+        type="button"
+        onClick={() => goToPage(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-[#F4D3CA] bg-white text-[#E63E1A] transition-colors hover:border-[#E63E1A] hover:bg-[#FCECE6] disabled:opacity-50 disabled:hover:border-[#F4D3CA] disabled:hover:bg-white"
+      >
+        <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+      
+      {Array.from({ length: totalPages }).map((_, idx) => (
+        <button
+          key={idx}
+          type="button"
+          onClick={() => goToPage(idx + 1)}
+          className={`flex h-[38px] w-[38px] items-center justify-center rounded-full text-[14px] font-bold transition-all duration-300 ${
+            currentPage === idx + 1
+              ? 'bg-[#E63E1A] text-white shadow-md'
+              : 'border-[1.5px] border-[#F4D3CA] bg-white text-[#E63E1A] hover:bg-[#FCECE6]'
+          }`}
+        >
+          {idx + 1}
+        </button>
+      ))}
+
+      <button
+        type="button"
+        onClick={() => goToPage(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="flex h-[38px] w-[38px] items-center justify-center rounded-full border-[1.5px] border-[#F4D3CA] bg-white text-[#E63E1A] transition-colors hover:border-[#E63E1A] hover:bg-[#FCECE6] disabled:opacity-50 disabled:hover:border-[#F4D3CA] disabled:hover:bg-white"
+      >
+        <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+    </div>
+  );
 
   return (
     <section className="blogs-section relative w-full overflow-hidden bg-[#fffdf9] py-16">
@@ -106,25 +215,8 @@ export default function BlogsSection({ layout = 'carousel' }: BlogsSectionProps)
             font-size: 14px;
           }
 
-          .blogs-section .blogs-cta {
-            width: 100%;
-            justify-content: center;
-            padding-left: 18px;
-            padding-right: 18px;
-          }
-
           .blogs-section .blogs-carousel {
             margin-top: 24px;
-          }
-
-          .blogs-section .blogs-track {
-            gap: 14px;
-            padding-top: 0;
-            padding-bottom: 8px;
-          }
-
-          .blogs-section .blogs-card-wrap {
-            width: min(84vw, 320px);
           }
 
           .blogs-section .blogs-card-image {
@@ -150,7 +242,7 @@ export default function BlogsSection({ layout = 'carousel' }: BlogsSectionProps)
           }
 
           .blogs-section .blogs-nav {
-            margin-top: 14px;
+            margin-top: 24px;
             gap: 14px;
           }
         }
@@ -194,66 +286,27 @@ export default function BlogsSection({ layout = 'carousel' }: BlogsSectionProps)
             </p>
           </div>
           
-          {layout !== 'grid' && (
-            <a
-              href="/blogs"
-              className="blogs-cta flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-7 py-3 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.25)] transition-transform hover:scale-105"
-            >
-              View All Blogs
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2.5}
-                stroke="currentColor"
-                className="h-4 w-4"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-          )}
+          <div className="hidden md:flex shrink-0 items-center gap-4">
+            <PaginationControls />
+          </div>
         </div>
 
-        {/* Carousel or Grid Area */}
+        {/* Grid Area */}
         <div className="blogs-carousel relative mt-8">
-          <div
-            ref={layout === 'carousel' ? trackRef : undefined}
-            onScroll={layout === 'carousel' ? handleScroll : undefined}
-            className={
-              layout === 'grid'
-                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-3 pb-8"
-                : "blogs-track no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-3"
-            }
-          >
-            {blogs.map((blog) => (
-              <div
-                key={blog.id}
-                className={
-                  layout === 'grid'
-                    ? "blogs-card-wrap relative w-full"
-                    : "blogs-card-wrap relative w-[85vw] shrink-0 snap-start sm:w-[320px] md:w-[350px] lg:w-[calc(33.333%-16px)]"
-                }
-              >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-3 pb-8 justify-items-center">
+            {currentBlogs.map((blog) => (
+              <div key={blog.id} className="relative w-full max-w-[380px] sm:max-w-none">
                 <a href={blog.link || '#'} className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_15px_40px_rgba(230,62,26,0.1)] block">
                   
-                  {/* Image Container - This strictly matches the design: fills full width, top half */}
+                  {/* Image Container */}
                   <div className="blogs-card-image relative h-[220px] w-full shrink-0 overflow-hidden bg-gray-100">
                     <img
                       src={blog.image}
                       alt={blog.headline}
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    
-                    {/* Top Left Tag */}
-                    <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-[6px] bg-[#E63E1A] px-3 py-1.5 text-[11px] font-bold text-white shadow-sm backdrop-blur-md">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3">
-                        <circle cx="12" cy="12" r="10" />
-                        <circle cx="12" cy="12" r="2" />
-                      </svg>
-                      {blog.category}
-                    </div>
 
-                    {/* Top Right Tag */}
+                    {/* Top Right Tag - Kept right side data */}
                     <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-[6px] bg-white px-3 py-1.5 text-[11px] font-bold text-[#E63E1A] shadow-sm">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3.5 w-3.5">
                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -301,41 +354,10 @@ export default function BlogsSection({ layout = 'carousel' }: BlogsSectionProps)
           </div>
         </div>
 
-        {/* Navigation Controls */}
-        {layout !== 'grid' && (
-          <div className="blogs-nav mt-2 flex items-center justify-center gap-5">
-            <button
-              type="button"
-              onClick={() => scrollTrack('left')}
-              className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-[#F4D3CA] bg-white text-[#E63E1A] transition-colors hover:border-[#E63E1A] hover:bg-[#FCECE6]"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-            
-            <div className="flex items-center gap-2">
-              {blogs.map((_, dot) => (
-                <div
-                  key={dot}
-                  className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-                    activeDot === dot ? 'bg-[#E63E1A]' : 'bg-[#F4D3CA]'
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => scrollTrack('right')}
-              className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-[#F4D3CA] bg-white text-[#E63E1A] transition-colors hover:border-[#E63E1A] hover:bg-[#FCECE6]"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current stroke-2">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
-          </div>
-        )}
+        {/* Bottom Navigation Controls */}
+        <div className="blogs-nav mt-2 flex items-center justify-center gap-5">
+          <PaginationControls />
+        </div>
 
       </div>
     </section>

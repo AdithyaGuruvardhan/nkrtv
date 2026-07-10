@@ -101,7 +101,7 @@ export default function WhyNKRBlogPage() {
       <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 mb-16 relative z-10">
         <div className="w-full aspect-[16/9] md:aspect-[2/1] rounded-[24px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] ring-1 ring-gray-900/5 group">
           <img 
-            src="/images/blog_imgs/why_nkr_blog.jpg" 
+            src="/images/blog_imgs/why_nkr_blog.webp" 
             alt="Why NKR Kannada Channel" 
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
