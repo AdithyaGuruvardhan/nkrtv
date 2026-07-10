@@ -103,11 +103,8 @@ const blogs = [
   },
 ];
 
-interface BlogsSectionProps {
-  layout?: 'carousel' | 'grid';
-}
 
-export default function BlogsSection({ layout = 'carousel' }: BlogsSectionProps) {
+export default function BlogsSection() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
 

@@ -52,7 +52,7 @@ export default function BlogPage() {
       </section>
 
       {/* Blog cards — reuses the exact same section from the home page in grid layout */}
-      <BlogsSection layout="grid" />
+      <BlogsSection />
 
     </div>
   );
