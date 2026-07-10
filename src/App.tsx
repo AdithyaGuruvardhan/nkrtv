@@ -28,6 +28,12 @@ import NarayaneeyamSignificanceBlogPage from './pages/NarayaneeyamSignificanceBl
 import KarnatakaTemplesBlogPage from './pages/KarnatakaTemplesBlogPage';
 import PurandaraDasaBlogPage from './pages/PurandaraDasaBlogPage';
 import KarnatakaTraditionalCuisineBlogPage from './pages/KarnatakaTraditionalCuisineBlogPage';
+import RockSaltJaggeryBlogPage from './pages/RockSaltJaggeryBlogPage';
+import GKQuestionsBlogPage from './pages/GKQuestionsBlogPage';
+import KarnatakaFactsBlogPage from './pages/KarnatakaFactsBlogPage';
+import PitruPakshaBlogPage from './pages/PitruPakshaBlogPage';
+import TempleRulesBlogPage from './pages/TempleRulesBlogPage';
+import NKRShowsBlogPage from './pages/NKRShowsBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -311,6 +317,84 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <KarnatakaTraditionalCuisineBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/traditional-ingredients-health-benefits') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <RockSaltJaggeryBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/gk-questions-boost') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <GKQuestionsBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/karnataka-facts-20') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <KarnatakaFactsBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/pitru-paksha-significance') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <PitruPakshaBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/temple-rules-10') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <TempleRulesBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/4-popular-nkr-shows') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <NKRShowsBlogPage />
           <Footer />
         </div>
       </main>
