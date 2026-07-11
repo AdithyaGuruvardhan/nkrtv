@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import InstagramFeedSection from './InstagramFeedSection';
 
 export default function ContactSection() {
   const [csErrors, setCsErrors] = useState<Record<string, string>>({});
@@ -64,6 +65,8 @@ export default function ContactSection() {
             <div className="h-[1px] w-12 bg-[#E63E1A] sm:w-24"></div>
           </div>
           
+          <InstagramFeedSection />
+
           <a href="https://instagram.com/nkrtvkannada/?next=/" target="_blank" rel="noopener noreferrer" className="relative z-10 flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#FF5A3C] to-[#D42200] px-8 py-3.5 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(230,62,26,0.3)] transition-transform hover:scale-105">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
