@@ -17,12 +17,7 @@ export default function InstagramFeedSection() {
   useEffect(() => {
     const fetchInstagramPosts = async () => {
       try {
-        const token = import.meta.env.VITE_INSTAGRAM_ACCESS_TOKEN;
-        if (!token) {
-          throw new Error('Instagram access token is not configured.');
-        }
-
-        const url = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${token}&limit=6`;
+        const url = `/api/instagram`;
         const response = await fetch(url);
         
         if (!response.ok) {
