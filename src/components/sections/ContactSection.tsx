@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import InstagramFeedSection from './InstagramFeedSection';
 import YouTubeFeedSection from './YouTubeFeedSection';
+import FacebookFeedSection from './FacebookFeedSection';
 
 export default function ContactSection() {
   const [csErrors, setCsErrors] = useState<Record<string, string>>({});
@@ -112,6 +113,43 @@ export default function ContactSection() {
           <a href="https://www.youtube.com/@NKRTVKannada" target="_blank" rel="noopener noreferrer" className="relative z-10 flex items-center gap-2.5 rounded-full bg-[#FF0000] px-8 py-3.5 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(255,0,0,0.3)] transition-transform hover:scale-105">
             <i className="fa-brands fa-youtube text-lg"></i>
             Subscribe on YouTube
+          </a>
+        </div>
+
+        {/* Facebook Social Media Banner */}
+        <div className="relative mb-24 flex flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#F4D3CA] bg-[#FFF9F5] py-10 shadow-sm">
+          <div
+            className="pointer-events-none absolute bottom-0 left-0 top-0 w-[200px] opacity-60"
+            style={{
+              backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+              backgroundSize: '16px 16px',
+              maskImage: 'linear-gradient(to right, black, transparent)',
+              WebkitMaskImage: 'linear-gradient(to right, black, transparent)',
+            }}
+          />
+          <div
+            className="pointer-events-none absolute bottom-0 right-0 top-0 w-[200px] opacity-60"
+            style={{
+              backgroundImage: 'radial-gradient(#F4D3CA 2px, transparent 2px)',
+              backgroundSize: '16px 16px',
+              maskImage: 'linear-gradient(to left, black, transparent)',
+              WebkitMaskImage: 'linear-gradient(to left, black, transparent)',
+            }}
+          />
+
+          <div className="relative z-10 mb-6 flex items-center justify-center gap-4">
+            <div className="h-[1px] w-12 bg-[#1877F2] sm:w-24"></div>
+            <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#1877F2]">
+              Follow on Facebook
+            </span>
+            <div className="h-[1px] w-12 bg-[#1877F2] sm:w-24"></div>
+          </div>
+          
+          <FacebookFeedSection />
+
+          <a href="https://www.facebook.com/profile.php?id=122185499204784258" target="_blank" rel="noopener noreferrer" className="relative z-10 flex items-center gap-2.5 rounded-full bg-[#1877F2] px-8 py-3.5 text-[14px] font-bold text-white shadow-[0_4px_15px_rgba(24,119,242,0.3)] transition-transform hover:scale-105">
+            <i className="fa-brands fa-facebook-f text-lg"></i>
+            Follow on Facebook
           </a>
         </div>
 
