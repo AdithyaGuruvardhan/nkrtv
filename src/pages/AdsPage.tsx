@@ -39,7 +39,7 @@ export default function AdsPage() {
     const body = encodeURIComponent(
       `Full Name: ${fullName}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nAd Type: ${adType}\nDuration: ${data.get('duration') || '-'}\nBudget: ${data.get('budget') || '-'}\n\nDetails:\n${details}`
     );
-    window.location.href = `mailto:nkrtv@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:nkrtvkannada@gmail.com?subject=${subject}&body=${body}`;
     setFormSubmitted(true);
   };
 
@@ -121,7 +121,7 @@ export default function AdsPage() {
                 </div>
                 <div className="flex flex-col gap-1 pt-0.5">
                   <span className="text-[14px] font-semibold">Email</span>
-                  <span className="text-[13px] opacity-80 leading-[1.5]">nkrtv@gmail.com</span>
+                  <span className="text-[13px] opacity-80 leading-[1.5]">nkrtvkannada@gmail.com</span>
                 </div>
               </div>
               
@@ -332,7 +332,7 @@ export default function AdsPage() {
                 </div>
                 {formSubmitted && (
                   <p className="text-sm font-medium text-[#E63E1A]">
-                    ✓ Your email client should open with the enquiry pre-filled. If not, email us directly at <a href="mailto:nkrtv@gmail.com" className="underline">nkrtv@gmail.com</a>.
+                    ✓ Your email client should open with the enquiry pre-filled. If not, email us directly at <a href="mailto:nkrtvkannada@gmail.com" className="underline">nkrtvkannada@gmail.com</a>.
                   </p>
                 )}
               </div>

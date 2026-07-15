@@ -241,7 +241,7 @@ export default function Footer() {
           <div className="mt-5 space-y-4 text-[14px] font-medium leading-relaxed text-white/88">
             <p>250, Old Taluk Cutchery Rd,<br />Upparpete, Cottonpete,<br />Bengaluru, Karnataka 560053</p>
             <p>+91 80 4757 3986</p>
-            <p>nkrtv@gmail.com</p>
+            <p>nkrtvkannada@gmail.com</p>
           </div>
         </div>
 

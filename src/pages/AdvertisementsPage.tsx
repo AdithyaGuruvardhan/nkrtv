@@ -180,7 +180,7 @@ export default function AdvertisementsPage() {
 
     const subject = encodeURIComponent(`Advertisement Enquiry from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:nkrtv@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:nkrtvkannada@gmail.com?subject=${subject}&body=${body}`;
     setAdvSubmitted(true);
   };
   return (
@@ -424,7 +424,7 @@ export default function AdvertisementsPage() {
                       <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                     </svg>
                   </div>
-                  <span className="text-[14px] font-medium text-[#1a0a00]">nkrtv@gmail.com</span>
+                  <span className="text-[14px] font-medium text-[#1a0a00]">nkrtvkannada@gmail.com</span>
                 </div>
                 <div className="advertisements-contact-row flex items-center gap-3">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full text-white" style={{ background: ACCENT }}>
@@ -490,7 +490,7 @@ export default function AdvertisementsPage() {
                 </button>
                 {advSubmitted && (
                   <p className="text-sm font-medium text-[#E63E1A]">
-                    ✓ Your email client should open with the message pre-filled. If not, email us directly at <a href="mailto:nkrtv@gmail.com" className="underline">nkrtv@gmail.com</a>.
+                    ✓ Your email client should open with the message pre-filled. If not, email us directly at <a href="mailto:nkrtvkannada@gmail.com" className="underline">nkrtvkannada@gmail.com</a>.
                   </p>
                 )}
               </div>

@@ -39,7 +39,7 @@ export default function ContactPage() {
     const body = encodeURIComponent(
       `Name: ${form.firstName}\nEmail: ${form.email}\nPhone: ${form.phone || '-'}\nSubject: ${form.subject || '-'}\n\nMessage:\n${form.message}`
     );
-    window.location.href = `mailto:nkrtv@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:nkrtvkannada@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -205,7 +205,7 @@ export default function ContactPage() {
               ),
               title: 'Email Us',
               divider: true,
-              lines: ['nkrtv@gmail.com'],
+              lines: ['nkrtvkannada@gmail.com'],
             },
             {
               icon: (
@@ -360,7 +360,7 @@ export default function ContactPage() {
                 </button>
                 {submitted && (
                   <p className="text-sm font-medium" style={{ color: ACCENT }}>
-                    ✓ Your email client should open with the message pre-filled. If not, please email us directly at <a href="mailto:nkrtv@gmail.com" className="underline">nkrtv@gmail.com</a>.
+                    ✓ Your email client should open with the message pre-filled. If not, please email us directly at <a href="mailto:nkrtvkannada@gmail.com" className="underline">nkrtvkannada@gmail.com</a>.
                   </p>
                 )}
               </div>

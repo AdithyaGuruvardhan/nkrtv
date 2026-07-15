@@ -28,7 +28,7 @@ export default function ContactSection() {
     const plan = (data.get('csPlan') as string) || '-';
     const subject = encodeURIComponent(`Message from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\nPlan: ${plan}`);
-    window.location.href = `mailto:nkrtv@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:nkrtvkannada@gmail.com?subject=${subject}&body=${body}`;
     setCsSubmitted(true);
   };
 
@@ -256,7 +256,7 @@ export default function ContactSection() {
             </div>
             {csSubmitted && (
               <p className="text-sm font-medium text-[#E63E1A]">
-                ✓ Your email client should open with the message pre-filled. If not, email us directly at <a href="mailto:nkrtv@gmail.com" className="underline">nkrtv@gmail.com</a>.
+                ✓ Your email client should open with the message pre-filled. If not, email us directly at <a href="mailto:nkrtvkannada@gmail.com" className="underline">nkrtvkannada@gmail.com</a>.
               </p>
             )}
           </div>
