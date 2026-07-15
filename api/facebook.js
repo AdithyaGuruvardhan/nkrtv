@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    const token = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
+    const token = process.env.FACEBOOK_ACCESS_TOKEN || process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
     const pageId = process.env.FACEBOOK_PAGE_ID;
     
     if (!token || !pageId) {
