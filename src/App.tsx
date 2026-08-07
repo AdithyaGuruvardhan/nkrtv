@@ -34,6 +34,7 @@ import KarnatakaFactsBlogPage from './pages/KarnatakaFactsBlogPage';
 import PitruPakshaBlogPage from './pages/PitruPakshaBlogPage';
 import TempleRulesBlogPage from './pages/TempleRulesBlogPage';
 import NKRShowsBlogPage from './pages/NKRShowsBlogPage';
+import NarayaneeyamSpiritualBenefitsBlogPage from './pages/NarayaneeyamSpiritualBenefitsBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -121,6 +122,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'A Divine Journey of Bhakti, Wisdom & Lord Krishna\'s Stories',
     path: '/blog/narayaneeyam-divine-journey',
     keywords: 'Narayaneeyam, Guruji Narayaneeyam, Lord Krishna Stories, Lord Vishnu Devotion, NKR TV, Bhakti, Jnana, Moksha',
+  },
+  '/blog/narayaneeyam-spiritual-benefits': {
+    title: 'Narayaneeyam Spiritual Benefits',
+    description: 'Discover the spiritual benefits of regular Narayaneeyam parayana.',
+    path: '/blog/narayaneeyam-spiritual-benefits',
+    keywords: 'Narayaneeyam, Guruji Narayaneeyam, Spiritual Benefits, Bhakti, Parayana',
   },
 };
 
@@ -239,6 +246,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <NarayaneeyamBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/narayaneeyam-spiritual-benefits') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <NarayaneeyamSpiritualBenefitsBlogPage />
           <Footer />
         </div>
       </main>

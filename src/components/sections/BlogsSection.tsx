@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '17',
+    image: '/images/blog_imgs/06-08-26.webp',
+    category: 'Devotion',
+    date: 'August 7, 2026',
+    headline: 'ಭಕ್ತಿಯಿಂದ ನಾರಾಯಣೀಯಂ ಪಾರಾಯಣ ಮಾಡುವುದರಿಂದ ಸಿಗುವ ಆಧ್ಯಾತ್ಮಿಕ ಪ್ರಯೋಜನಗಳು',
+    excerpt: 'Discover the spiritual benefits of regular Narayaneeyam parayana and how it settles the mind.',
+    readTime: '5 min read',
+    link: '/blog/narayaneeyam-spiritual-benefits',
+  },
+  {
     id: '16',
     image: '/images/blog_imgs/nkr_shows.webp',
     category: 'Entertainment',
