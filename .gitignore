@@ -11,3 +11,4 @@ public/videos/*.mov
 public/videos/*.avi
 public/videos/*.mkv
 !public/videos/*.webm
+node_modules/
