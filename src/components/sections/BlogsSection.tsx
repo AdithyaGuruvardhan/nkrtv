@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '18',
+    image: '/images/blog_imgs/17-08-26.png',
+    category: 'Spiritual',
+    date: 'August 17, 2026',
+    headline: 'ಅನಂತ ದರ್ಶನ: ದೇವರ ದರ್ಶನ ಮಾತ್ರವಲ್ಲ, ಕ್ಷೇತ್ರದರ್ಶನ ಏಕೆ ಮುಖ್ಯ?',
+    excerpt: 'The real experience, the one that lingers long after the visit ends, is kshetra darshan — the act of experiencing the entire sacred site, not just its sanctum.',
+    readTime: '5 min read',
+    link: '/blog/ananta-darshan',
+  },
+  {
     id: '17',
     image: '/images/blog_imgs/06-08-26.webp',
     category: 'Devotion',

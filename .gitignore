@@ -12,3 +12,4 @@ public/videos/*.avi
 public/videos/*.mkv
 !public/videos/*.webm
 node_modules/
+.env*

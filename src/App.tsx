@@ -35,6 +35,7 @@ import PitruPakshaBlogPage from './pages/PitruPakshaBlogPage';
 import TempleRulesBlogPage from './pages/TempleRulesBlogPage';
 import NKRShowsBlogPage from './pages/NKRShowsBlogPage';
 import NarayaneeyamSpiritualBenefitsBlogPage from './pages/NarayaneeyamSpiritualBenefitsBlogPage';
+import AnantaDarshanBlogPage from './pages/AnantaDarshanBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -128,6 +129,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'Discover the spiritual benefits of regular Narayaneeyam parayana.',
     path: '/blog/narayaneeyam-spiritual-benefits',
     keywords: 'Narayaneeyam, Guruji Narayaneeyam, Spiritual Benefits, Bhakti, Parayana',
+  },
+  '/blog/ananta-darshan': {
+    title: 'ಅನಂತ ದರ್ಶನ - Ananta Darshan',
+    description: 'ದೇವರ ದರ್ಶನ ಮಾತ್ರವಲ್ಲ, ಕ್ಷೇತ್ರದರ್ಶನ ಏಕೆ ಮುಖ್ಯ? – ಕ್ಷೇತ್ರ ಮಹಿಮೆಯ ಆಧ್ಯಾತ್ಮಿಕ ರಹಸ್ಯ',
+    path: '/blog/ananta-darshan',
+    keywords: 'Ananta Darshan, Kshetra Darshan, Temple Pilgrimage, Hindu Tradition, Spiritual Journey, NKR TV',
   },
 };
 
@@ -259,6 +266,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <NarayaneeyamSpiritualBenefitsBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/ananta-darshan') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <AnantaDarshanBlogPage />
           <Footer />
         </div>
       </main>
