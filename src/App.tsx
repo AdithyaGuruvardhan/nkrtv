@@ -36,6 +36,7 @@ import TempleRulesBlogPage from './pages/TempleRulesBlogPage';
 import NKRShowsBlogPage from './pages/NKRShowsBlogPage';
 import NarayaneeyamSpiritualBenefitsBlogPage from './pages/NarayaneeyamSpiritualBenefitsBlogPage';
 import AnantaDarshanBlogPage from './pages/AnantaDarshanBlogPage';
+import HinduPracticesBlogPage from './pages/HinduPracticesBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -136,10 +137,17 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     path: '/blog/ananta-darshan',
     keywords: 'Ananta Darshan, Kshetra Darshan, Temple Pilgrimage, Hindu Tradition, Spiritual Journey, NKR TV',
   },
+  '/blog/hindu-practices-science': {
+    title: 'ನಮ್ಮ ಹಿಂದೂ ಆಚರಣೆಗಳ ಹಿಂದೆ ಅಡಗಿರುವ ಶಾಸ್ತ್ರೋಕ್ತ ಮತ್ತು ವೈಜ್ಞಾನಿಕ ಸತ್ಯಗಳು',
+    description: 'Behind nearly every everyday Hindu practice sits a double foundation — a shastric one, rooted in scripture, and a scientific one.',
+    path: '/blog/hindu-practices-science',
+    keywords: 'Hindu Practices, Science, Shastra, Temple Bell, Namaskara, Fasting, Tulsi, Diya',
+  },
 };
 
 export default function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const normalizePath = (path: string) => path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+  const [currentPath, setCurrentPath] = useState(normalizePath(window.location.pathname));
   const pageMeta = pageMetaByPath[currentPath] ?? {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
@@ -149,7 +157,7 @@ export default function App() {
 
   useEffect(() => {
     const onLocationChange = () => {
-      setCurrentPath(window.location.pathname);
+      setCurrentPath(normalizePath(window.location.pathname));
     };
     window.addEventListener('popstate', onLocationChange);
     return () => window.removeEventListener('popstate', onLocationChange);
@@ -279,6 +287,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <AnantaDarshanBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/hindu-practices-science') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <HinduPracticesBlogPage />
           <Footer />
         </div>
       </main>

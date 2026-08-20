@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '19',
+    image: '/images/blog_imgs/20-08-26.webp',
+    category: 'Culture & Science',
+    date: 'August 20, 2026',
+    headline: 'ನಮ್ಮ ಹಿಂದೂ ಆಚರಣೆಗಳ ಹಿಂದೆ ಅಡಗಿರುವ ಶಾಸ್ತ್ರೋಕ್ತ ಮತ್ತು ವೈಜ್ಞಾನಿಕ ಸತ್ಯಗಳು',
+    excerpt: 'Behind nearly every everyday Hindu practice sits a double foundation — a shastric one, rooted in scripture, and a scientific one.',
+    readTime: '6 min read',
+    link: '/blog/hindu-practices-science',
+  },
+  {
     id: '18',
     image: '/images/blog_imgs/17-08-26.png',
     category: 'Spiritual',
