@@ -37,6 +37,7 @@ import NKRShowsBlogPage from './pages/NKRShowsBlogPage';
 import NarayaneeyamSpiritualBenefitsBlogPage from './pages/NarayaneeyamSpiritualBenefitsBlogPage';
 import AnantaDarshanBlogPage from './pages/AnantaDarshanBlogPage';
 import HinduPracticesBlogPage from './pages/HinduPracticesBlogPage';
+import AjjiKitchenBlogPage from './pages/AjjiKitchenBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -142,6 +143,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'Behind nearly every everyday Hindu practice sits a double foundation — a shastric one, rooted in scripture, and a scientific one.',
     path: '/blog/hindu-practices-science',
     keywords: 'Hindu Practices, Science, Shastra, Temple Bell, Namaskara, Fasting, Tulsi, Diya',
+  },
+  '/blog/ajji-kitchen-modern-journey': {
+    title: 'ಅಜ್ಜಿಯ ಅಡುಗೆಯಿಂದ ಆಧುನಿಕ ಅಡುಗೆಮನೆವರೆಗೆ',
+    description: 'ರುಚಿ, ಆರೋಗ್ಯ ಮತ್ತು ಸಂಪ್ರದಾಯದ ಪಯಣ - A journey of taste, health, and tradition from Ajji\'s kitchen to modern ones.',
+    path: '/blog/ajji-kitchen-modern-journey',
+    keywords: 'Ajji Kitchen, Karnataka Tradition, Cooking, NKR TV, Culture, Heritage',
   },
 };
 
@@ -300,6 +307,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <HinduPracticesBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/ajji-kitchen-modern-journey') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <AjjiKitchenBlogPage />
           <Footer />
         </div>
       </main>

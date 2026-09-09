@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '20',
+    image: '/images/blog_imgs/09-09-26.webp',
+    category: 'Culture & Heritage',
+    date: 'September 09, 2026',
+    headline: 'ಅಜ್ಜಿಯ ಅಡುಗೆಯಿಂದ ಆಧುನಿಕ ಅಡುಗೆಮನೆವರೆಗೆ – ರುಚಿ, ಆರೋಗ್ಯ ಮತ್ತು ಸಂಪ್ರದಾಯದ ಪಯಣ',
+    excerpt: 'There\'s a particular smell that instantly transports people back to childhood — mustard seeds crackling in hot oil, curry leaves hitting a heated kadai...',
+    readTime: '5 min read',
+    link: '/blog/ajji-kitchen-modern-journey',
+  },
+  {
     id: '19',
     image: '/images/blog_imgs/20-08-26.webp',
     category: 'Culture & Science',
