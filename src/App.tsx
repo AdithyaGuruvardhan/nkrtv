@@ -38,6 +38,7 @@ import NarayaneeyamSpiritualBenefitsBlogPage from './pages/NarayaneeyamSpiritual
 import AnantaDarshanBlogPage from './pages/AnantaDarshanBlogPage';
 import HinduPracticesBlogPage from './pages/HinduPracticesBlogPage';
 import AjjiKitchenBlogPage from './pages/AjjiKitchenBlogPage';
+import GaneshChaturthiBlogPage from './pages/GaneshChaturthiBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -149,6 +150,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'ರುಚಿ, ಆರೋಗ್ಯ ಮತ್ತು ಸಂಪ್ರದಾಯದ ಪಯಣ - A journey of taste, health, and tradition from Ajji\'s kitchen to modern ones.',
     path: '/blog/ajji-kitchen-modern-journey',
     keywords: 'Ajji Kitchen, Karnataka Tradition, Cooking, NKR TV, Culture, Heritage',
+  },
+  '/blog/ganesh-chaturthi-spiritual-significance': {
+    title: 'ಗಣೇಶ ಚತುರ್ಥಿ – ವಿಘ್ನ ನಿವಾರಕನ ಆಗಮನದ ಆಧ್ಯಾತ್ಮಿಕ ಮಹತ್ವ',
+    description: 'Ganesh Chaturthi is a reminder of why Ganapati is invoked before every important beginning.',
+    path: '/blog/ganesh-chaturthi-spiritual-significance',
+    keywords: 'Ganesh Chaturthi, Ganapati, Vighnaharta, Hindu Festival, NKR TV, Kannada Culture',
   },
 };
 
@@ -320,6 +327,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <AjjiKitchenBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/ganesh-chaturthi-spiritual-significance') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <GaneshChaturthiBlogPage />
           <Footer />
         </div>
       </main>

@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '21',
+    image: '/images/blog_imgs/12-09-26.webp',
+    category: 'Spirituality',
+    date: 'September 12, 2026',
+    headline: 'ಗಣೇಶ ಚತುರ್ಥಿ – ವಿಘ್ನ ನಿವಾರಕನ ಆಗಮನದ ಆಧ್ಯಾತ್ಮಿಕ ಮಹತ್ವ',
+    excerpt: 'Ganesh Chaturthi is a reminder of why Ganapati is invoked before anything else is ever begun.',
+    readTime: '5 min read',
+    link: '/blog/ganesh-chaturthi-spiritual-significance',
+  },
+  {
     id: '20',
     image: '/images/blog_imgs/09-09-26.webp',
     category: 'Culture & Heritage',
