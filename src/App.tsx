@@ -39,6 +39,7 @@ import AnantaDarshanBlogPage from './pages/AnantaDarshanBlogPage';
 import HinduPracticesBlogPage from './pages/HinduPracticesBlogPage';
 import AjjiKitchenBlogPage from './pages/AjjiKitchenBlogPage';
 import GaneshChaturthiBlogPage from './pages/GaneshChaturthiBlogPage';
+import NaadaLahariBlogPage from './pages/NaadaLahariBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -156,6 +157,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'Ganesh Chaturthi is a reminder of why Ganapati is invoked before every important beginning.',
     path: '/blog/ganesh-chaturthi-spiritual-significance',
     keywords: 'Ganesh Chaturthi, Ganapati, Vighnaharta, Hindu Festival, NKR TV, Kannada Culture',
+  },
+  '/blog/naada-lahari-devotional-music': {
+    title: 'ನಾದ ಲಹರಿ – ಭಕ್ತಿಗೀತೆಗಳು ಮನಸ್ಸಿನ ಮೇಲೆ ಬೀರುವ ಅದ್ಭುತ ಪ್ರಭಾವ',
+    description: 'Explore how bhakti geethe and devotional music steady the mind and create a spiritual experience.',
+    path: '/blog/naada-lahari-devotional-music',
+    keywords: 'Naada Lahari, Bhakti Geethe, Devotional Music, Nada, Raga, NKR TV Kannada',
   },
 };
 
@@ -340,6 +347,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <GaneshChaturthiBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/naada-lahari-devotional-music') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <NaadaLahariBlogPage />
           <Footer />
         </div>
       </main>

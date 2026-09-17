@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '22',
+    image: '/images/blog_imgs/17-09-26.webp',
+    category: 'Devotion & Music',
+    date: 'September 17, 2026',
+    headline: 'ನಾದ ಲಹರಿ – ಭಕ್ತಿಗೀತೆಗಳು ಮನಸ್ಸಿನ ಮೇಲೆ ಬೀರುವ ಅದ್ಭುತ ಪ್ರಭಾವ',
+    excerpt: 'Explore how bhakti geethe and devotional music steady the mind and create a spiritual experience.',
+    readTime: '5 min read',
+    link: '/blog/naada-lahari-devotional-music',
+  },
+  {
     id: '21',
     image: '/images/blog_imgs/12-09-26.webp',
     category: 'Spirituality',
