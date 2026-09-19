@@ -3,8 +3,7 @@ import ContentShowcaseSection from './components/sections/ContentShowcaseSection
 import ComingSoonSection from './components/sections/ComingSoonSection'
 import FeaturedVideoSection from './components/sections/FeaturedVideoSection'
 import DivineContentSection from './components/sections/DivineContentSection'
-import EntertainmentSerialSection from './components/sections/EntertainmentSerialSection'
-import YogaPathaSection from './components/sections/YogaPathaSection'
+
 import BlogsSection from './components/sections/BlogsSection'
 import ContactSection from './components/sections/ContactSection'
 import Header from './components/layout/Header';

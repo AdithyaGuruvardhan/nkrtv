@@ -1,6 +1,4 @@
 import { useState, useRef } from 'react';
-import InstagramFeedSection from './InstagramFeedSection';
-import YouTubeFeedSection from './YouTubeFeedSection';
 
 export default function ContactSection() {
   const [csErrors, setCsErrors] = useState<Record<string, string>>({});
