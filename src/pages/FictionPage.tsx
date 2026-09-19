@@ -497,7 +497,7 @@ export default function FictionPage() {
 
         <ComingSoonSection />
 
-        <section className="relative mb-8 overflow-hidden">
+        {/* <section className="relative mb-8 overflow-hidden">
           <div className="mb-5 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E63E1A] text-white">
@@ -599,10 +599,10 @@ export default function FictionPage() {
               </button>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Aparoopada Athithigalu */}
-        <SectionBlock section={sections[0]} onPlay={openModal} />
+        {/* <SectionBlock section={sections[0]} onPlay={openModal} /> */}
 
         {/* Cini Yaana */}
         <div className="relative z-10 mb-12 overflow-hidden">

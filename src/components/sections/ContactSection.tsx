@@ -37,8 +37,8 @@ export default function ContactSection() {
       <div className="mx-auto w-full max-w-[1510px] px-4 sm:px-6 lg:px-10">
         
         {/* Social Media Banner */}
-        <div className="relative mb-24 flex flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#F4D3CA] bg-[#FFF9F5] py-10 shadow-sm">
-          {/* Decorative Dotted Patterns */}
+        {/* Instagram Social Media Banner */}
+        {/* <div className="relative mb-24 flex flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#F4D3CA] bg-[#FFF9F5] py-10 shadow-sm">
           <div
             className="pointer-events-none absolute bottom-0 left-0 top-0 w-[200px] opacity-60"
             style={{
@@ -76,10 +76,10 @@ export default function ContactSection() {
             </svg>
             Follow on Instagram
           </a>
-        </div>
+        </div> */}
 
         {/* YouTube Social Media Banner */}
-        <div className="relative mb-24 flex flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#F4D3CA] bg-[#FFF9F5] py-10 shadow-sm">
+        {/* <div className="relative mb-24 flex flex-col items-center justify-center overflow-hidden rounded-[24px] border border-[#F4D3CA] bg-[#FFF9F5] py-10 shadow-sm">
           <div
             className="pointer-events-none absolute bottom-0 left-0 top-0 w-[200px] opacity-60"
             style={{
@@ -113,7 +113,7 @@ export default function ContactSection() {
             <i className="fa-brands fa-youtube text-lg"></i>
             Subscribe on YouTube
           </a>
-        </div>
+        </div> */}
 
         {/* Form Section Header */}
         <div className="mb-10 text-center">

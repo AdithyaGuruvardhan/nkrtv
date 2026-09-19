@@ -606,11 +606,13 @@ export default function App() {
 
         <InlineVideoSection videoSrc="/videos/NKRTV_Kannada.webm" />
 
-        <EntertainmentSerialSection />
+        {/* <EntertainmentSerialSection /> */}
+        
+        <div className="h-16 bg-[#fffdf9]"></div>
 
         <InlineVideoSection videoSrc="/videos/Alle_Arambha_Prema.webm" />
 
-        <YogaPathaSection />
+        {/* <YogaPathaSection /> */}
         <BlogsSection />
         <ContactSection />
         <Footer />
