@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '23',
+    image: '/images/blog_imgs/30-09-26.png',
+    category: 'Spirituality',
+    date: 'September 30, 2026',
+    headline: 'ಜ್ಯೋತಿಷ್ಯ ಶಾಸ್ತ್ರದಲ್ಲಿ ರಾಶಿಗಳ ಮಹತ್ವ: 12 ರಾಶಿಗಳ ಗುಣಲಕ್ಷಣಗಳ ಪರಿಚಯ',
+    excerpt: 'Long before birth charts became something people casually check on an app, jyotisha shastra treated the sky as a living map...',
+    readTime: '6 min read',
+    link: '/blog/jyotisha-shastra-rashi-mahatva',
+  },
+  {
     id: '22',
     image: '/images/blog_imgs/17-09-26.webp',
     category: 'Devotion & Music',

@@ -39,6 +39,7 @@ import HinduPracticesBlogPage from './pages/HinduPracticesBlogPage';
 import AjjiKitchenBlogPage from './pages/AjjiKitchenBlogPage';
 import GaneshChaturthiBlogPage from './pages/GaneshChaturthiBlogPage';
 import NaadaLahariBlogPage from './pages/NaadaLahariBlogPage';
+import JyotishaShastraRashiBlogPage from './pages/JyotishaShastraRashiBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -162,6 +163,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'Explore how bhakti geethe and devotional music steady the mind and create a spiritual experience.',
     path: '/blog/naada-lahari-devotional-music',
     keywords: 'Naada Lahari, Bhakti Geethe, Devotional Music, Nada, Raga, NKR TV Kannada',
+  },
+  '/blog/jyotisha-shastra-rashi-mahatva': {
+    title: 'ಜ್ಯೋತಿಷ್ಯ ಶಾಸ್ತ್ರದಲ್ಲಿ ರಾಶಿಗಳ ಮಹತ್ವ: 12 ರಾಶಿಗಳ ಗುಣಲಕ್ಷಣಗಳ ಪರಿಚಯ',
+    description: 'Long before birth charts became something people casually check on an app, jyotisha shastra treated the sky as a living map.',
+    path: '/blog/jyotisha-shastra-rashi-mahatva',
+    keywords: 'Jyotisha Shastra, Rashi, Zodiac, Astrology, NKR TV, Spirituality',
   },
 };
 
@@ -359,6 +366,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <NaadaLahariBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/jyotisha-shastra-rashi-mahatva') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <JyotishaShastraRashiBlogPage />
           <Footer />
         </div>
       </main>
