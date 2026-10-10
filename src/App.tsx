@@ -40,6 +40,7 @@ import AjjiKitchenBlogPage from './pages/AjjiKitchenBlogPage';
 import GaneshChaturthiBlogPage from './pages/GaneshChaturthiBlogPage';
 import NaadaLahariBlogPage from './pages/NaadaLahariBlogPage';
 import JyotishaShastraRashiBlogPage from './pages/JyotishaShastraRashiBlogPage';
+import KarnatakaTraditionalTindiBlogPage from './pages/KarnatakaTraditionalTindiBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -169,6 +170,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'Long before birth charts became something people casually check on an app, jyotisha shastra treated the sky as a living map.',
     path: '/blog/jyotisha-shastra-rashi-mahatva',
     keywords: 'Jyotisha Shastra, Rashi, Zodiac, Astrology, NKR TV, Spirituality',
+  },
+  '/blog/karnataka-traditional-tindi': {
+    title: 'ಕರ್ನಾಟಕದ ಸಾಂಪ್ರದಾಯಿಕ ತಿಂಡಿಗಳು: ಮರೆಯಾಗುತ್ತಿರುವ ಹಳೆಯ ಕಾಲದ ರುಚಿಗಳು',
+    description: 'Behind idli, dosa and vada sits a quieter world of Karnataka tindi: kotte kadubu, patrode, holige, chakkuli and more, slowly slipping off the table.',
+    path: '/blog/karnataka-traditional-tindi',
+    keywords: 'Karnataka Traditional Tindi, Kotte Kadubu, Patrode, Holige, Chakkuli, Ragi Mudde, Jolada Rotti, NKR TV Kannada',
   },
 };
 
@@ -366,6 +373,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <NaadaLahariBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/karnataka-traditional-tindi') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <KarnatakaTraditionalTindiBlogPage />
           <Footer />
         </div>
       </main>

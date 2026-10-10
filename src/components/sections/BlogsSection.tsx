@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '24',
+    image: '/images/blog_imgs/10-10-26.webp',
+    category: 'Culinary Heritage',
+    date: 'October 10, 2026',
+    headline: 'ಕರ್ನಾಟಕದ ಸಾಂಪ್ರದಾಯಿಕ ತಿಂಡಿಗಳು: ಮರೆಯಾಗುತ್ತಿರುವ ಹಳೆಯ ಕಾಲದ ರುಚಿಗಳು',
+    excerpt: 'Ask anyone in Karnataka to name a traditional breakfast and the answer arrives almost on reflex: idli, dosa, vada...',
+    readTime: '5 min read',
+    link: '/blog/karnataka-traditional-tindi',
+  },
+  {
     id: '23',
     image: '/images/blog_imgs/30-09-26.png',
     category: 'Spirituality',
