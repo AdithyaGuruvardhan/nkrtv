@@ -41,6 +41,7 @@ import GaneshChaturthiBlogPage from './pages/GaneshChaturthiBlogPage';
 import NaadaLahariBlogPage from './pages/NaadaLahariBlogPage';
 import JyotishaShastraRashiBlogPage from './pages/JyotishaShastraRashiBlogPage';
 import KarnatakaTraditionalTindiBlogPage from './pages/KarnatakaTraditionalTindiBlogPage';
+import FestivalBeliefsTraditionsBlogPage from './pages/FestivalBeliefsTraditionsBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -176,6 +177,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'Behind idli, dosa and vada sits a quieter world of Karnataka tindi: kotte kadubu, patrode, holige, chakkuli and more, slowly slipping off the table.',
     path: '/blog/karnataka-traditional-tindi',
     keywords: 'Karnataka Traditional Tindi, Kotte Kadubu, Patrode, Holige, Chakkuli, Ragi Mudde, Jolada Rotti, NKR TV Kannada',
+  },
+  '/blog/habbagala-dharmika-nambikegalu': {
+    title: 'ಧರ್ಮ ಜ್ಯೋತಿ: ಹಬ್ಬಗಳ ಹಿಂದಿರುವ ಧಾರ್ಮಿಕ ನಂಬಿಕೆಗಳು ಮತ್ತು ಸಂಪ್ರದಾಯಗಳ ಮಹತ್ವ',
+    description: 'Through Dasara, Navaratri, Ayudha Puja, banni and Bombe Habba, discover the beliefs behind our festival rituals and why understanding them keeps tradition alive.',
+    path: '/blog/habbagala-dharmika-nambikegalu',
+    keywords: 'Dharma Jyothi, Dasara, Navaratri, Vijayadashami, Ayudha Puja, Banni, Bombe Habba, Mysuru Dasara, Festival Traditions, NKR TV Kannada',
   },
 };
 
@@ -373,6 +380,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <NaadaLahariBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/habbagala-dharmika-nambikegalu') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <FestivalBeliefsTraditionsBlogPage />
           <Footer />
         </div>
       </main>

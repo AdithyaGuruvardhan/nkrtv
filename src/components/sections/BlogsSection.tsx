@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '25',
+    image: '/images/blog_imgs/17-10-26.webp',
+    category: 'Spirituality',
+    date: 'October 17, 2026',
+    headline: 'ಧರ್ಮ ಜ್ಯೋತಿ: ಹಬ್ಬಗಳ ಹಿಂದಿರುವ ಧಾರ್ಮಿಕ ನಂಬಿಕೆಗಳು ಮತ್ತು ಸಂಪ್ರದಾಯಗಳ ಮಹತ್ವ',
+    excerpt: 'Every festival begins with a question that most of us stop asking by the time we are adults: why do we do this?...',
+    readTime: '5 min read',
+    link: '/blog/habbagala-dharmika-nambikegalu',
+  },
+  {
     id: '24',
     image: '/images/blog_imgs/10-10-26.webp',
     category: 'Culinary Heritage',
