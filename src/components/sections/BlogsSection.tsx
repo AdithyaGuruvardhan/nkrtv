@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 
 const blogs = [
   {
+    id: '26',
+    image: '/images/blog_imgs/28-10-26.webp',
+    category: 'Music & Heritage',
+    date: 'October 28, 2026',
+    headline: 'ಭಾರತೀಯ ಶಾಸ್ತ್ರೀಯ ಸಂಗೀತದ ಮಹತ್ವ: ರಾಗಗಳು ಮತ್ತು ಸಂಗೀತದ ಸಾಂಸ್ಕೃತಿಕ ಪರಂಪರೆ',
+    excerpt: 'Sit through a single alapana in a concert hall and something curious happens. There is no lyric to follow...',
+    readTime: '6 min read',
+    link: '/blog/bharatiya-shastriya-sangeeta-mahatva',
+  },
+  {
     id: '25',
     image: '/images/blog_imgs/17-10-26.webp',
     category: 'Spirituality',

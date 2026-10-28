@@ -42,6 +42,7 @@ import NaadaLahariBlogPage from './pages/NaadaLahariBlogPage';
 import JyotishaShastraRashiBlogPage from './pages/JyotishaShastraRashiBlogPage';
 import KarnatakaTraditionalTindiBlogPage from './pages/KarnatakaTraditionalTindiBlogPage';
 import FestivalBeliefsTraditionsBlogPage from './pages/FestivalBeliefsTraditionsBlogPage';
+import IndianClassicalMusicBlogPage from './pages/IndianClassicalMusicBlogPage';
 import PageMetadata from './components/seo/PageMetadata';
 import { SITE_DESCRIPTION, SITE_NAME } from './config/site';
 
@@ -183,6 +184,12 @@ const pageMetaByPath: Record<string, { title: string; description: string; path:
     description: 'Through Dasara, Navaratri, Ayudha Puja, banni and Bombe Habba, discover the beliefs behind our festival rituals and why understanding them keeps tradition alive.',
     path: '/blog/habbagala-dharmika-nambikegalu',
     keywords: 'Dharma Jyothi, Dasara, Navaratri, Vijayadashami, Ayudha Puja, Banni, Bombe Habba, Mysuru Dasara, Festival Traditions, NKR TV Kannada',
+  },
+  '/blog/bharatiya-shastriya-sangeeta-mahatva': {
+    title: 'ಭಾರತೀಯ ಶಾಸ್ತ್ರೀಯ ಸಂಗೀತದ ಮಹತ್ವ: ರಾಗಗಳು ಮತ್ತು ಸಂಗೀತದ ಸಾಂಸ್ಕೃತಿಕ ಪರಂಪರೆ',
+    description: 'From the Sama Veda to Purandara Dasa, explore the idea of raga, the Hindustani and Carnatic streams, and the guru-shishya parampara that keeps Indian classical music alive.',
+    path: '/blog/bharatiya-shastriya-sangeeta-mahatva',
+    keywords: 'Indian Classical Music, Raga, Carnatic Music, Hindustani Music, Purandara Dasa, Guru Shishya Parampara, Mysuru, NKR TV Kannada',
   },
 };
 
@@ -380,6 +387,19 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
           <Header />
           <NaadaLahariBlogPage />
+          <Footer />
+        </div>
+      </main>
+    );
+  }
+
+  if (currentPath === '/blog/bharatiya-shastriya-sangeeta-mahatva') {
+    return (
+      <main className="min-h-screen bg-[#fffdf9] text-ink overflow-x-hidden">
+        <PageMetadata {...pageMeta} />
+        <div className="flex min-h-screen w-full flex-col px-0 pb-0 pt-0">
+          <Header />
+          <IndianClassicalMusicBlogPage />
           <Footer />
         </div>
       </main>
